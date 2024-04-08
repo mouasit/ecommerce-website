@@ -6,3 +6,7 @@
 body {
   @apply min-w-[320px] font-poppins;
 }
+
+.slick-dots > .slick-active div{
+  @apply bg-red-200
+}
