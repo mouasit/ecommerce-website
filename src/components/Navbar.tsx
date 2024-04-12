@@ -25,7 +25,7 @@ export default function Navbar() {
         </button>
       </span>
       <ul
-        className={`fixed left-0 top-0 ${!clickBurgerMenu ? "hidden" : ""} h-full w-full items-center gap-20 space-y-9 bg-white p-4 lg:relative lg:flex lg:w-auto lg:space-y-0 lg:p-0`}
+        className={`fixed left-0 top-0 transform  transition-transform duration-500 lg:translate-x-0 ${clickBurgerMenu ? "translate-x-0" : "translate-x-full"} h-full w-full items-center gap-20 space-y-9 bg-white p-4 lg:relative lg:flex lg:w-auto lg:space-y-0 lg:p-0`}
       >
         <li className="flex justify-end lg:hidden">
           <button
