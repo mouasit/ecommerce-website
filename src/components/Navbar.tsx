@@ -24,8 +24,25 @@ export default function Navbar() {
           <img src={logo} alt="logo" className="w-[8.5rem]" />
         </button>
       </span>
+      <ul className={`hidden items-center gap-20 lg:flex`}>
+        <li>
+          <button className="flex items-center gap-2 text-bluePrimary">
+            All products
+            <ArrowDownIcon className="h-3 w-3 fill-yellowPrimary" />
+          </button>
+        </li>
+        <li>
+          <button className="text-bluePrimary">Electronic</button>
+        </li>
+        <li>
+          <button className="text-bluePrimary">Audio & Video</button>
+        </li>
+        <li>
+          <button className="text-bluePrimary">Furniture</button>
+        </li>
+      </ul>
       <ul
-        className={`fixed left-0 top-0 transform  transition-transform duration-500 lg:translate-x-0 ${clickBurgerMenu ? "translate-x-0" : "translate-x-full"} h-full w-full items-center gap-20 space-y-9 bg-white p-4 lg:relative lg:flex lg:w-auto lg:space-y-0 lg:p-0`}
+        className={`fixed left-0 top-0 transform transition-transform  duration-500 lg:hidden lg:translate-x-0 lg:transition-none ${clickBurgerMenu ? "translate-x-0" : "translate-x-full"} h-full w-full items-center gap-20 space-y-9 bg-white p-4`}
       >
         <li className="flex justify-end lg:hidden">
           <button
