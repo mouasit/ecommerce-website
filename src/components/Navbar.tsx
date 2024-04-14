@@ -16,6 +16,7 @@ export default function Navbar() {
           className="lg:hidden"
           onClick={() => {
             setClickBurgerMenu(true);
+            document.body.classList.add("overflow-hidden", "lg:overflow-auto");
           }}
         >
           <BurgerMenuIcon className="h-7 w-7 fill-bluePrimary" />
@@ -49,6 +50,7 @@ export default function Navbar() {
             className="rounded-full"
             onClick={() => {
               setClickBurgerMenu(false);
+              document.body.classList.remove("overflow-hidden");
             }}
           >
             <CloseIcon className="h-[.9rem] w-[.9rem] fill-bluePrimary" />
