@@ -10,7 +10,10 @@ import logo from "../assets/logo.svg";
 
 export default function Navbar() {
   const [clickBurgerMenu, setClickBurgerMenu] = React.useState<boolean>(false);
-  const [clickDropDown, setClickDropDown] = React.useState<boolean>(false);
+  const [hoverDropDown, setHoverDropDown] = React.useState<boolean>(false);
+  const [animation, setAnimation] = React.useState<boolean>(false);
+  const dropDownRef = React.useRef<any>(null);
+
   return (
     <nav className="mt-[1.25rem] flex items-center justify-between px-4">
       <span className="flex items-center gap-5">
@@ -27,40 +30,48 @@ export default function Navbar() {
           <img src={logo} alt="logo" className="w-[8.5rem]" />
         </button>
       </span>
-      <ul className={`hidden items-center gap-20 lg:flex`}>
+      <ul className="hidden items-center gap-20 lg:flex">
         <li
           className="relative"
-          onMouseEnter={() => setClickDropDown(true)}
-          onMouseLeave={() => setClickDropDown(false)}
+          onMouseEnter={() => {
+            setAnimation(true);
+            setHoverDropDown(true);
+          }}
+          onMouseLeave={() => {
+            setAnimation(false);
+            dropDownRef.current?.classList.replace("fadein-down", "fadeout-up");
+            dropDownRef.current?.addEventListener("animationend", () => {
+              setHoverDropDown(false);
+            });
+          }}
         >
           <button className="flex items-center gap-2 text-bluePrimary">
             All products
-            {clickDropDown ? (
-              <ArrowUpIcon className="h-3 w-3 fill-yellowPrimary" />
-            ) : (
-              <ArrowDownIcon className="h-3 w-3 fill-yellowPrimary" />
-            )}
+            <ArrowDownIcon
+              className={`rotate h-3 w-3 fill-yellowPrimary ${animation ? "down" : ""}`}
+            />
           </button>
-          <div
-            className={`absolute pt-4 ${clickDropDown ? "block" : "hidden"} w-[15rem]`}
-          >
+          {hoverDropDown ? (
             <div
-              className={`shadow-xs flex flex-col gap-3 rounded-lg py-2 text-sm font-light text-bluePrimary`}
+              className="fadein-down absolute w-[15rem] pt-4"
+              ref={dropDownRef}
             >
-              <button className="p-2 text-left capitalize hover:bg-gray-50">
-                pc & laptop
-              </button>
-              <button className="p-2 text-left capitalize hover:bg-gray-50">
-                smart home
-              </button>
-              <button className="p-2 text-left capitalize hover:bg-gray-50">
-                phones
-              </button>
-              <button className="p-2 text-left capitalize hover:bg-gray-50">
-                accessoires
-              </button>
+              <div className="flex flex-col gap-3 rounded-lg py-2 font-light text-bluePrimary shadow-xs">
+                <button className="p-2 text-left capitalize hover:bg-gray-50">
+                  pc & laptop
+                </button>
+                <button className="p-2 text-left capitalize hover:bg-gray-50">
+                  smart home
+                </button>
+                <button className="p-2 text-left capitalize hover:bg-gray-50">
+                  phones
+                </button>
+                <button className="p-2 text-left capitalize hover:bg-gray-50">
+                  accessoires
+                </button>
+              </div>
             </div>
-          </div>
+          ) : null}
         </li>
         <li>
           <button className="text-bluePrimary">Electronic</button>

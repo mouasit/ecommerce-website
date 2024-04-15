@@ -1,4 +1,5 @@
 import "./App.css";
+import "./animation.css";
 import AnnouncementBar from "./components/AnnouncementBar";
 import Navbar from "./components/Navbar";
 
