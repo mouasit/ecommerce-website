@@ -1,7 +1,6 @@
 import React from "react";
 import {
   ArrowDownIcon,
-  ArrowUpIcon,
   BurgerMenuIcon,
   CloseIcon,
   ShoppingCartIcon,
@@ -9,10 +8,13 @@ import {
 import logo from "../assets/logo.svg";
 
 export default function Navbar() {
-  const [clickBurgerMenu, setClickBurgerMenu] = React.useState<boolean>(false);
+  const [clickBurgerMenu, setClickBurgerMenu] = React.useState<boolean>(true);
   const [hoverDropDown, setHoverDropDown] = React.useState<boolean>(false);
-  const [animation, setAnimation] = React.useState<boolean>(false);
+  const [clickDropDown, setClickDropDown] = React.useState<boolean>(false);
+  const [hoverAnimation, setHoverAnimation] = React.useState<boolean>(false);
+  const [clickAnimation, setClickAnimation] = React.useState<boolean>(false);
   const dropDownRef = React.useRef<any>(null);
+  const dropDownMobileRef = React.useRef<any>(null);
 
   return (
     <nav className="mt-[1.25rem] flex items-center justify-between px-4">
@@ -33,12 +35,16 @@ export default function Navbar() {
       <ul className="hidden items-center gap-20 lg:flex">
         <li
           className="relative"
+          onFocus={() => {
+            setHoverAnimation(true);
+            setHoverDropDown(true);
+          }}
           onMouseEnter={() => {
-            setAnimation(true);
+            setHoverAnimation(true);
             setHoverDropDown(true);
           }}
           onMouseLeave={() => {
-            setAnimation(false);
+            setHoverAnimation(false);
             dropDownRef.current?.classList.replace("fadein-down", "fadeout-up");
             dropDownRef.current?.addEventListener("animationend", () => {
               setHoverDropDown(false);
@@ -48,12 +54,12 @@ export default function Navbar() {
           <button className="flex items-center gap-2 text-bluePrimary">
             All products
             <ArrowDownIcon
-              className={`rotate h-3 w-3 fill-yellowPrimary ${animation ? "down" : ""}`}
+              className={`rotate h-3 w-3 fill-yellowPrimary ${hoverAnimation ? "down" : ""}`}
             />
           </button>
           {hoverDropDown ? (
             <div
-              className="fadein-down absolute w-[15rem] pt-4"
+              className="fadein-down absolute w-[15rem] pt-4 text-sm"
               ref={dropDownRef}
             >
               <div className="flex flex-col gap-3 rounded-lg py-2 font-light text-bluePrimary shadow-xs">
@@ -98,10 +104,44 @@ export default function Navbar() {
           </button>
         </li>
         <li>
-          <button className="flex items-center gap-2 text-bluePrimary">
-            All products
-            <ArrowDownIcon className="h-3 w-3 fill-yellowPrimary" />
-          </button>
+          <div className="flex items-center gap-5">
+            <button className="flex items-center gap-2 text-bluePrimary">
+              All products
+            </button>
+            <button
+              className="rounded-full bg-yellowPrimary p-[.4rem]"
+              onClick={() => {
+                if (clickDropDown) {
+                  dropDownMobileRef.current?.classList.replace(
+                    "fadein-down",
+                    "fadeout-up-1",
+                  );
+                  dropDownMobileRef.current?.addEventListener(
+                    "animationend",
+                    () => {
+                      setClickDropDown(false);
+                    },
+                  );
+                } else setClickDropDown(true);
+                setClickAnimation(!clickAnimation);
+              }}
+            >
+              <ArrowDownIcon
+                className={`rotate h-3 w-3 fill-bluePrimary ${clickAnimation ? "down" : ""}`}
+              />
+            </button>
+          </div>
+          {clickDropDown ? (
+            <div
+              className="fadein-down mt-9 flex flex-col gap-7  border-l pl-5 text-sm font-light text-bluePrimary"
+              ref={dropDownMobileRef}
+            >
+              <button className="text-left capitalize">pc & laptop</button>
+              <button className="text-left capitalize">smart home</button>
+              <button className="text-left capitalize">phones</button>
+              <button className="text-left capitalize">accessoires</button>
+            </div>
+          ) : null}
         </li>
         <li>
           <button className="text-bluePrimary">Electronic</button>

@@ -4,6 +4,18 @@
 .fadeout-up {
   animation: fadeOutUp 0.4s forwards;
 }
+
+.fadeout-up-1 {
+  animation: fadeOutUp 0.2s forwards;
+}
+
+.rotate {
+  transition: all 0.4s linear;
+}
+.rotate.down {
+  transform: rotate(-180deg);
+}
+
 @keyframes fadeInDown {
   from {
     opacity: 0;
@@ -13,13 +25,6 @@
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
-}
-
-.rotate{
-    transition: all .4s linear;
-}
-.rotate.down{
-    transform: rotate(-180deg);
 }
 
 @keyframes fadeOutUp {

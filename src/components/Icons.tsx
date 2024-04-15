@@ -31,14 +31,6 @@ export function ShoppingCartIcon({ className }: { className?: string }) {
   );
 }
 
-export function ArrowUpIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 14 8" className={className}>
-      <path d="M7.00437 -3.89655e-05C7.08794 -0.00012528 7.17071 0.0163027 7.24792 0.0483004C7.32513 0.0802981 7.39526 0.127234 7.45427 0.186415L13.8179 6.55004C14.0666 6.7987 14.0666 7.20136 13.8179 7.44986C13.5692 7.69836 13.1666 7.69852 12.9181 7.44986L7.00437 1.53614L1.09065 7.44986C0.841989 7.69852 0.439329 7.69852 0.190829 7.44986C-0.0576706 7.2012 -0.057829 6.79854 0.190829 6.55004L6.55446 0.186415C6.61347 0.127234 6.6836 0.0802981 6.76081 0.0483004C6.83802 0.0163027 6.92079 -0.000125266 7.00437 -3.89655e-05Z" />
-    </svg>
-  );
-}
-
 export function ArrowDownIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 14 8" className={className}>
