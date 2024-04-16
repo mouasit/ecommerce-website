@@ -4,8 +4,11 @@ import {
   BurgerMenuIcon,
   CloseIcon,
   ShoppingCartIcon,
+  TrashIcon,
 } from "./Icons";
 import logo from "../assets/logo.svg";
+import iphone from "../assets/products/iphone.png";
+import cable from "../assets/products/cable.png";
 
 export default function Navbar() {
   const [clickBurgerMenu, setClickBurgerMenu] = React.useState<boolean>(false);
@@ -13,6 +16,8 @@ export default function Navbar() {
   const [clickDropDown, setClickDropDown] = React.useState<boolean>(false);
   const [hoverAnimation, setHoverAnimation] = React.useState<boolean>(false);
   const [clickAnimation, setClickAnimation] = React.useState<boolean>(false);
+  const [clickShoppingCart, setClickShoppingCart] =
+    React.useState<boolean>(false);
   const dropDownRef = React.useRef<any>(null);
   const dropDownMobileRef = React.useRef<any>(null);
 
@@ -153,91 +158,83 @@ export default function Navbar() {
           <button className="text-bluePrimary">Furniture</button>
         </li>
       </ul>
-      <button className="flex items-start gap-[.2rem]">
+      <button
+        className="flex items-start gap-[.2rem]"
+        onClick={() => {
+          setClickShoppingCart(true);
+        }}
+      >
         <ShoppingCartIcon className="h-[2.3rem] w-[2.3rem] fill-bluePrimary" />
         <span className="flex h-[1.5rem] w-[1.5rem] items-center justify-center rounded-full bg-yellowPrimary font-bold text-bluePrimary">
           0
         </span>
       </button>
-      <div className="bg-opacity-1 fixed left-0 top-0 h-screen w-full bg-black">
-        <div className="relative float-end h-screen w-full bg-white py-4 sm:w-[80%] lg:w-[40%] xl:w-[30%]">
-          <div className=" fixed flex  w-full items-center justify-between border-b px-4 pb-4 text-lg font-bold capitalize  text-bluePrimary sm:w-[80%] lg:w-[40%] xl:w-[30%] ">
+      {clickShoppingCart ? (
+        <div className="fixed left-0 top-0 h-screen w-full bg-black bg-opacity-1"></div>
+      ) : null}
+      <div
+        className={`fixed right-0 top-0  w-full transition-transform duration-500  sm:w-[26rem] ${clickShoppingCart ? "translate-x-0" : "translate-x-full"}`}
+      >
+        <div className="relative h-screen bg-white py-4 pb-[16.1rem]">
+          <div className="flex items-center justify-between border-b px-4 pb-4 text-lg font-medium capitalize  text-bluePrimary">
             shopping cart
-            <button className="rounded-full bg-yellowPrimary p-2">
+            <button
+              className="rounded-full bg-yellowPrimary p-2"
+              onClick={() => {
+                setClickShoppingCart(false);
+              }}
+            >
               <CloseIcon className="h-[.6rem] w-[.6rem] fill-bluePrimary" />
             </button>
           </div>
-          <div className="">
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
+          <div className="flex h-full flex-col gap-8 overflow-auto px-4 py-8">
+            <div className="flex items-center justify-between">
+              <button className="flex gap-3 text-left">
+                <div className="bg-grayLight flex items-center justify-center rounded-xl p-3">
+                  <img
+                    src={iphone}
+                    alt="product image"
+                    className="h-[5rem] w-[5rem]"
+                  />
+                </div>
+                <span className="flex flex-col gap-1 capitalize text-bluePrimary">
+                  <span className="font-medium">iphone 14 plus</span>
+                  <span className="font-light text-grayPrimary">$600,00</span>
+                </span>
+              </button>
+              <button className="rounded-full bg-gray-100 p-2">
+                <TrashIcon className="h-5 w-5 fill-bluePrimary" />
+              </button>
+            </div>
+            <div className="flex items-center justify-between">
+              <button className="flex gap-3 text-left">
+                <div className="bg-grayLight flex items-center justify-center rounded-xl p-3">
+                  <img
+                    src={cable}
+                    alt="product image"
+                    className="h-[5rem] w-[5rem]"
+                  />
+                </div>
+                <span className="flex flex-col gap-1 capitalize text-bluePrimary">
+                  <span className="font-medium">Baseus Tungsten</span>
+                  <span className="font-light text-grayPrimary">$15,00</span>
+                </span>
+              </button>
+              <button className="rounded-full bg-gray-100 p-2">
+                <TrashIcon className="h-5 w-5 fill-bluePrimary" />
+              </button>
+            </div>
           </div>
-          <div className="absolute bottom-4 w-full">
+          <div className="absolute bottom-4 flex w-full flex-col gap-8 border-t px-4 pt-8 text-lg">
+            <div className="flex w-full items-center justify-between text-bluePrimary">
+              <span className="capitalize">subtotal</span>
+              <span className="font-bold">$500,00</span>
+            </div>
             <div className="flex flex-col items-center gap-2">
-              <button className="w-[90%] rounded-[0.5rem] border-2 border-bluePrimary p-2 font-medium text-bluePrimary">
+              <button className="w-full rounded-[0.5rem] border-2 border-bluePrimary p-2 font-medium text-bluePrimary">
                 View Cart
               </button>
-              <button className="w-[90%] rounded-[0.5rem] border-2 border-yellowPrimary bg-yellowPrimary p-2 font-medium text-bluePrimary">
+              <button className="w-full rounded-[0.5rem] border-2 border-yellowPrimary bg-yellowPrimary p-2 font-medium text-bluePrimary">
                 Checkout
               </button>
             </div>
