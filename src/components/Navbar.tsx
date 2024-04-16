@@ -8,7 +8,7 @@ import {
 import logo from "../assets/logo.svg";
 
 export default function Navbar() {
-  const [clickBurgerMenu, setClickBurgerMenu] = React.useState<boolean>(true);
+  const [clickBurgerMenu, setClickBurgerMenu] = React.useState<boolean>(false);
   const [hoverDropDown, setHoverDropDown] = React.useState<boolean>(false);
   const [clickDropDown, setClickDropDown] = React.useState<boolean>(false);
   const [hoverAnimation, setHoverAnimation] = React.useState<boolean>(false);
@@ -159,6 +159,91 @@ export default function Navbar() {
           0
         </span>
       </button>
+      <div className="bg-opacity-1 fixed left-0 top-0 h-screen w-full bg-black">
+        <div className="relative float-end h-screen w-full bg-white py-4 sm:w-[80%] lg:w-[40%] xl:w-[30%]">
+          <div className=" fixed flex  w-full items-center justify-between border-b px-4 pb-4 text-lg font-bold capitalize  text-bluePrimary sm:w-[80%] lg:w-[40%] xl:w-[30%] ">
+            shopping cart
+            <button className="rounded-full bg-yellowPrimary p-2">
+              <CloseIcon className="h-[.6rem] w-[.6rem] fill-bluePrimary" />
+            </button>
+          </div>
+          <div className="">
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+          </div>
+          <div className="absolute bottom-4 w-full">
+            <div className="flex flex-col items-center gap-2">
+              <button className="w-[90%] rounded-[0.5rem] border-2 border-bluePrimary p-2 font-medium text-bluePrimary">
+                View Cart
+              </button>
+              <button className="w-[90%] rounded-[0.5rem] border-2 border-yellowPrimary bg-yellowPrimary p-2 font-medium text-bluePrimary">
+                Checkout
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </nav>
   );
 }
