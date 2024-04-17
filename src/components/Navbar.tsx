@@ -22,7 +22,7 @@ export default function Navbar() {
   const dropDownMobileRef = React.useRef<any>(null);
 
   return (
-    <nav className="mt-[1.25rem] flex items-center justify-between px-4">
+    <nav className="sticky top-0 flex w-full items-center justify-between bg-white p-4 shadow-sm">
       <span className="flex items-center gap-5">
         <button
           className="lg:hidden"
