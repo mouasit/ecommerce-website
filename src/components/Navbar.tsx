@@ -162,6 +162,7 @@ export default function Navbar() {
         className="flex items-start gap-[.2rem]"
         onClick={() => {
           setClickShoppingCart(true);
+          document.body.classList.add("overflow-hidden");
         }}
       >
         <ShoppingCartIcon className="h-[2.3rem] w-[2.3rem] fill-bluePrimary" />
@@ -170,10 +171,16 @@ export default function Navbar() {
         </span>
       </button>
       {clickShoppingCart ? (
-        <div className="fixed left-0 top-0 h-screen w-full bg-black bg-opacity-1"></div>
+        <div
+          className="fixed left-0 top-0 h-screen w-full bg-black bg-opacity-1"
+          onClick={() => {
+            setClickShoppingCart(false);
+            document.body.classList.remove("overflow-hidden");
+          }}
+        ></div>
       ) : null}
       <div
-        className={`fixed right-0 top-0  w-full transition-transform duration-500  sm:w-[26rem] ${clickShoppingCart ? "translate-x-0" : "translate-x-full"}`}
+        className={`fixed right-0 top-0  w-full transition-transform duration-500 sm:w-[26rem] ${clickShoppingCart ? "translate-x-0" : "translate-x-full"}`}
       >
         <div className="relative h-screen bg-white py-4 pb-[16.1rem]">
           <div className="flex items-center justify-between border-b px-4 pb-4 text-lg font-medium capitalize  text-bluePrimary">
@@ -182,6 +189,7 @@ export default function Navbar() {
               className="rounded-full bg-yellowPrimary p-2"
               onClick={() => {
                 setClickShoppingCart(false);
+                document.body.classList.remove("overflow-hidden");
               }}
             >
               <CloseIcon className="h-[.6rem] w-[.6rem] fill-bluePrimary" />
@@ -190,7 +198,7 @@ export default function Navbar() {
           <div className="flex h-full flex-col gap-8 overflow-auto px-4 py-8">
             <div className="flex items-center justify-between">
               <button className="flex gap-3 text-left">
-                <div className="bg-grayLight flex items-center justify-center rounded-xl p-3">
+                <div className="flex items-center justify-center rounded-xl bg-grayLight p-3">
                   <img
                     src={iphone}
                     alt="product image"
@@ -208,7 +216,7 @@ export default function Navbar() {
             </div>
             <div className="flex items-center justify-between">
               <button className="flex gap-3 text-left">
-                <div className="bg-grayLight flex items-center justify-center rounded-xl p-3">
+                <div className="flex items-center justify-center rounded-xl bg-grayLight p-3">
                   <img
                     src={cable}
                     alt="product image"
