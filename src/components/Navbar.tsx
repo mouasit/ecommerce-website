@@ -22,7 +22,7 @@ export default function Navbar() {
   const dropDownMobileRef = React.useRef<any>(null);
 
   return (
-    <nav className="sticky top-0 flex w-full items-center justify-between bg-white p-4 shadow-sm">
+    <nav className="sticky top-0 z-[2] flex w-full items-center justify-between bg-white p-4 shadow-sm">
       <span className="flex items-center gap-5">
         <button
           className="lg:hidden"
@@ -64,7 +64,7 @@ export default function Navbar() {
           </button>
           {hoverDropDown ? (
             <div
-              className="fadein-down absolute w-[15rem] pt-4 text-sm"
+              className="fadein-down absolute w-[15rem] pt-4 text-sm bg-white"
               ref={dropDownRef}
             >
               <div className="flex flex-col gap-3 rounded-lg py-2 font-light text-bluePrimary shadow-xs">
@@ -183,7 +183,7 @@ export default function Navbar() {
         className={`fixed right-0 top-0  w-full transition-transform duration-500 sm:w-[26rem] ${clickShoppingCart ? "translate-x-0" : "translate-x-full"}`}
       >
         <div className="relative h-screen bg-white py-4 pb-[16.1rem]">
-          <div className="flex items-center justify-between border-b px-4 pb-4 text-lg font-medium capitalize  text-bluePrimary">
+          <div className="flex items-center justify-between border-b px-4 pb-4 text-lg font-semibold capitalize  text-bluePrimary">
             shopping cart
             <button
               className="rounded-full bg-yellowPrimary p-2"

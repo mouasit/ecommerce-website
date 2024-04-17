@@ -8,5 +8,5 @@ body {
 }
 
 .slick-dots > .slick-active div{
-  @apply bg-red-200
+  @apply bg-yellowPrimary
 }
