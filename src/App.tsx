@@ -8,8 +8,8 @@ function App() {
   return (
     <>
       <AnnouncementBar />
-      <Slider />
       <Navbar />
+      <Slider />
     </>
   );
 }
