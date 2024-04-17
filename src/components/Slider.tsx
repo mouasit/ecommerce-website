@@ -13,9 +13,7 @@ export default function Slider() {
     slidesToScroll: 1,
     nextArrow: <SliderNextArrow />,
     prevArrow: <SliderPrevArrow />,
-    customPaging: (i: any) => (
-      <div className="relative top-6 h-[.1rem] w-[59px] rounded-full bg-bluePrimary"></div>
-    ),
+    customPaging: () => <div></div>,
   };
   return (
     <SlickSlider {...settings}>
@@ -41,6 +39,12 @@ export default function Slider() {
           </div>
           <img src={tv} alt="product" className="w-[23rem]" />
         </div>
+      </div>
+      <div className=" bg-green-300">
+        <h3>1</h3>
+      </div>
+      <div className=" bg-green-300">
+        <h3>1</h3>
       </div>
       <div className=" bg-green-300">
         <h3>1</h3>
