@@ -9,6 +9,8 @@ import {
 import logo from "../assets/logo.svg";
 import iphone from "../assets/products/iphone.png";
 import cable from "../assets/products/cable.png";
+import SecondaryButton from "./layouts/SecondaryButton";
+import PrimaryButton from "./layouts/PrimaryButton";
 
 export default function Navbar() {
   const [clickBurgerMenu, setClickBurgerMenu] = React.useState<boolean>(false);
@@ -64,7 +66,7 @@ export default function Navbar() {
           </button>
           {hoverDropDown ? (
             <div
-              className="fadein-down absolute w-[15rem] pt-4 text-sm bg-white"
+              className="fadein-down absolute w-[15rem] bg-white pt-4 text-sm"
               ref={dropDownRef}
             >
               <div className="flex flex-col gap-3 rounded-lg py-2 font-light text-bluePrimary shadow-xs">
@@ -239,12 +241,8 @@ export default function Navbar() {
               <span className="font-bold">$500,00</span>
             </div>
             <div className="flex flex-col items-center gap-2">
-              <button className="w-full rounded-[0.5rem] border-2 border-bluePrimary p-2 font-medium text-bluePrimary">
-                View Cart
-              </button>
-              <button className="w-full rounded-[0.5rem] border-2 border-yellowPrimary bg-yellowPrimary p-2 font-medium text-bluePrimary">
-                Checkout
-              </button>
+              <SecondaryButton value="view cart" className="w-full" />
+              <PrimaryButton value="checkout" className="w-full" />
             </div>
           </div>
         </div>

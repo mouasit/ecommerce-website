@@ -11,12 +11,8 @@ body {
   display: flex !important;
   text-align: unset !important;
   bottom: 0px !important;
-  align-items: center !important;
-  justify-content: center;
-  gap: 0.5rem;
   position: relative !important;
-  top: 2.5rem;
-  padding: 0 1rem 0 1rem;
+  @apply top-16 items-center justify-center gap-1 px-4 md:top-20;
 }
 
 .slick-dots li {
@@ -27,11 +23,9 @@ body {
   padding: unset !important;
   cursor: unset !important;
   width: 16% !important;
+  @apply sm:w-[4.813rem] !important;
 }
 
-.slick-dots div {
-  @apply h-[2.3px] rounded-full bg-bluePrimary;
-}
 .slick-dots > .slick-active div {
   @apply bg-yellowPrimary;
 }

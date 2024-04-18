@@ -3,6 +3,7 @@ import "slick-carousel/slick/slick-theme.css";
 import SlickSlider from "react-slick";
 import { ArrowLeftIcon, ArrowRightIcon } from "./Icons";
 import tv from "../assets/products/tv.png";
+import PrimaryButton from "./layouts/PrimaryButton";
 
 export default function Slider() {
   var settings = {
@@ -11,35 +12,38 @@ export default function Slider() {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 2000,
+    // autoplay: true,
+    // autoplaySpeed: 2000,
     nextArrow: <SliderNextArrow />,
     prevArrow: <SliderPrevArrow />,
-    customPaging: () => <div></div>,
+    customPaging: () => (
+      <div className="h-[2px] rounded-full bg-bluePrimary"></div>
+    ),
   };
   return (
     <SlickSlider {...settings}>
-      <div className="h-[33.5rem]">
-        <div className="flex flex-col items-center gap-10 px-6 pt-12">
-          <div className="flex flex-col items-center gap-10">
-            <div className="flex flex-col items-center gap-5">
+      <div>
+        <div className="flex flex-col items-center gap-10 px-6 pt-12 md:flex-row md:justify-center md:gap-20 md:px-16 xl:gap-[23rem] ">
+          <div className="flex flex-col items-center gap-10 md:items-start">
+            <div className="flex flex-col items-center gap-5 md:items-start md:gap-3">
               <div className="flex flex-col">
-                <h3 className="text-[1.5rem] font-semibold text-bluePrimary">
+                <h3 className="text-[1.5rem] font-semibold text-bluePrimary md:text-[1.3rem] lg:text-[1.5rem]">
                   85" Q60C QLED 4K (2023)
                 </h3>
-                <span className="text-sm font-light text-grayPrimary">
+                <span className="md:text-[.8rem] lg:text-[.9rem] font-light text-grayPrimary">
                   QA85Q60CAUXMV
                 </span>
               </div>
-              <p className="text-center font-light text-bluePrimary">
+              <p className="text-center text-sm font-light text-bluePrimary md:text-left lg:text-[1rem]">
                 Technologie Quantum Matrix Pro / Neural Quantum Processor 8K
               </p>
             </div>
-            <button className="w-[34vw] rounded-[0.5rem] border-2 border-yellowPrimary bg-yellowPrimary p-2 font-medium capitalize text-bluePrimary">
-              shop now
-            </button>
+            <PrimaryButton
+              value="shop now"
+              className="w-[34vw]  sm:w-[10.264rem]"
+            />
           </div>
-          <img src={tv} alt="product" className="w-[23rem]" />
+          <img src={tv} alt="product" className="w-[23rem] lg:w-[33rem]" />
         </div>
       </div>
       <div className=" bg-green-300">
