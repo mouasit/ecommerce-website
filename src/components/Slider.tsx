@@ -23,7 +23,7 @@ export default function Slider() {
   return (
     <SlickSlider {...settings}>
       <div>
-        <div className="flex flex-col items-center gap-10 px-6 pt-12 md:flex-row md:justify-center md:gap-16 md:px-16  xl:gap-[10vw]  ">
+        <div className="flex flex-col items-center gap-10 px-6 pt-12 md:flex-row md:justify-center md:gap-16 md:px-16  xl:gap-[10vw] ">
           <div className="flex flex-col items-center gap-[3rem] md:items-start">
             <div className="flex flex-col items-center gap-5 md:items-start md:gap-3">
               <div className="flex flex-col">
@@ -62,7 +62,10 @@ export default function Slider() {
 function SliderNextArrow(props: any) {
   const { onClick } = props;
   return (
-    <button onClick={onClick} className="absolute right-4 top-[40%] z-[1]">
+    <button
+      onClick={onClick}
+      className="absolute right-4 top-[40%] z-[1] md:top-[50%]"
+    >
       <ArrowRightIcon className="h-5 w-5 fill-bluePrimary" />
     </button>
   );
@@ -71,7 +74,10 @@ function SliderNextArrow(props: any) {
 function SliderPrevArrow(props: any) {
   const { onClick } = props;
   return (
-    <button onClick={onClick} className="absolute left-4 top-[40%] z-[1]">
+    <button
+      onClick={onClick}
+      className="absolute left-4 top-[40%] z-[1] md:top-[50%]"
+    >
       <ArrowLeftIcon className="h-5 w-5 fill-bluePrimary" />
     </button>
   );

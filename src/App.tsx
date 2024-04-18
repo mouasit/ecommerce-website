@@ -9,7 +9,9 @@ function App() {
     <>
       <AnnouncementBar />
       <Navbar />
-      <Slider />
+      <main className="2xl:app-container">
+        <Slider />
+      </main>
     </>
   );
 }

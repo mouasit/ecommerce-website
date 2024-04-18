@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 body {
-  @apply min-w-[320px] font-poppins 2xl:container 2xl:mx-auto;
+  @apply min-w-[320px] font-poppins;
 }
 
 .slick-dots {
@@ -28,4 +28,14 @@ body {
 
 .slick-dots > .slick-active div {
   @apply bg-yellowPrimary;
+}
+
+.padding-layouts {
+  @apply p-4;
+}
+
+@layer base {
+  .app-container {
+    @apply mx-auto max-w-[1800px];
+  }
 }
