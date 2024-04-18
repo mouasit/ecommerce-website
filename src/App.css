@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 body {
-  @apply min-w-[320px] font-poppins;
+  @apply min-w-[320px] font-poppins 2xl:container 2xl:mx-auto;
 }
 
 .slick-dots {

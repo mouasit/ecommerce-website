@@ -23,7 +23,7 @@ export default function Slider() {
   return (
     <SlickSlider {...settings}>
       <div>
-        <div className="flex flex-col items-center gap-10 px-6 pt-12 md:flex-row md:justify-center md:gap-20 md:px-16 2xl:gap-[23rem] ">
+        <div className="flex flex-col items-center gap-10 px-6 pt-12 md:flex-row md:justify-center md:gap-16 md:px-16  xl:gap-[10vw]  ">
           <div className="flex flex-col items-center gap-[3rem] md:items-start">
             <div className="flex flex-col items-center gap-5 md:items-start md:gap-3">
               <div className="flex flex-col">
