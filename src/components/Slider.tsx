@@ -23,14 +23,14 @@ export default function Slider() {
   return (
     <SlickSlider {...settings}>
       <div>
-        <div className="flex flex-col items-center gap-10 px-6 pt-12 md:flex-row md:justify-center md:gap-20 md:px-16 xl:gap-[23rem] ">
-          <div className="flex flex-col items-center gap-10 md:items-start">
+        <div className="flex flex-col items-center gap-10 px-6 pt-12 md:flex-row md:justify-center md:gap-20 md:px-16 2xl:gap-[23rem] ">
+          <div className="flex flex-col items-center gap-[3rem] md:items-start">
             <div className="flex flex-col items-center gap-5 md:items-start md:gap-3">
               <div className="flex flex-col">
                 <h3 className="text-[1.5rem] font-semibold text-bluePrimary md:text-[1.3rem] lg:text-[1.5rem]">
                   85" Q60C QLED 4K (2023)
                 </h3>
-                <span className="md:text-[.8rem] lg:text-[.9rem] font-light text-grayPrimary">
+                <span className="font-light text-grayPrimary md:text-[.8rem] lg:text-[.9rem]">
                   QA85Q60CAUXMV
                 </span>
               </div>
@@ -43,7 +43,7 @@ export default function Slider() {
               className="w-[34vw]  sm:w-[10.264rem]"
             />
           </div>
-          <img src={tv} alt="product" className="w-[23rem] lg:w-[33rem]" />
+          <img src={tv} alt="product" className="w-[23rem] lg:w-[28rem]" />
         </div>
       </div>
       <div className=" bg-green-300">
@@ -62,7 +62,7 @@ export default function Slider() {
 function SliderNextArrow(props: any) {
   const { onClick } = props;
   return (
-    <button onClick={onClick} className="absolute right-2 top-[40%] z-[1]">
+    <button onClick={onClick} className="absolute right-4 top-[40%] z-[1]">
       <ArrowRightIcon className="h-5 w-5 fill-bluePrimary" />
     </button>
   );
@@ -71,7 +71,7 @@ function SliderNextArrow(props: any) {
 function SliderPrevArrow(props: any) {
   const { onClick } = props;
   return (
-    <button onClick={onClick} className="absolute left-2 top-[40%] z-[1]">
+    <button onClick={onClick} className="absolute left-4 top-[40%] z-[1]">
       <ArrowLeftIcon className="h-5 w-5 fill-bluePrimary" />
     </button>
   );
