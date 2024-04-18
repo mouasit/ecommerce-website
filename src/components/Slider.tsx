@@ -3,7 +3,7 @@ import "slick-carousel/slick/slick-theme.css";
 import SlickSlider from "react-slick";
 import { ArrowLeftIcon, ArrowRightIcon } from "./Icons";
 import tv from "../assets/products/tv.png";
-import PrimaryButton from "./layouts/PrimaryButton";
+import Slide from "./layouts/Slide";
 
 export default function Slider() {
   var settings = {
@@ -22,39 +22,18 @@ export default function Slider() {
   };
   return (
     <SlickSlider {...settings}>
-      <div>
-        <div className="flex flex-col items-center gap-10 px-6 pt-12 md:flex-row md:justify-center md:gap-16 md:px-16  xl:gap-[10vw] ">
-          <div className="flex flex-col items-center gap-[3rem] md:items-start">
-            <div className="flex flex-col items-center gap-5 md:items-start md:gap-3">
-              <div className="flex flex-col">
-                <h3 className="text-[1.5rem] font-semibold text-bluePrimary md:text-[1.3rem] lg:text-[1.5rem]">
-                  85" Q60C QLED 4K (2023)
-                </h3>
-                <span className="font-light text-grayPrimary md:text-[.8rem] lg:text-[.9rem]">
-                  QA85Q60CAUXMV
-                </span>
-              </div>
-              <p className="text-center text-sm font-light text-bluePrimary md:text-left lg:text-[1rem]">
-                Technologie Quantum Matrix Pro / Neural Quantum Processor 8K
-              </p>
-            </div>
-            <PrimaryButton
-              value="shop now"
-              className="w-[34vw]  sm:w-[10.264rem]"
-            />
-          </div>
-          <img src={tv} alt="product" className="w-[23rem] lg:w-[28rem]" />
-        </div>
-      </div>
-      <div className=" bg-green-300">
-        <h3>1</h3>
-      </div>
-      <div className=" bg-green-300">
-        <h3>1</h3>
-      </div>
-      <div className=" bg-green-300">
-        <h3>1</h3>
-      </div>
+      <Slide
+        nameProduct={`"85" Q60C QLED 4K (2023)"`}
+        subtitle="QA85Q60CAUXMV"
+        desc="Technologie Quantum Matrix Pro / Neural Quantum Processor 8K"
+        linkImageProduct={tv}
+      />
+      <Slide
+        nameProduct={`"85" Q60C QLED 4K (2023)"`}
+        subtitle="QA85Q60CAUXMV"
+        desc="Technologie Quantum Matrix Pro / Neural Quantum Processor 8K"
+        linkImageProduct={tv}
+      />
     </SlickSlider>
   );
 }
