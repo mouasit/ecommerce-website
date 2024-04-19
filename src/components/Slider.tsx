@@ -14,7 +14,7 @@ export default function Slider() {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 4000,
     nextArrow: <SliderNextArrow />,
     prevArrow: <SliderPrevArrow />,
     customPaging: () => (
