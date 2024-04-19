@@ -32,7 +32,7 @@ export default function Slider() {
       <Slide
         nameProduct={`IPhone 15 Pro Max All Colors`}
         subtitle="QA85Q60CAUXMV"
-        desc="The iPhone 15 display has rounded corners that follow a beautiful curved design"
+        desc="The iPhone 15 display has rounded corners that follow a beautiful"
         linkImageProduct={iphone}
       />
     </SlickSlider>

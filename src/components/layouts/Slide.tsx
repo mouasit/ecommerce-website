@@ -38,7 +38,7 @@ export default function Slide({
         <img
           src={linkImageProduct}
           alt="product"
-          className="w-[23rem] lg:w-[28rem]"
+          className="w-[23rem] md:w-[45%] lg:w-[28rem]"
         />
       </div>
     </div>
