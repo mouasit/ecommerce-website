@@ -2,7 +2,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import SlickSlider from "react-slick";
 import { ArrowLeftIcon, ArrowRightIcon } from "./Icons";
-import tv from "../assets/products/tv.png";
+import tv from "../assets/products/slider-products/tv.png";
+import iphone from "../assets/products/slider-products/iphone.png";
 import Slide from "./layouts/Slide";
 
 export default function Slider() {
@@ -12,8 +13,8 @@ export default function Slider() {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    // autoplay: true,
-    // autoplaySpeed: 2000,
+    autoplay: true,
+    autoplaySpeed: 2000,
     nextArrow: <SliderNextArrow />,
     prevArrow: <SliderPrevArrow />,
     customPaging: () => (
@@ -29,10 +30,10 @@ export default function Slider() {
         linkImageProduct={tv}
       />
       <Slide
-        nameProduct={`"85" Q60C QLED 4K (2023)"`}
+        nameProduct={`IPhone 15 Pro Max All Colors`}
         subtitle="QA85Q60CAUXMV"
-        desc="Technologie Quantum Matrix Pro / Neural Quantum Processor 8K"
-        linkImageProduct={tv}
+        desc="The iPhone 15 display has rounded corners that follow a beautiful curved design"
+        linkImageProduct={iphone}
       />
     </SlickSlider>
   );

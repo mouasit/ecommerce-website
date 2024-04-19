@@ -39,3 +39,10 @@ body {
     @apply mx-auto max-w-[1800px];
   }
 }
+
+.test{
+  width:100% !important;
+  height:550px !important;
+  object-fit:cover !important;
+  object-position:50% 50% !important;
+}

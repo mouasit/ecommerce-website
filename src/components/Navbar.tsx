@@ -94,13 +94,13 @@ export default function Navbar() {
             ) : null}
           </li>
           <li>
-            <button className="text-bluePrimary">Electronic</button>
+            <button className="text-bluePrimary">Electronics</button>
           </li>
           <li>
-            <button className="text-bluePrimary">Audio & Video</button>
+            <button className="text-bluePrimary">Home Appliance</button>
           </li>
           <li>
-            <button className="text-bluePrimary">Furniture</button>
+            <button className="text-bluePrimary">Gaming</button>
           </li>
         </ul>
         <ul

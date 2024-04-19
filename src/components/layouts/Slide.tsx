@@ -26,7 +26,7 @@ export default function Slide({
                 {subtitle}
               </span>
             </div>
-            <p className="text-center text-sm font-light text-bluePrimary md:text-left lg:text-[1rem]">
+            <p className="text-center text-sm font-light text-bluePrimary md:text-left lg:text-[1rem] 2xl:w-[32rem]">
               {desc}
             </p>
           </div>
