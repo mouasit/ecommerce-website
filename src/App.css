@@ -23,7 +23,7 @@ body {
   padding: unset !important;
   cursor: unset !important;
   width: 16% !important;
-  @apply sm:w-[4.813rem] !important;
+  @apply sm:w-[4.813rem] md:w-[18vw] lg:w-[15rem] !important;
 }
 
 .slick-dots > .slick-active div {
