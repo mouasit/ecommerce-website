@@ -4,6 +4,7 @@ import AnnouncementBar from "./components/AnnouncementBar";
 import Slider from "./components/Slider";
 import Navbar from "./components/Navbar";
 import Services from "./components/Services";
+import Products from "./components/Products";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <main className="2xl:app-container">
         <Slider />
         <Services />
+        <Products />
       </main>
     </>
   );
