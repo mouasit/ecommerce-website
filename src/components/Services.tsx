@@ -3,10 +3,10 @@ import CardService from "./layouts/CardService";
 
 export default function Services() {
   return (
-    <section className="mt-[10rem] flex flex-wrap items-end justify-center gap-10 lg:gap-24 px-4">
+    <section className="mt-[10rem] flex flex-wrap items-end justify-center gap-10 px-4 md:gap-[9vw] lg:gap-[4vw] xl:gap-24">
       <CardService
         icon={
-          <TrackIcon className="h-[3.3rem] w-[3.3rem] fill-yellowPrimary" />
+          <TrackIcon className="h-[3.5rem] w-[3.5rem] fill-yellowPrimary" />
         }
         title="Free shipping"
         desc="When you spend 30 MAD or more"
