@@ -5,7 +5,7 @@ import SecondaryButton from "./SecondaryButton";
 
 export default function Product() {
   return (
-    <div className="flex w-[50vw] flex-col gap-5">
+    <div className="flex w-[15.5rem] flex-col gap-5 sm:bg-red-400 md:w-[29.6%] md:bg-green-400 lg:bg-slate-600">
       <button className="flex  items-center justify-center rounded-[1rem] bg-grayLight p-6">
         <img src={iphone} alt="product" className="w-[13rem]" />
       </button>
@@ -19,7 +19,10 @@ export default function Product() {
       </div>
       <div className="flex gap-2">
         <SecondaryButton value="view more" className="w-full" />
-        <PrimaryButton value={<AddToCartIcon className="h-7 w-7 fill-bluePrimary" />} className="w-[4.5rem] flex justify-center items-center" />
+        <PrimaryButton
+          value={<AddToCartIcon className="h-7 w-7 fill-bluePrimary" />}
+          className="flex w-[4.5rem] items-center justify-center"
+        />
       </div>
     </div>
   );

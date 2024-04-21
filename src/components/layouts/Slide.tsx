@@ -32,7 +32,7 @@ export default function Slide({
           </div>
           <PrimaryButton
             value="shop now"
-            className="w-[34vw]  sm:w-[10.264rem]"
+            className="w-[11rem]  sm:w-[10.264rem]"
           />
         </div>
         <img

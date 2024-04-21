@@ -3,7 +3,7 @@ import CardService from "./layouts/CardService";
 
 export default function Services() {
   return (
-    <section className="mt-[10rem] flex flex-wrap items-end justify-center gap-10 px-4 md:gap-[9vw] lg:gap-[4vw] xl:gap-24">
+    <section className="mt-[10rem] flex flex-wrap items-end justify-center gap-10 px-4 md:gap-[3.9rem] lg:gap-[4vw] xl:gap-24">
       <CardService
         icon={
           <TrackIcon className="h-[3.5rem] w-[3.5rem] fill-yellowPrimary" />
