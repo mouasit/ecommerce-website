@@ -5,7 +5,7 @@ import SecondaryButton from "./SecondaryButton";
 
 export default function Product() {
   return (
-    <div className="flex w-[15.5rem] flex-col gap-5 sm:bg-red-400 md:w-[29.6%] md:bg-green-400 lg:bg-slate-600">
+    <div className="flex w-[15.5rem] flex-col gap-5 ">
       <button className="flex  items-center justify-center rounded-[1rem] bg-grayLight p-6">
         <img src={iphone} alt="product" className="w-[13rem]" />
       </button>

@@ -1,5 +1,3 @@
-import { TrackIcon } from "../Icons";
-
 type ServiceInfo = {
   icon: JSX.Element;
   title: string;

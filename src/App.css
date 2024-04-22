@@ -36,7 +36,7 @@ body {
 
 @layer base {
   .app-container {
-    @apply mx-auto max-w-[1800px];
+    @apply mx-auto max-w-[1350px];
   }
 }
 

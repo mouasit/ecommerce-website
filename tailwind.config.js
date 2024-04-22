@@ -7,7 +7,7 @@ export default {
         yellowPrimary: "#F8B330",
         bluePrimary: "#27497F",
         grayPrimary: "#959595",
-        grayLight:"#F6F6F6"
+        grayLight: "#F6F6F6",
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
