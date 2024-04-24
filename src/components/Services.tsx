@@ -13,15 +13,15 @@ export default function Services() {
       />
       <CardService
         icon={<ChatIcon className="h-[3.2rem] w-[3.2rem] fill-yellowPrimary" />}
-        title="Free shipping"
-        desc="When you spend 30 MAD or more"
+        title="We are available 24/7"
+        desc="Need help? contact us anytime"
       />
       <CardService
         icon={
           <RefreshIcon className="h-[2.6rem] w-[2.6rem] fill-yellowPrimary" />
         }
-        title="Free shipping"
-        desc="When you spend 30 MAD or more"
+        title="Satisfied or return"
+        desc="Easy 30-day return policy"
       />
     </section>
   );

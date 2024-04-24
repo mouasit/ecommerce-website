@@ -1,6 +1,6 @@
 import PrimaryButton from "./PrimaryButton";
 
-type InfoSlide = {
+type Slide = {
   nameProduct: string;
   subtitle: string;
   desc: string;
@@ -12,7 +12,7 @@ export default function Slide({
   subtitle,
   desc,
   linkImageProduct,
-}: InfoSlide) {
+}: Slide) {
   return (
     <div>
       <div className="flex flex-col items-center gap-10 px-6 pt-12 md:flex-row md:justify-center md:gap-16 md:px-16  xl:gap-[10vw] ">

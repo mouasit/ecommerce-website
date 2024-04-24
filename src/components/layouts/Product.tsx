@@ -1,20 +1,26 @@
-import iphone from "../../assets/products/iphone.png";
 import { AddToCartIcon } from "../Icons";
 import PrimaryButton from "./PrimaryButton";
 import SecondaryButton from "./SecondaryButton";
 
-export default function Product() {
+type Product = {
+  name: string;
+  price: string | number;
+  imageProduct: any;
+};
+
+export default function Product({ name, price, imageProduct }: Product) {
   return (
-    <div className="card flex w-[15.5rem] flex-col gap-5 md:w-[28%] lg:w-[15.5rem] ">
+    <div className="card flex w-[15.5rem] flex-col gap-5 md:w-[28%] lg:w-[30%] xl:w-[22%]">
       <button className="flex  items-center justify-center rounded-[1rem] bg-grayLight p-6">
-        <img src={iphone} alt="product" className="w-[13rem]" />
+        <img src={imageProduct} alt="product" className="w-[13rem]" />
       </button>
       <div className="flex flex-col justify-center gap-1">
-        <span className="text-center  text-[1.1rem] capitalize text-bluePrimary">
-          iphone 14 plus
+        <span className="text-center text-[1.1rem] capitalize text-bluePrimary">
+          {name}
         </span>
         <div className="flex justify-center gap-1 text-[1.5rem] font-bold text-bluePrimary">
-          11 000<span className="text-yellowPrimary">DH</span>
+          {price}
+          <span className="text-yellowPrimary">DH</span>
         </div>
       </div>
       <div className="flex gap-2">
