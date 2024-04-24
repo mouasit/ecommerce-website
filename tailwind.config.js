@@ -14,6 +14,7 @@ export default {
       },
       screens: {
         ms: "447px",
+        mlg:"1105px"
       },
       boxShadow: {
         xs: "rgba(0, 0, 0, 0.16) 0px 1px 4px;",
