@@ -40,9 +40,6 @@ body {
   }
 }
 
-.test{
-  width:100% !important;
-  height:550px !important;
-  object-fit:cover !important;
-  object-position:50% 50% !important;
+.cards:has(.card:nth-child(1):last-child, .card:nth-child(2):last-child) {
+  @apply justify-center gap-x-20 lg:gap-x-12 px-0;
 }
