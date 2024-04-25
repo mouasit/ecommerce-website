@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import Services from "./components/Services";
 import Products from "./components/Products";
 import Categories from "./components/Categories";
+import Gaming from "./components/Gaming";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Services />
         <Products />
         <Categories />
+        <Gaming />
       </main>
     </>
   );
