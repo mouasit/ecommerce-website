@@ -5,6 +5,7 @@ import Slider from "./components/Slider";
 import Navbar from "./components/Navbar";
 import Services from "./components/Services";
 import Products from "./components/Products";
+import Categories from "./components/Categories";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Slider />
         <Services />
         <Products />
+        <Categories />
       </main>
     </>
   );

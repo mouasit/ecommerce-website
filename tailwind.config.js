@@ -6,6 +6,7 @@ export default {
       colors: {
         yellowPrimary: "#F8B330",
         bluePrimary: "#27497F",
+        blueSky: "#75C2F6",
         grayPrimary: "#959595",
         grayLight: "#F6F6F6",
       },
@@ -14,7 +15,7 @@ export default {
       },
       screens: {
         ms: "447px",
-        mlg:"1105px"
+        mlg: "1105px",
       },
       boxShadow: {
         xs: "rgba(0, 0, 0, 0.16) 0px 1px 4px;",

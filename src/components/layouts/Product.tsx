@@ -10,7 +10,7 @@ type Product = {
 
 export default function Product({ name, price, imageProduct }: Product) {
   return (
-    <div className="card :bg-green-200 flex w-[15.5rem] flex-col gap-5 md:w-[28%] lg:w-[30%] mlg:w-[21.3%] xl:w-[21.3%] 2xl:w-[22.3%]">
+    <div className="card flex w-[15.5rem] flex-col gap-5 md:w-[28%] lg:w-[30%] mlg:w-[21.3%] xl:w-[21.3%] 2xl:w-[22.3%]">
       <button className="flex  items-center justify-center rounded-[1rem] bg-grayLight p-6">
         <img src={imageProduct} alt="product" className="w-[13rem]" />
       </button>
