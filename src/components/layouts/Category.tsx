@@ -12,19 +12,19 @@ export default function Category({
 }: Category) {
   return (
     <div
-      className={`relative flex h-[20.313rem] w-[20rem] flex-col justify-between rounded-[2.25rem] p-5 bg-${backgroundColor}  text-${textColor}`}
+      className={`${backgroundColor}  ${textColor} relative flex h-[9rem] w-full justify-between rounded-xl py-3 pl-5 pr-0 md:h-[10rem] md:w-[31.8%] lg:h-[11rem] xl:h-[12rem]  xl:w-[25.7%] 2xl:h-[15rem] 2xl:rounded-[1.5rem]`}
     >
-      <span className="w-[13rem] text-[1.688rem] font-semibold capitalize">
-        {name}
-      </span>
+      <div className="z-[1] flex flex-col justify-between">
+        <span className=" text-[1.688rem] font-semibold capitalize md:w-[2rem] md:text-[2.4vw] lg:text-[1.7rem]">
+          {name}
+        </span>
+        <button className="w-[5.9rem]  text-left  md:text-sm">Shop now</button>
+      </div>
       <img
         src={imageProduct}
         alt="product"
-        className="absolute right-2 top-[6.1rem] w-[11.938rem]"
+        className="absolute right-2 top-5 w-[7rem]  md:top-7 lg:w-[8rem] xl:top-[2.5rem]  2xl:top-[5rem] 2xl:w-[8.5rem]"
       />
-      <button className="w-[5.9rem]  text-left text-[1.188rem] font-medium">
-        Shop now
-      </button>
     </div>
   );
 }

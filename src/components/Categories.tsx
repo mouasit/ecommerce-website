@@ -5,24 +5,24 @@ import washingMachine from "../assets/products/washing-machine.png";
 
 export default function Categories() {
   return (
-    <section className="mt-[5.7rem] flex flex-col items-center gap-24 ">
+    <section className="mt-[5.7rem] flex flex-wrap justify-center gap-24 px-4 md:flex-row md:flex-wrap md:justify-start md:gap-x-[2.1vw] xl:gap-x-[11vw] 2xl:px-0 2xl:gap-x-[11.4%]">
       <Category
         name="mobile accessories"
         imageProduct={headphones}
-        backgroundColor="yellowPrimary"
-        textColor="bluePrimary"
+        backgroundColor="bg-yellowPrimary"
+        textColor="text-bluePrimary"
       />
       <Category
         name="home appliance"
         imageProduct={washingMachine}
-        backgroundColor="bluePrimary"
-        textColor="white"
+        backgroundColor="bg-bluePrimary"
+        textColor="text-white"
       />
       <Category
         name="smart watches"
         imageProduct={smartWatch}
-        backgroundColor="blueSky"
-        textColor="bluePrimary"
+        backgroundColor="bg-blueSky"
+        textColor="text-bluePrimary"
       />
     </section>
   );
