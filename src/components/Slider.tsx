@@ -7,7 +7,7 @@ import iphone from "../assets/products/slider-products/iphone.png";
 import Slide from "./layouts/Slide";
 
 export default function Slider() {
-  var settings = {
+  const settings = {
     dots: true,
     infinite: true,
     speed: 500,
@@ -44,7 +44,7 @@ function SliderNextArrow(props: any) {
   return (
     <button
       onClick={onClick}
-      className="absolute right-4 top-[40%] z-[1] md:top-[50%]"
+      className="absolute right-4 top-[40%] z-[1] md:top-[50%] 2xl:right-0"
     >
       <ArrowRightIcon className="h-5 w-5 fill-bluePrimary" />
     </button>
@@ -56,7 +56,7 @@ function SliderPrevArrow(props: any) {
   return (
     <button
       onClick={onClick}
-      className="absolute left-4 top-[40%] z-[1] md:top-[50%]"
+      className="absolute left-4 top-[40%] z-[1] md:top-[50%] 2xl:left-0"
     >
       <ArrowLeftIcon className="h-5 w-5 fill-bluePrimary" />
     </button>

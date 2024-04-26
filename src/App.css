@@ -43,3 +43,8 @@ body {
 .cards:has(.card:nth-child(1):last-child) {
   @apply justify-center md:justify-start;
 }
+
+.card-slide {
+  display: flex !important;
+  justify-content: center !important;
+}
