@@ -1,0 +1,15 @@
+import bannerDesktop from "../assets/banner-desktop.png";
+import bannerMobile from "../assets/banner-mobile.png";
+
+export default function Banner() {
+  return (
+    <div className="mt-[8rem] px-4 2xl:px-0">
+      <img
+        src={bannerDesktop}
+        alt="banner"
+        className=" hidden w-full lg:block"
+      />
+      <img src={bannerMobile} alt="banner" className="w-full lg:hidden" />
+    </div>
+  );
+}
