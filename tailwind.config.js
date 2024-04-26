@@ -15,6 +15,7 @@ export default {
       },
       screens: {
         ms: "447px",
+        mxs: "483px",
         mlg: "1105px",
       },
       boxShadow: {

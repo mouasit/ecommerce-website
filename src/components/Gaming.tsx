@@ -1,19 +1,28 @@
+import React from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import SlickSlider from "react-slick";
-import iphone from "../assets/products/iphone.png";
-import { AddToCartIcon, ArrowLeftIcon, ArrowRightIcon } from "./Icons";
-import SecondaryButton from "./layouts/SecondaryButton";
-import PrimaryButton from "./layouts/PrimaryButton";
+import controller from "../assets/products/controller.png";
+import cd from "../assets/products/cd.png";
+import chair from "../assets/products/chair.png";
+import microphone from "../assets/products/microphone.png";
+import { ArrowLeftIcon, ArrowRightIcon } from "./Icons";
 import Product from "./layouts/Product";
 
 export default function Gaming() {
-    const responsiveWidth = "w-[90%]"
-  var settings = {
+  const [screenWidth, setScreenWidth] = React.useState(window.innerWidth);
+  const settings = {
     infinite: true,
     speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
+    slidesToShow:
+      screenWidth >= 632 && screenWidth < 898
+        ? 2
+        : screenWidth >= 898 && screenWidth < 1190
+          ? 3
+          : screenWidth >= 1190
+            ? 4
+            : 1,
+    slidesToScroll: 2,
     nextArrow: <SliderNextArrow />,
     prevArrow: <SliderPrevArrow />,
     customPaging: () => (
@@ -21,17 +30,44 @@ export default function Gaming() {
     ),
   };
 
+  React.useEffect(() => {
+    window.addEventListener("resize", () => {
+      setScreenWidth(window.innerWidth);
+    });
+  }, []);
+
   return (
     <div className="mt-[8rem] px-4 2xl:px-0">
-      <span className="text-center text-[1.9rem] font-semibold capitalize text-bluePrimary">
-        gaming
-      </span>
+      <div className="flex items-center  justify-between text-bluePrimary">
+        <span className="text-center text-[1.9rem] font-semibold capitalize">
+          gaming
+        </span>
+        <button className="relative top-[.1rem] text-sm font-light underline">
+          View more
+        </button>
+      </div>
       <div className="mt-[4rem]">
-        <SlickSlider {...settings}>
-          <Product name="iphone 14 plus" price="11 000" imageProduct={iphone} responsiveWidth={responsiveWidth}/>
-          <Product name="iphone 14 plus" price="11 000" imageProduct={iphone} responsiveWidth={responsiveWidth}/>
-          <Product name="iphone 14 plus" price="11 000" imageProduct={iphone} responsiveWidth={responsiveWidth}/>
-          <Product name="iphone 14 plus" price="11 000" imageProduct={iphone} responsiveWidth={responsiveWidth}/>
+        <SlickSlider {...settings} className="px-7">
+          <div className="card-slide">
+            <Product
+              name="controller PS5"
+              price="800"
+              imageProduct={controller}
+            />
+          </div>
+          <div className="card-slide">
+            <Product name="FC 24 PS5" price="600" imageProduct={cd} />
+          </div>
+          <div className="card-slide">
+            <Product name="gaming chair" price="4 000" imageProduct={chair} />
+          </div>
+          <div className="card-slide">
+            <Product
+              name="microphone RGB"
+              price="1 200"
+              imageProduct={microphone}
+            />
+          </div>
         </SlickSlider>
       </div>
     </div>

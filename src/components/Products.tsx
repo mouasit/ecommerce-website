@@ -27,7 +27,7 @@ export default function Products() {
       />
       <Product
         name="JBL Flip 5"
-        price="1500"
+        price="1 500"
         imageProduct={speaker}
         responsiveWidth={responsiveWidth}
       />

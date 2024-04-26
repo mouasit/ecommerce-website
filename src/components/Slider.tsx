@@ -7,7 +7,7 @@ import iphone from "../assets/products/slider-products/iphone.png";
 import Slide from "./layouts/Slide";
 
 export default function Slider() {
-  var settings = {
+  const settings = {
     dots: true,
     infinite: true,
     speed: 500,
