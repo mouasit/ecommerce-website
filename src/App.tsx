@@ -7,6 +7,7 @@ import Services from "./components/Services";
 import Products from "./components/Products";
 import Categories from "./components/Categories";
 import Gaming from "./components/Gaming";
+import banner from "./assets/banner.png";
 
 function App() {
   return (
@@ -19,6 +20,11 @@ function App() {
         <Products />
         <Categories />
         <Gaming />
+        <img
+          src={banner}
+          alt="banner"
+          className="mt-[8rem] w-full px-4 2xl:px-0"
+        />
       </main>
     </>
   );
