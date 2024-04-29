@@ -7,7 +7,7 @@ import Services from "./components/Services";
 import Products from "./components/Products";
 import Categories from "./components/Categories";
 import Gaming from "./components/Gaming";
-
+import Banner from "./components/Banner";
 function App() {
   return (
     <>
@@ -19,6 +19,7 @@ function App() {
         <Products />
         <Categories />
         <Gaming />
+        <Banner />
       </main>
     </>
   );
