@@ -8,6 +8,7 @@ import Products from "./components/Products";
 import Categories from "./components/Categories";
 import Gaming from "./components/Gaming";
 import Banner from "./components/Banner";
+import Footer from "./components/Footer";
 function App() {
   return (
     <>
@@ -21,6 +22,7 @@ function App() {
         <Gaming />
         <Banner />
       </main>
+      <Footer />
     </>
   );
 }
