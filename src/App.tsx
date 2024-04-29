@@ -14,7 +14,7 @@ function App() {
         {/* <Home /> */}
         <CategoryProduct />
       </main>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }
