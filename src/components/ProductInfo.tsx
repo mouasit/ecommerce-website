@@ -29,24 +29,24 @@ export default function ProductInfo() {
   };
   return (
     <div className="mt-[2rem] px-4">
-      <SlickSlider {...settings} className="rounded-3xl bg-grayLight">
-        <div>
-          <div className="flex justify-center p-16">
+      <SlickSlider {...settings} className=" rounded-3xl bg-grayLight">
+        <div className="relative top-[.2rem] p-16">
+          <div className="flex justify-center ">
             <img src={image1} alt="" />
           </div>
         </div>
-        <div>
-          <div className="flex justify-center p-16">
+        <div className="relative top-[.2rem] p-16">
+          <div className="flex justify-center ">
             <img src={image2} alt="" />
           </div>
-        </div>{" "}
-        <div>
-          <div className="flex justify-center p-16">
+        </div>
+        <div className="relative top-[.2rem] p-16">
+          <div className="flex justify-center ">
             <img src={image3} alt="" />
           </div>
-        </div>{" "}
-        <div>
-          <div className="flex justify-center p-16">
+        </div>
+        <div className="relative top-[.2rem] p-16">
+          <div className="flex justify-center ">
             <img src={image4} alt="" />
           </div>
         </div>
@@ -60,7 +60,7 @@ function SliderNextArrow(props: any) {
   return (
     <button
       onClick={onClick}
-      className="absolute right-4 top-[40%] z-[1] md:top-[50%] 2xl:right-0"
+      className="absolute right-4 top-[50%] z-[1] 2xl:right-0"
     >
       <ArrowRightIcon className="h-5 w-5 fill-bluePrimary" />
     </button>
@@ -72,7 +72,7 @@ function SliderPrevArrow(props: any) {
   return (
     <button
       onClick={onClick}
-      className="absolute left-4 top-[40%] z-[1] md:top-[50%] 2xl:left-0"
+      className="absolute left-4 top-[50%] z-[1] 2xl:left-0"
     >
       <ArrowLeftIcon className="h-5 w-5 fill-bluePrimary" />
     </button>
