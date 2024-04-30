@@ -51,6 +51,21 @@ export default function ProductInfo() {
           </div>
         </div>
       </SlickSlider>
+
+      <div className="mt-[12rem] space-y-5">
+        <span className="text-xl font-semibold capitalize text-bluePrimary">
+          Apple iPhone 13 6,1" 5G
+        </span>
+        <div className="space-x-2 text-xl font-bold text-bluePrimary">
+          <span>10 000</span>
+          <span className="text-yellowPrimary">DH</span>
+        </div>
+        <ul className="ml-5 list-disc text-grayPrimary space-y-3 font-light text-sm">
+          <li>Bass and Stereo Sound</li>
+          <li>Display with 3088 x 1440 pixels resolution</li>
+          <li>Memory, Storage & SIM: 12GB RAM, 256GB</li>
+        </ul>
+      </div>
     </div>
   );
 }
