@@ -7,21 +7,27 @@ body {
   @apply min-w-[320px] font-poppins;
 }
 
-.slick-dots:has(.hero-slider-dots) {
+.slick-dots {
   display: flex !important;
   text-align: unset !important;
   bottom: 0px !important;
-  position: relative !important;
-  @apply top-16 items-center justify-center gap-1 px-4 md:top-20;
 }
 
-.slick-dots:has(.hero-slider-dots) li {
+.slick-dots li {
   position: unset !important;
   display: unset !important;
   height: unset !important;
   margin: unset !important;
   padding: unset !important;
   cursor: unset !important;
+}
+
+.slick-dots:has(.hero-slider-dots) {
+  position: relative !important;
+  @apply top-16 items-center justify-center gap-1 px-4 md:top-20;
+}
+
+.slick-dots:has(.hero-slider-dots) li {
   width: 16% !important;
   @apply sm:w-[5.5rem] !important;
 }
@@ -31,20 +37,10 @@ body {
 }
 
 .slick-dots:has(.product-slider-dots) {
-  display: flex !important;
-  text-align: unset !important;
-  bottom: 0px !important;
-  position: absolute !important;
   @apply top-[29rem] items-center justify-center gap-4;
 }
 
 .slick-dots:has(.product-slider-dots) li {
-  position: unset !important;
-  display: unset !important;
-  height: unset !important;
-  margin: unset !important;
-  padding: unset !important;
-  cursor: unset !important;
   width: 30% !important;
   @apply sm:w-[5.5rem] !important;
 }
