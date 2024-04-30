@@ -7,7 +7,7 @@ body {
   @apply min-w-[320px] font-poppins;
 }
 
-.slick-dots {
+.slick-dots:has(.hero-slider-dots) {
   display: flex !important;
   text-align: unset !important;
   bottom: 0px !important;
@@ -15,7 +15,7 @@ body {
   @apply top-16 items-center justify-center gap-1 px-4 md:top-20;
 }
 
-.slick-dots li {
+.slick-dots:has(.hero-slider-dots) li {
   position: unset !important;
   display: unset !important;
   height: unset !important;
@@ -26,8 +26,31 @@ body {
   @apply sm:w-[5.5rem] !important;
 }
 
-.slick-dots > .slick-active div {
+.slick-dots:has(.hero-slider-dots) > .slick-active div {
   @apply bg-yellowPrimary;
+}
+
+.slick-dots:has(.product-slider-dots) {
+  display: flex !important;
+  text-align: unset !important;
+  bottom: 0px !important;
+  position: absolute !important;
+  @apply top-[29rem] items-center justify-center gap-4;
+}
+
+.slick-dots:has(.product-slider-dots) li {
+  position: unset !important;
+  display: unset !important;
+  height: unset !important;
+  margin: unset !important;
+  padding: unset !important;
+  cursor: unset !important;
+  width: 30% !important;
+  @apply sm:w-[5.5rem] !important;
+}
+
+.slick-dots:has(.product-slider-dots) > .slick-active div {
+  @apply border-yellowPrimary;
 }
 
 .padding-layouts {

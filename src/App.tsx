@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import Footer from "./components/Footer";
 import CategoryProduct from "./components/CategoryProduct";
+import ProductInfo from "./components/ProductInfo";
 function App() {
   return (
     <>
@@ -12,9 +13,10 @@ function App() {
       <Navbar />
       <main className="2xl:app-container">
         {/* <Home /> */}
-        <CategoryProduct />
+        {/* <CategoryProduct /> */}
+        <ProductInfo />
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

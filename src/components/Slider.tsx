@@ -18,7 +18,7 @@ export default function Slider() {
     nextArrow: <SliderNextArrow />,
     prevArrow: <SliderPrevArrow />,
     customPaging: () => (
-      <div className="h-[2px] rounded-full bg-bluePrimary"></div>
+      <div className="h-[2px] rounded-full bg-bluePrimary hero-slider-dots"></div>
     ),
   };
   return (
