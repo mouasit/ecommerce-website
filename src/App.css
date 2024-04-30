@@ -37,12 +37,12 @@ body {
 }
 
 .slick-dots:has(.product-slider-dots) {
-  @apply top-[29rem] items-center justify-center gap-4;
+  @apply top-[28.5rem] sm:top-[30rem] items-center justify-center gap-[4vw] sm:gap-[6vw];
 }
 
 .slick-dots:has(.product-slider-dots) li {
   width: 30% !important;
-  @apply sm:w-[5.5rem] !important;
+  @apply sm:w-[20%] md:hidden !important;
 }
 
 .slick-dots:has(.product-slider-dots) > .slick-active div {
