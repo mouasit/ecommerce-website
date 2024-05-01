@@ -1,11 +1,19 @@
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import SlickSlider from "react-slick";
-import { ArrowLeftIcon, ArrowRightIcon, CheckIcon } from "./Icons";
+import {
+  AddToCartProductIcon,
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  CheckIcon,
+  MinusIcon,
+  PlusIcon,
+} from "./Icons";
 import image1 from "../assets/products/product-info/1.png";
 import image2 from "../assets/products/product-info/2.png";
 import image3 from "../assets/products/product-info/3.png";
 import image4 from "../assets/products/product-info/4.png";
+import PrimaryButton from "./layouts/PrimaryButton";
 
 export default function ProductInfo() {
   const imagesProduct = [image1, image2, image3, image4];
@@ -56,7 +64,7 @@ export default function ProductInfo() {
         <span className="text-[1.5rem] font-semibold capitalize text-bluePrimary">
           Apple iPhone 13 6,1" 5G
         </span>
-        <div className="space-x-2 text-[1.5rem] font-bold text-bluePrimary">
+        <div className="space-x-2 text-[1.6rem] font-bold text-bluePrimary">
           <span>10 000</span>
           <span className="text-yellowPrimary">DH</span>
         </div>
@@ -74,6 +82,22 @@ export default function ProductInfo() {
             <button className="flex h-8 w-8 items-center justify-center rounded-full bg-[#59965C]"></button>
             <button className="flex h-8 w-8 items-center justify-center rounded-full bg-[#0053CF]"></button>
           </div>
+        </div>
+        <div className="flex gap-2 relative top-5">
+          <div className="flex w-[60%] items-center justify-between rounded-2xl bg-grayLight p-3 text-xl font-medium text-bluePrimary">
+            <button className="rounded-full bg-yellowPrimary p-1">
+              <MinusIcon className="h-4 w-4 fill-bluePrimary" />
+            </button>
+            1
+            <button className="rounded-full bg-yellowPrimary p-1">
+              <PlusIcon className="h-4 w-4 fill-bluePrimary" />
+            </button>
+          </div>
+          <PrimaryButton
+            icon={<AddToCartProductIcon className="h-8 w-8 fill-bluePrimary" />}
+            value="Add to cart"
+            className="flex w-full items-center justify-center gap-3 text-lg"
+          />
         </div>
       </div>
     </div>
