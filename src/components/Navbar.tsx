@@ -249,7 +249,7 @@ export default function Navbar() {
               </div>
               <div className="flex flex-col items-center gap-2">
                 <SecondaryButton value="view cart" className="w-full" />
-                <PrimaryButton value="checkout" className="w-full" />
+                <PrimaryButton value="Checkout" className="w-full" />
               </div>
             </div>
           </div>

@@ -13,6 +13,11 @@ body {
   bottom: 0px !important;
 }
 
+.slick-dots::before {
+  content: "";
+  @apply absolute h-7 w-full bg-grayLight top-0 rounded-b-3xl;
+}
+
 .slick-dots li {
   position: unset !important;
   display: unset !important;
@@ -37,12 +42,12 @@ body {
 }
 
 .slick-dots:has(.product-slider-dots) {
-  @apply top-[28.5rem] sm:top-[30rem] items-center justify-center gap-[4vw] sm:gap-[6vw];
+  @apply relative items-center justify-center gap-[4vw]  bg-white pt-[3.5rem] sm:gap-[6vw] md:gap-3;
 }
 
 .slick-dots:has(.product-slider-dots) li {
   width: 30% !important;
-  @apply sm:w-[20%] md:hidden !important;
+  @apply sm:w-[20%] md:w-[50%] lg:w-[3rem] !important;
 }
 
 .slick-dots:has(.product-slider-dots) > .slick-active div {
