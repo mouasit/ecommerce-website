@@ -42,22 +42,22 @@ export default function ProductInfo() {
           {...settings}
           className=" rounded-3xl bg-grayLight md:w-[50%] lg:relative"
         >
-          <div className="relative top-[1rem] p-16">
+          <div className="relative top-[1rem] p-16 lg:top-[.2rem]">
             <div className="flex justify-center ">
               <img src={image1} alt="" />
             </div>
           </div>
-          <div className="relative top-[1rem] p-16">
+          <div className="relative top-[1rem] p-16 lg:top-[.2rem]">
             <div className="flex justify-center ">
               <img src={image2} alt="" />
             </div>
           </div>
-          <div className="relative top-[1rem] p-16">
+          <div className="relative top-[1rem] p-16 lg:top-[.2rem]">
             <div className="flex justify-center ">
               <img src={image3} alt="" />
             </div>
           </div>
-          <div className="relative top-[1rem] p-16">
+          <div className="relative top-[1rem] p-16 lg:top-[.2rem]">
             <div className="flex justify-center ">
               <img src={image4} alt="" />
             </div>
@@ -116,7 +116,7 @@ function SliderNextArrow(props: any) {
   return (
     <button
       onClick={onClick}
-      className="absolute right-4 top-[38%] z-[1] 2xl:right-0"
+      className="absolute right-4 top-[38%] z-[1] lg:top-[50%] 2xl:right-0"
     >
       <ArrowRightIcon className="h-5 w-5 fill-bluePrimary" />
     </button>
@@ -128,7 +128,7 @@ function SliderPrevArrow(props: any) {
   return (
     <button
       onClick={onClick}
-      className="absolute left-4 top-[38%] z-[1] 2xl:left-0"
+      className="absolute left-4 top-[38%] z-[1] lg:top-[50%] 2xl:left-0"
     >
       <ArrowLeftIcon className="h-5 w-5 fill-bluePrimary" />
     </button>

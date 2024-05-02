@@ -15,7 +15,7 @@ body {
 
 .slick-dots::before {
   content: "";
-  @apply absolute h-7 w-full bg-grayLight top-0 rounded-b-3xl;
+  @apply absolute top-0 h-7 w-full rounded-b-3xl bg-grayLight lg:hidden;
 }
 
 .slick-dots li {
@@ -42,12 +42,12 @@ body {
 }
 
 .slick-dots:has(.product-slider-dots) {
-  @apply relative items-center justify-center gap-[4vw]  bg-white pt-[3.5rem] sm:gap-[6vw] md:gap-3;
+  @apply relative top-0 w-auto items-center  justify-center gap-[4vw] bg-white pt-[3.5rem] sm:gap-[6vw] md:gap-3 lg:absolute lg:flex-col lg:items-start lg:justify-between lg:gap-2 lg:bg-black lg:bg-transparent lg:pt-0;
 }
 
 .slick-dots:has(.product-slider-dots) li {
   width: 30% !important;
-  @apply sm:w-[20%] md:w-[50%] lg:w-[3rem] !important;
+  @apply sm:w-[20%] md:w-[50%] lg:w-[5.5rem]  !important;
 }
 
 .slick-dots:has(.product-slider-dots) > .slick-active div {
