@@ -37,10 +37,10 @@ export default function ProductInfo() {
   };
   return (
     <div>
-      <div className="mt-[2rem] gap-8 px-4 md:flex md:justify-between">
+      <div className="mt-[2rem] gap-8 px-4 md:flex md:justify-between ">
         <SlickSlider
           {...settings}
-          className=" rounded-3xl bg-grayLight md:w-[50%] lg:relative"
+          className=" rounded-3xl bg-grayLight md:w-[50%] lg:ml-[7.4rem]"
         >
           <div className="relative top-[1rem] p-16 lg:top-[.2rem]">
             <div className="flex justify-center ">
