@@ -64,7 +64,7 @@ export default function ProductInfo() {
           </div>
         </SlickSlider>
 
-        <div className="mt-[12rem]  space-y-5 md:mt-2 md:w-[50%] 2xl:space-y-8">
+        <div className="mt-[3rem]  space-y-5 md:mt-2 md:w-[50%] 2xl:space-y-8">
           <span className="text-[1.5rem] font-semibold capitalize text-bluePrimary">
             Apple iPhone 13 6,1" 5G
           </span>
