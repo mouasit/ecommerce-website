@@ -37,34 +37,34 @@ export default function ProductInfo() {
   };
   return (
     <div>
-      <div className="mt-[2rem] gap-8 px-4 md:flex md:justify-between ">
+      <div className="mt-[2rem] gap-8 px-4 md:flex md:justify-between 2xl:gap-12 ">
         <SlickSlider
           {...settings}
-          className=" rounded-3xl bg-grayLight md:w-[50%] lg:ml-[7.4rem]"
+          className=" rounded-3xl bg-grayLight md:w-[50%] lg:ml-[7.4rem] 2xl:ml-[8.5rem]"
         >
-          <div className="relative top-[1rem] p-16 lg:top-[.2rem]">
-            <div className="flex justify-center ">
-              <img src={image1} alt="" />
+          <div className="relative top-[1rem] p-16 lg:top-[.2rem] 2xl:top-0 2xl:h-[34rem]">
+            <div className="flex justify-center 2xl:h-full 2xl:items-center">
+              <img src={image1} alt="" className="2xl:w-[20rem]" />
             </div>
           </div>
-          <div className="relative top-[1rem] p-16 lg:top-[.2rem]">
-            <div className="flex justify-center ">
-              <img src={image2} alt="" />
+          <div className="relative top-[1rem] p-16 lg:top-[.2rem] 2xl:top-0 2xl:h-[34rem]">
+            <div className="flex justify-center 2xl:h-full 2xl:items-center">
+              <img src={image2} alt="" className="2xl:w-[20rem]" />
             </div>
           </div>
-          <div className="relative top-[1rem] p-16 lg:top-[.2rem]">
-            <div className="flex justify-center ">
-              <img src={image3} alt="" />
+          <div className="relative top-[1rem] p-16 lg:top-[.2rem] 2xl:top-0 2xl:h-[34rem]">
+            <div className="flex justify-center 2xl:h-full 2xl:items-center">
+              <img src={image3} alt="" className="2xl:w-[20rem]" />
             </div>
           </div>
-          <div className="relative top-[1rem] p-16 lg:top-[.2rem]">
-            <div className="flex justify-center ">
-              <img src={image4} alt="" />
+          <div className="relative top-[1rem] p-16 lg:top-[.2rem] 2xl:top-0 2xl:h-[34rem]">
+            <div className="flex justify-center 2xl:h-full 2xl:items-center">
+              <img src={image4} alt="" className="2xl:w-[20rem]" />
             </div>
           </div>
         </SlickSlider>
 
-        <div className="mt-[12rem]  space-y-5 md:mt-2 md:w-[50%]">
+        <div className="mt-[12rem]  space-y-5 md:mt-2 md:w-[50%] 2xl:space-y-8">
           <span className="text-[1.5rem] font-semibold capitalize text-bluePrimary">
             Apple iPhone 13 6,1" 5G
           </span>
@@ -116,7 +116,7 @@ function SliderNextArrow(props: any) {
   return (
     <button
       onClick={onClick}
-      className="absolute right-4 top-[38%] z-[1] lg:top-[50%] 2xl:right-0"
+      className="absolute right-4 top-[38%] z-[1] lg:top-[50%]"
     >
       <ArrowRightIcon className="h-5 w-5 fill-bluePrimary" />
     </button>
@@ -128,7 +128,7 @@ function SliderPrevArrow(props: any) {
   return (
     <button
       onClick={onClick}
-      className="absolute left-4 top-[38%] z-[1] lg:top-[50%] 2xl:left-0"
+      className="absolute left-4 top-[38%] z-[1] lg:top-[50%]"
     >
       <ArrowLeftIcon className="h-5 w-5 fill-bluePrimary" />
     </button>
