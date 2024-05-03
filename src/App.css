@@ -11,8 +11,11 @@ body {
   display: flex !important;
   text-align: unset !important;
   bottom: 0px !important;
-  position: relative !important;
-  @apply top-16 items-center justify-center gap-1 px-4 md:top-20;
+}
+
+.slick-dots::before {
+  content: "";
+  @apply absolute top-0 h-7 w-full rounded-b-3xl bg-grayLight lg:hidden;
 }
 
 .slick-dots li {
@@ -22,12 +25,33 @@ body {
   margin: unset !important;
   padding: unset !important;
   cursor: unset !important;
+}
+
+.slick-dots:has(.hero-slider-dots) {
+  position: relative !important;
+  @apply top-16 items-center justify-center gap-1 px-4 md:top-20;
+}
+
+.slick-dots:has(.hero-slider-dots) li {
   width: 16% !important;
   @apply sm:w-[5.5rem] !important;
 }
 
-.slick-dots > .slick-active div {
+.slick-dots:has(.hero-slider-dots) > .slick-active div {
   @apply bg-yellowPrimary;
+}
+
+.slick-dots:has(.product-slider-dots) {
+  @apply relative top-0 w-auto items-center  justify-center gap-[4vw] bg-white pt-[3.5rem] sm:gap-[6vw] md:gap-3 lg:absolute lg:left-[-7.4rem] lg:flex-col lg:items-start lg:justify-between lg:gap-2 lg:bg-transparent lg:pt-0 2xl:left-[-8.5rem];
+}
+
+.slick-dots:has(.product-slider-dots) li {
+  width: 30% !important;
+  @apply sm:w-[20%] md:w-[50%] lg:w-[5.5rem] 2xl:w-[6.5rem]  !important;
+}
+
+.slick-dots:has(.product-slider-dots) > .slick-active div {
+  @apply border-yellowPrimary;
 }
 
 .padding-layouts {

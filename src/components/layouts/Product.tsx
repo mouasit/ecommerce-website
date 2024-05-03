@@ -32,7 +32,7 @@ export default function Product({
       <div className="flex gap-2">
         <SecondaryButton value="view more" className="w-full" />
         <PrimaryButton
-          value={<AddToCartIcon className="h-7 w-7 fill-bluePrimary" />}
+          icon={<AddToCartIcon className="h-7 w-7 fill-bluePrimary" />}
           className="flex w-[4.5rem] items-center justify-center"
         />
       </div>
