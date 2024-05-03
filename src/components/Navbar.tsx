@@ -25,7 +25,7 @@ export default function Navbar() {
 
   return (
     <nav className="sticky top-0 z-[2] bg-white shadow-sm">
-      <div className="padding-layouts 2xl:app-container flex w-full items-center justify-between">
+      <div className="padding-layouts app-container flex w-full items-center justify-between">
         <span className="flex items-center gap-5">
           <button
             className="lg:hidden"

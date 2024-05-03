@@ -11,7 +11,7 @@ function App() {
     <>
       <AnnouncementBar />
       <Navbar />
-      <main className="2xl:app-container">
+      <main className="app-container">
         {/* <Home /> */}
         {/* <CategoryProduct /> */}
         <ProductInfo />
