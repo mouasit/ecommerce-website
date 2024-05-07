@@ -19,6 +19,7 @@ export default {
         mlg: "1105px",
         mmd: "907px",
         xlg: "1350px",
+        mxlg: "1365px",
         "2xlg": "1404px",
       },
       boxShadow: {
