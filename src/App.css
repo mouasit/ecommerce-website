@@ -37,7 +37,7 @@ body {
 }
 
 .slick-dots:has(.product-slider-dots) {
-  @apply relative top-0 w-auto items-center  justify-center gap-[4vw] bg-white pt-[3.5rem] sm:gap-[6vw] md:gap-3 lg:absolute lg:left-[-7.4rem] lg:flex-col lg:items-start lg:justify-between lg:gap-2 lg:bg-transparent lg:pt-0 2xl:left-[-8.5rem];
+  @apply relative top-0 w-auto items-center  justify-center gap-[4vw] bg-white pt-[3.5rem] sm:gap-[6vw] md:gap-3 lg:absolute  lg:left-[-8.5rem] lg:flex-col lg:items-start lg:justify-between lg:gap-2 lg:bg-transparent lg:pt-0;
 }
 
 .slick-dots:has(.product-slider-dots)::before {
@@ -47,7 +47,7 @@ body {
 
 .slick-dots:has(.product-slider-dots) li {
   width: 30% !important;
-  @apply sm:w-[20%] md:w-[50%] lg:w-[5.5rem] 2xl:w-[6.5rem]  !important;
+  @apply sm:w-[20%] md:w-[50%] lg:w-[6.5rem]  !important;
 }
 
 .slick-dots:has(.product-slider-dots) > .slick-active div {
