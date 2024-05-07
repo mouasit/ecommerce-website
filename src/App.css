@@ -13,11 +13,6 @@ body {
   bottom: 0px !important;
 }
 
-.slick-dots::before {
-  content: "";
-  @apply absolute top-0 h-7 w-full rounded-b-3xl bg-grayLight lg:hidden;
-}
-
 .slick-dots li {
   position: unset !important;
   display: unset !important;
@@ -43,6 +38,11 @@ body {
 
 .slick-dots:has(.product-slider-dots) {
   @apply relative top-0 w-auto items-center  justify-center gap-[4vw] bg-white pt-[3.5rem] sm:gap-[6vw] md:gap-3 lg:absolute lg:left-[-7.4rem] lg:flex-col lg:items-start lg:justify-between lg:gap-2 lg:bg-transparent lg:pt-0 2xl:left-[-8.5rem];
+}
+
+.slick-dots:has(.product-slider-dots)::before {
+  content: "";
+  @apply absolute top-0 h-7 w-full rounded-b-3xl bg-grayLight lg:hidden;
 }
 
 .slick-dots:has(.product-slider-dots) li {
