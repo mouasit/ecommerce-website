@@ -8,9 +8,9 @@ import powerBank from "../assets/products/power-bank.png";
 
 export default function CategoryProduct() {
   const responsiveWidth =
-    "sm:w-[31.8%] md:w-[28%]  lg:w-[30%] xl:w-[23.5%]  2xl:w-[15.5rem] ";
+    "sm:w-[31.8%] md:w-[28%]  lg:w-[30%] xl:w-[23.5%]  2xlg:w-[15.5rem]";
   return (
-    <section className="mt-[4rem] flex flex-col-reverse gap-16 px-4 lg:flex-row lg:gap-0 2xl:px-0">
+    <section className="mt-[4rem] flex flex-col-reverse gap-16 px-4 lg:flex-row lg:gap-0 2xlg:px-0">
       <div className="flex flex-col  gap-7 capitalize text-bluePrimary lg:w-[19rem]">
         <span className="text-xl font-semibold ">categories</span>
         <ul className="flex flex-col gap-5 font-light">
@@ -41,7 +41,7 @@ export default function CategoryProduct() {
         <h1 className="text-center text-[1.9rem] font-semibold capitalize text-bluePrimary">
           electronics
         </h1>
-        <div className="mt-[4rem] flex flex-col items-center gap-16 sm:flex-row sm:flex-wrap sm:justify-start sm:gap-x-[2.1vw] md:gap-x-[8%] lg:gap-x-[5%] xl:gap-x-[2%]  2xl:gap-x-[3.3%]">
+        <div className="mt-[4rem] flex flex-col items-center gap-16 sm:flex-row sm:flex-wrap sm:justify-start sm:gap-x-[2.1vw] md:gap-x-[8%] lg:gap-x-[5%]  xl:gap-x-[2%] 2xlg:gap-x-[3.3%]">
           <Product
             name="Xiaomi redmi R..."
             price="1 500"

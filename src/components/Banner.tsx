@@ -3,7 +3,7 @@ import bannerMobile from "../assets/banner-mobile.png";
 
 export default function Banner() {
   return (
-    <div className="mt-[8rem] px-4 2xl:px-0">
+    <div className="mt-[8rem] px-4 2xlg:px-0">
       <img
         src={bannerDesktop}
         alt="banner"

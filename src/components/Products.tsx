@@ -10,9 +10,9 @@ import powerBank from "../assets/products/power-bank.png";
 
 export default function Products() {
   const responsiveWidth =
-    "md:w-[28%] lg:w-[30%] mlg:w-[21.3%] xl:w-[21.3%] 2xl:w-[22.3%]";
+    "md:w-[28%] lg:w-[30%] mlg:w-[21.3%] xl:w-[21.3%] xlg:w-[22.2%]";
   return (
-    <section className="cards mt-[5.7rem] flex flex-col items-center gap-16 px-4 sm:flex-row sm:flex-wrap sm:justify-between sm:gap-x-0  sm:px-[8vw] md:justify-start md:gap-x-[7.4vw] md:px-4 lg:gap-x-[4.7vw] lg:px-4 2xl:gap-x-[3rem] 2xl:px-0">
+    <section className="cards 2xlg:px-0 mt-[5.7rem] flex flex-col items-center gap-16 px-4 sm:flex-row sm:flex-wrap sm:justify-between  sm:gap-x-0 sm:px-[8vw] md:justify-start md:gap-x-[7.4vw] md:px-4 lg:gap-x-[4.7vw] lg:px-4 xlg:gap-x-[3rem]">
       <Product
         name="iphone 14 plus"
         price="11 000"

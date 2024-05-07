@@ -18,7 +18,7 @@ export default function Slider() {
     nextArrow: <SliderNextArrow />,
     prevArrow: <SliderPrevArrow />,
     customPaging: () => (
-      <div className="h-[2px] rounded-full bg-bluePrimary hero-slider-dots"></div>
+      <div className="hero-slider-dots h-[2px] rounded-full bg-bluePrimary"></div>
     ),
   };
   return (
@@ -44,7 +44,7 @@ function SliderNextArrow(props: any) {
   return (
     <button
       onClick={onClick}
-      className="absolute right-4 top-[40%] z-[1] md:top-[50%] 2xl:right-0"
+      className="absolute right-4 top-[40%] z-[1] md:top-[50%] 2xlg:right-0"
     >
       <ArrowRightIcon className="h-5 w-5 fill-bluePrimary" />
     </button>
@@ -56,7 +56,7 @@ function SliderPrevArrow(props: any) {
   return (
     <button
       onClick={onClick}
-      className="absolute left-4 top-[40%] z-[1] md:top-[50%] 2xl:left-0"
+      className="absolute left-4 top-[40%] z-[1] md:top-[50%] 2xlg:left-0"
     >
       <ArrowLeftIcon className="h-5 w-5 fill-bluePrimary" />
     </button>
