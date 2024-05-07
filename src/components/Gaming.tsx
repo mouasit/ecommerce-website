@@ -37,7 +37,7 @@ export default function Gaming() {
   }, []);
 
   return (
-    <div className="mt-[8rem] px-4 2xl:px-0">
+    <div className="mt-[8rem] px-4 2xlg:px-0">
       <div className="flex items-center  justify-between text-bluePrimary">
         <span className="text-center text-[1.9rem] font-semibold capitalize">
           gaming
@@ -79,7 +79,7 @@ function SliderNextArrow(props: any) {
   return (
     <button
       onClick={onClick}
-      className="absolute right-0 top-[40%] z-[1] md:top-[50%] 2xl:right-0"
+      className="absolute right-0 top-[40%] z-[1] md:top-[50%] 2xlg:right-0"
     >
       <ArrowRightIcon className="h-5 w-5 fill-bluePrimary" />
     </button>
@@ -91,7 +91,7 @@ function SliderPrevArrow(props: any) {
   return (
     <button
       onClick={onClick}
-      className="absolute left-0 top-[40%] z-[1] md:top-[50%] 2xl:left-0"
+      className="absolute left-0 top-[40%] z-[1] md:top-[50%] 2xlg:left-0"
     >
       <ArrowLeftIcon className="h-5 w-5 fill-bluePrimary" />
     </button>
