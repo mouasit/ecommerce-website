@@ -92,7 +92,7 @@ export default function ProductInfo() {
               {productWithColorsAndImages.map((product, index) => {
                 return (
                   <SelectedColorItem
-                    backgroundColor={`bg-[${product.colorProduct}]`}
+                    backgroundColor={product.colorProduct}
                     key={index}
                     selected={index === selectedColorProduct ? true : false}
                     onClick={() => setSelectedColorProduct(index)}
