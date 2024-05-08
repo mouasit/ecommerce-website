@@ -16,6 +16,8 @@ import imageBlack4 from "../assets/products/product-info/black/4.png";
 
 import imageGreen1 from "../assets/products/product-info/green/1.png";
 import imageGreen2 from "../assets/products/product-info/green/2.png";
+import imageGreen3 from "../assets/products/product-info/green/3.png";
+import imageGreen4 from "../assets/products/product-info/green/4.png";
 
 import PrimaryButton from "./layouts/PrimaryButton";
 import SelectedColorItem from "./layouts/SelectedColorItem";
@@ -30,7 +32,7 @@ export default function ProductInfo() {
       colorProduct: "#000",
     },
     {
-      imagesProduct: [imageGreen1, imageGreen2, imageBlack3, imageBlack4],
+      imagesProduct: [imageGreen1, imageGreen2, imageGreen3, imageGreen4],
       colorProduct: "#59965C",
     },
   ];
