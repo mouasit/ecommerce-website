@@ -5,7 +5,6 @@ import {
   AddToCartProductIcon,
   ArrowLeftIcon,
   ArrowRightIcon,
-  CheckIcon,
   FullScreenIcon,
   MinusIcon,
   PlusIcon,
@@ -15,9 +14,22 @@ import image2 from "../assets/products/product-info/2.png";
 import image3 from "../assets/products/product-info/3.png";
 import image4 from "../assets/products/product-info/4.png";
 import PrimaryButton from "./layouts/PrimaryButton";
+import SelectedColorItem from "./layouts/SelectedColorItem";
+import SliderProduct from "./layouts/SliderProduct";
+import { useState } from "react";
 
 export default function ProductInfo() {
-  const imagesProduct = [image1, image2, image3, image4];
+  const [selectedColorProduct, setSelectedColorProduct] = useState<number>(0);
+  const productWithColorsAndImages = [
+    {
+      imagesProduct: [image1, image2, image3, image4],
+      colorProduct: "#000",
+    },
+    {
+      imagesProduct: [image4, image2, image3, image1],
+      colorProduct: "#59965C",
+    },
+  ];
   const settings = {
     dots: true,
     infinite: true,
@@ -31,7 +43,12 @@ export default function ProductInfo() {
         <div
           className={`product-slider-dots cursor-pointer rounded-xl border-[3px] border-grayLight bg-grayLight p-1`}
         >
-          <img src={imagesProduct[i]} alt="" />
+          <img
+            src={
+              productWithColorsAndImages[selectedColorProduct].imagesProduct[i]
+            }
+            alt="product"
+          />
         </div>
       );
     },
@@ -41,26 +58,11 @@ export default function ProductInfo() {
       <div className="2lg:px-0 mt-[2rem] gap-8 px-4 md:flex md:justify-between lg:gap-12 ">
         <div className="relative rounded-3xl bg-grayLight md:w-[50%]   lg:ml-[8.5rem] lg:w-[45%]">
           <SlickSlider {...settings}>
-            <div className="relative top-[1rem] p-16 lg:top-0 lg:h-[34rem]">
-              <div className="flex justify-center lg:h-full lg:items-center">
-                <img src={image1} alt="" className="lg:w-[20rem]" />
-              </div>
-            </div>
-            <div className="relative top-[1rem] p-16 lg:top-0 lg:h-[34rem]">
-              <div className="flex justify-center lg:h-full lg:items-center">
-                <img src={image2} alt="" className="lg:w-[20rem]" />
-              </div>
-            </div>
-            <div className="relative top-[1rem] p-16 lg:top-0 lg:h-[34rem]">
-              <div className="flex justify-center lg:h-full lg:items-center">
-                <img src={image3} alt="" className="lg:w-[20rem]" />
-              </div>
-            </div>
-            <div className="relative top-[1rem] p-16 lg:top-0 lg:h-[34rem]">
-              <div className="flex justify-center lg:h-full lg:items-center">
-                <img src={image4} alt="" className="lg:w-[20rem]" />
-              </div>
-            </div>
+            {productWithColorsAndImages[selectedColorProduct].imagesProduct.map(
+              (image, index) => {
+                return <SliderProduct imagesProduct={image} key={index} />;
+              },
+            )}
           </SlickSlider>
           <button className="absolute right-5 top-5 h-7 w-7">
             <FullScreenIcon className="fill-bluePrimary" />
@@ -83,11 +85,18 @@ export default function ProductInfo() {
           <div className="flex items-center gap-5 text-lg font-medium text-bluePrimary">
             Chose color
             <div className="flex items-center gap-3">
-              <button className="flex h-8 w-8 items-center justify-center rounded-full bg-black">
-                <CheckIcon className="h-4 w-4 fill-white" />
-              </button>
-              <button className="flex h-8 w-8 items-center justify-center rounded-full bg-[#59965C]"></button>
-              <button className="flex h-8 w-8 items-center justify-center rounded-full bg-[#0053CF]"></button>
+              {productWithColorsAndImages.map((product, index) => {
+                console.log(product.colorProduct);
+
+                return (
+                  <SelectedColorItem
+                    backgroundColor={`bg-[${product.colorProduct}]`}
+                    key={index}
+                    selected={index === selectedColorProduct ? true : false}
+                    onClick={() => setSelectedColorProduct(index)}
+                  />
+                );
+              })}
             </div>
           </div>
           <div className="relative top-5 flex max-w-[533px] gap-2 md:max-w-none">
