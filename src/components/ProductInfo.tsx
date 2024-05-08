@@ -9,10 +9,14 @@ import {
   MinusIcon,
   PlusIcon,
 } from "./Icons";
-import image1 from "../assets/products/product-info/1.png";
-import image2 from "../assets/products/product-info/2.png";
-import image3 from "../assets/products/product-info/3.png";
-import image4 from "../assets/products/product-info/4.png";
+import imageBlack1 from "../assets/products/product-info/black/1.png";
+import imageBlack2 from "../assets/products/product-info/black/2.png";
+import imageBlack3 from "../assets/products/product-info/black/3.png";
+import imageBlack4 from "../assets/products/product-info/black/4.png";
+
+import imageGreen1 from "../assets/products/product-info/green/1.png";
+import imageGreen2 from "../assets/products/product-info/green/2.png";
+
 import PrimaryButton from "./layouts/PrimaryButton";
 import SelectedColorItem from "./layouts/SelectedColorItem";
 import SliderProduct from "./layouts/SliderProduct";
@@ -22,11 +26,11 @@ export default function ProductInfo() {
   const [selectedColorProduct, setSelectedColorProduct] = useState<number>(0);
   const productWithColorsAndImages = [
     {
-      imagesProduct: [image1, image2, image3, image4],
+      imagesProduct: [imageBlack1, imageBlack2, imageBlack3, imageBlack4],
       colorProduct: "#000",
     },
     {
-      imagesProduct: [image4, image2, image3, image1],
+      imagesProduct: [imageGreen1, imageGreen2, imageBlack3, imageBlack4],
       colorProduct: "#59965C",
     },
   ];
