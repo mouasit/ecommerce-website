@@ -90,8 +90,6 @@ export default function ProductInfo() {
             Chose color
             <div className="flex items-center gap-3">
               {productWithColorsAndImages.map((product, index) => {
-                console.log(product.colorProduct);
-
                 return (
                   <SelectedColorItem
                     backgroundColor={`bg-[${product.colorProduct}]`}
