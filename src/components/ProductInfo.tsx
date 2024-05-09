@@ -19,6 +19,11 @@ import imageGreen2 from "../assets/products/product-info/green/2.png";
 import imageGreen3 from "../assets/products/product-info/green/3.png";
 import imageGreen4 from "../assets/products/product-info/green/4.png";
 
+import imageBlue1 from "../assets/products/product-info/blue/1.png";
+import imageBlue2 from "../assets/products/product-info/blue/2.png";
+import imageBlue3 from "../assets/products/product-info/blue/3.png";
+import imageBlue4 from "../assets/products/product-info/blue/4.png";
+
 import PrimaryButton from "./layouts/PrimaryButton";
 import SelectedColorItem from "./layouts/SelectedColorItem";
 import SliderProduct from "./layouts/SliderProduct";
@@ -34,6 +39,11 @@ export default function ProductInfo() {
     {
       imagesProduct: [imageGreen1, imageGreen2, imageGreen3, imageGreen4],
       colorProduct: "#59965C",
+    },
+
+    {
+      imagesProduct: [imageBlue1, imageBlue2, imageBlue3, imageBlue4],
+      colorProduct: "#0053CF",
     },
   ];
   const settings = {
