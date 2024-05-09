@@ -43,7 +43,7 @@ export default function ProductInfo() {
 
     {
       imagesProduct: [imageBlue1, imageBlue2, imageBlue3, imageBlue4],
-      colorProduct: "#0053CF",
+      colorProduct: "#3694C7",
     },
   ];
   const settings = {
