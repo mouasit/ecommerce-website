@@ -4,7 +4,7 @@ type Category = {
   backgroundColor: string;
   textColor: string;
 };
-export default function Category({
+export default function CategoryCard({
   name,
   imageProduct,
   backgroundColor,

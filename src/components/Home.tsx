@@ -1,9 +1,9 @@
 import Services from "./Services";
-import Categories from "./Categories";
 import Gaming from "./Gaming";
 import Banner from "./Banner";
 import Slider from "./Slider";
 import ProductsList from "./ProductsList";
+import CategoriesList from "./CategoriesList";
 
 export default function Home() {
   return (
@@ -11,7 +11,7 @@ export default function Home() {
       <Slider />
       <Services />
       <ProductsList />
-      <Categories />
+      <CategoriesList />
       <Gaming />
       <Banner />
     </>

@@ -8,25 +8,25 @@ import {
   FullScreenIcon,
   MinusIcon,
   PlusIcon,
-} from "./Icons";
-import imageBlack1 from "../assets/products/product-info/black/1.png";
-import imageBlack2 from "../assets/products/product-info/black/2.png";
-import imageBlack3 from "../assets/products/product-info/black/3.png";
-import imageBlack4 from "../assets/products/product-info/black/4.png";
+} from "../Icons";
+import imageBlack1 from "../../assets/products/product-info/black/1.png";
+import imageBlack2 from "../../assets/products/product-info/black/2.png";
+import imageBlack3 from "../../assets/products/product-info/black/3.png";
+import imageBlack4 from "../../assets/products/product-info/black/4.png";
 
-import imageGreen1 from "../assets/products/product-info/green/1.png";
-import imageGreen2 from "../assets/products/product-info/green/2.png";
-import imageGreen3 from "../assets/products/product-info/green/3.png";
-import imageGreen4 from "../assets/products/product-info/green/4.png";
+import imageGreen1 from "../../assets/products/product-info/green/1.png";
+import imageGreen2 from "../../assets/products/product-info/green/2.png";
+import imageGreen3 from "../../assets/products/product-info/green/3.png";
+import imageGreen4 from "../../assets/products/product-info/green/4.png";
 
-import imageBlue1 from "../assets/products/product-info/blue/1.png";
-import imageBlue2 from "../assets/products/product-info/blue/2.png";
-import imageBlue3 from "../assets/products/product-info/blue/3.png";
-import imageBlue4 from "../assets/products/product-info/blue/4.png";
+import imageBlue1 from "../../assets/products/product-info/blue/1.png";
+import imageBlue2 from "../../assets/products/product-info/blue/2.png";
+import imageBlue3 from "../../assets/products/product-info/blue/3.png";
+import imageBlue4 from "../../assets/products/product-info/blue/4.png";
 
-import PrimaryButton from "./layouts/PrimaryButton";
-import SelectedColorItem from "./layouts/SelectedColorItem";
-import SliderProduct from "./layouts/SliderProduct";
+import PrimaryButton from "../layouts/PrimaryButton";
+import SelectedColorItem from "../layouts/SelectedColorItem";
+import SliderProduct from "../layouts/SliderProduct";
 import { useState } from "react";
 
 export default function ProductDetails() {

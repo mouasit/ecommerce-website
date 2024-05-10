@@ -4,8 +4,8 @@ import AnnouncementBar from "./components/AnnouncementBar";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import Footer from "./components/Footer";
-import CategoryProduct from "./components/CategoryProduct";
-import ProductDetails from "./components/ProductDetails";
+import Product from "./components/Product";
+import Category from "./components/Category";
 function App() {
   return (
     <>
@@ -13,8 +13,8 @@ function App() {
       <Navbar />
       <main className="app-container">
         {/* <Home /> */}
-        {/* <CategoryProduct /> */}
-        <ProductDetails />
+        <Category />
+        {/* <Product /> */}
       </main>
       {/* <Footer /> */}
     </>
