@@ -29,7 +29,7 @@ import SelectedColorItem from "./layouts/SelectedColorItem";
 import SliderProduct from "./layouts/SliderProduct";
 import { useState } from "react";
 
-export default function ProductInfo() {
+export default function ProductDetails() {
   const [selectedColorProduct, setSelectedColorProduct] = useState<number>(0);
   const productWithColorsAndImages = [
     {
@@ -71,7 +71,7 @@ export default function ProductInfo() {
   };
   return (
     <div>
-      <div className="2lg:px-0 mt-[2rem] gap-8 px-4 md:flex md:justify-between lg:gap-12 ">
+      <section className="2lg:px-0 mt-[2rem] gap-8 px-4 md:flex md:justify-between lg:gap-12 ">
         <div className="relative rounded-3xl bg-grayLight md:w-[50%]   lg:ml-[8.5rem] lg:w-[45%]">
           <SlickSlider {...settings}>
             {productWithColorsAndImages[selectedColorProduct].imagesProduct.map(
@@ -132,7 +132,7 @@ export default function ProductInfo() {
             />
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

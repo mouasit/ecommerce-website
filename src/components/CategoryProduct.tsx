@@ -1,4 +1,4 @@
-import Product from "./layouts/Product";
+import Product from "./layouts/ProductCard";
 import redmi from "../assets/products/redmi.png";
 import airpods from "../assets/products/airpods.png";
 import ipad from "../assets/products/ipad.png";

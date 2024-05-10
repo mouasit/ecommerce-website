@@ -7,7 +7,7 @@ import cd from "../assets/products/cd.png";
 import chair from "../assets/products/chair.png";
 import microphone from "../assets/products/microphone.png";
 import { ArrowLeftIcon, ArrowRightIcon } from "./Icons";
-import Product from "./layouts/Product";
+import Product from "./layouts/ProductCard";
 
 export default function Gaming() {
   const [screenWidth, setScreenWidth] = React.useState(window.innerWidth);
