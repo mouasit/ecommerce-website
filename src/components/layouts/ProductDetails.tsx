@@ -85,7 +85,7 @@ export default function ProductDetails() {
           </button>
         </div>
 
-        <div className="mt-[3rem]  space-y-5 md:mt-2 md:w-[50%] lg:space-y-8">
+        <div className="mt-[3rem]  flex flex-col gap-5 md:mt-2 md:w-[50%] lg:space-y-8">
           <span className="text-[1.5rem] font-semibold capitalize text-bluePrimary">
             Apple iPhone 13 6,1" 5G
           </span>
@@ -113,7 +113,7 @@ export default function ProductDetails() {
               })}
             </div>
           </div>
-          <div className="relative top-5 flex max-w-[533px] gap-2 md:max-w-none">
+          <div className="mt-5 flex max-w-[533px] gap-2 md:max-w-none">
             <div className="flex w-[60%] items-center justify-between rounded-2xl bg-grayLight p-3 text-xl font-medium text-bluePrimary xlg:w-[65%]">
               <button className="rounded-full bg-yellowPrimary p-1">
                 <MinusIcon className="h-4 w-4 fill-bluePrimary" />
