@@ -1,5 +1,5 @@
-import CategoriesNav from "./layouts/CategoriesNav";
-import CategoryProducts from "./layouts/CategoryProducts";
+import CategoriesNav from "../layouts/CategoriesNav";
+import CategoryProducts from "../layouts/CategoryProducts";
 
 export default function Category() {
   return (

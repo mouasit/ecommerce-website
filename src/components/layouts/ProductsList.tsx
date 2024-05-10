@@ -1,12 +1,12 @@
-import iphone from "../assets/products/iphone.png";
-import tShirt from "../assets/products/t-shirt.png";
-import speaker from "../assets/products/speaker.png";
-import microwave from "../assets/products/microwave.png";
-import laptop from "../assets/products/laptop.png";
-import cable from "../assets/products/cable.png";
-import airpods from "../assets/products/airpods.png";
-import powerBank from "../assets/products/power-bank.png";
-import ProductCard from "./layouts/ProductCard";
+import iphone from "../../assets/products/iphone.png";
+import tShirt from "../../assets/products/t-shirt.png";
+import speaker from "../../assets/products/speaker.png";
+import microwave from "../../assets/products/microwave.png";
+import laptop from "../../assets/products/laptop.png";
+import cable from "../../assets/products/cable.png";
+import airpods from "../../assets/products/airpods.png";
+import powerBank from "../../assets/products/power-bank.png";
+import ProductCard from "./ProductCard";
 
 export default function ProductsList() {
   const responsiveWidth =
@@ -20,7 +20,6 @@ export default function ProductsList() {
         responsiveWidth={responsiveWidth}
       />
       <ProductCard
-      
         name="T-shirt green"
         price="200"
         imageProduct={tShirt}

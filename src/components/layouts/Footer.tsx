@@ -1,4 +1,4 @@
-import logo from "../assets/logo-blue.svg";
+import logo from "../../assets/logo-blue.svg";
 import { FacebookIcon, InstagramIcon } from "./Icons";
 
 export default function Footer() {

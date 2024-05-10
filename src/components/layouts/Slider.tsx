@@ -2,9 +2,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import SlickSlider from "react-slick";
 import { ArrowLeftIcon, ArrowRightIcon } from "./Icons";
-import tv from "../assets/products/slider-products/tv.png";
-import iphone from "../assets/products/slider-products/iphone.png";
-import Slide from "./layouts/Slide";
+import tv from "../../assets/products/slider-products/tv.png";
+import iphone from "../../assets/products/slider-products/iphone.png";
+import Slide from "./Slide";
 
 export default function Slider() {
   const settings = {

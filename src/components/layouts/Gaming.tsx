@@ -2,12 +2,12 @@ import React from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import SlickSlider from "react-slick";
-import controller from "../assets/products/controller.png";
-import cd from "../assets/products/cd.png";
-import chair from "../assets/products/chair.png";
-import microphone from "../assets/products/microphone.png";
+import controller from "../../assets/products/controller.png";
+import cd from "../../assets/products/cd.png";
+import chair from "../../assets/products/chair.png";
+import microphone from "../../assets/products/microphone.png";
 import { ArrowLeftIcon, ArrowRightIcon } from "./Icons";
-import Product from "./layouts/ProductCard";
+import Product from "./ProductCard";
 
 export default function Gaming() {
   const [screenWidth, setScreenWidth] = React.useState(window.innerWidth);

@@ -1,4 +1,4 @@
-import { AddToCartIcon } from "../Icons";
+import { AddToCartIcon } from "./Icons";
 import PrimaryButton from "./PrimaryButton";
 import SecondaryButton from "./SecondaryButton";
 

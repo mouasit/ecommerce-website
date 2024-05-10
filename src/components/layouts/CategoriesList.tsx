@@ -1,7 +1,7 @@
-import headphones from "../assets/products/headphones-white.png";
-import smartWatch from "../assets/products/smart-watch.png";
-import washingMachine from "../assets/products/washing-machine.png";
-import CategoryCard from "./layouts/CategoryCard";
+import headphones from "../../assets/products/headphones-white.png";
+import smartWatch from "../../assets/products/smart-watch.png";
+import washingMachine from "../../assets/products/washing-machine.png";
+import CategoryCard from "./CategoryCard";
 
 export default function CategoriesList() {
   return (

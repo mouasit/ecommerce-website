@@ -8,7 +8,7 @@ import {
   FullScreenIcon,
   MinusIcon,
   PlusIcon,
-} from "../Icons";
+} from "./Icons";
 import imageBlack1 from "../../assets/products/product-info/black/1.png";
 import imageBlack2 from "../../assets/products/product-info/black/2.png";
 import imageBlack3 from "../../assets/products/product-info/black/3.png";

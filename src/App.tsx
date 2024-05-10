@@ -1,11 +1,11 @@
 import "./App.css";
 import "./animation.css";
-import AnnouncementBar from "./components/AnnouncementBar";
-import Navbar from "./components/Navbar";
-import Home from "./components/Home";
-import Footer from "./components/Footer";
-import Product from "./components/Product";
-import Category from "./components/Category";
+import AnnouncementBar from "./components/layouts/AnnouncementBar";
+import Navbar from "./components/layouts/Navbar";
+import Home from "./components/pages/Home";
+import Footer from "./components/layouts/Footer";
+import Product from "./components/pages/Product";
+import Category from "./components/pages/Category";
 function App() {
   return (
     <>
@@ -13,8 +13,8 @@ function App() {
       <Navbar />
       <main className="app-container">
         {/* <Home /> */}
-        <Category />
-        {/* <Product /> */}
+        {/* <Category /> */}
+        <Product />
       </main>
       {/* <Footer /> */}
     </>

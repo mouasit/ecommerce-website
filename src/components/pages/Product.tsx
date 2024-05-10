@@ -1,5 +1,6 @@
-import ProductDetails from "./layouts/ProductDetails";
-import ProductTabs from "./layouts/ProductTabs";
+
+import ProductDetails from "../layouts/ProductDetails";
+import ProductTabs from "../layouts/ProductTabs";
 
 export default function Product() {
   return (

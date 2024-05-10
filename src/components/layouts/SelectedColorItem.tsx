@@ -1,4 +1,4 @@
-import { CheckIcon } from "../Icons";
+import { CheckIcon } from "./Icons";
 
 export default function SelectedColorItem({
   backgroundColor,
