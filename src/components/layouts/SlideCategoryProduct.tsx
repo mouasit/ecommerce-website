@@ -1,4 +1,4 @@
-export default function SliderProduct({
+export default function SlideCategoryProduct({
   imagesProduct,
 }: {
   imagesProduct: any;

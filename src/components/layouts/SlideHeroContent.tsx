@@ -1,18 +1,18 @@
 import PrimaryButton from "./PrimaryButton";
 
-type Slide = {
+type SlideHeroContent = {
   nameProduct: string;
   subtitle: string;
   desc: string;
   linkImageProduct: any;
 };
 
-export default function Slide({
+export default function SlideHeroContent({
   nameProduct,
   subtitle,
   desc,
   linkImageProduct,
-}: Slide) {
+}: SlideHeroContent) {
   return (
     <div>
       <div className="flex flex-col items-center gap-10 px-6 pt-12 md:flex-row md:justify-center md:gap-16 md:px-16  xl:gap-[10vw] ">

@@ -4,9 +4,9 @@ import SlickSlider from "react-slick";
 import { ArrowLeftIcon, ArrowRightIcon } from "./Icons";
 import tv from "../../assets/products/slider-products/tv.png";
 import iphone from "../../assets/products/slider-products/iphone.png";
-import Slide from "./Slide";
+import SlideHeroContent from "./SlideHeroContent";
 
-export default function Slider() {
+export default function SliderHero() {
   const settings = {
     dots: true,
     infinite: true,
@@ -23,13 +23,13 @@ export default function Slider() {
   };
   return (
     <SlickSlider {...settings}>
-      <Slide
+      <SlideHeroContent
         nameProduct={`"85" Q60C QLED 4K (2023)"`}
         subtitle="QA85Q60CAUXMV"
         desc="Technologie Quantum Matrix Pro / Neural Quantum Processor 8K"
         linkImageProduct={tv}
       />
-      <Slide
+      <SlideHeroContent
         nameProduct={`IPhone 15 Pro Max All Colors`}
         subtitle="QA85Q60CAUXMV"
         desc="The iPhone 15 display has rounded corners that follow a beautiful"

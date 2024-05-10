@@ -1,14 +1,14 @@
 import Services from "../layouts/Services";
 import Gaming from "../layouts/Gaming";
 import Banner from "../layouts/Banner";
-import Slider from "../layouts/Slider";
 import ProductsList from "../layouts/ProductsList";
 import CategoriesList from "../layouts/CategoriesList";
+import SliderHero from "../layouts/SliderHero";
 
 export default function Home() {
   return (
     <>
-      <Slider />
+      <SliderHero />
       <Services />
       <ProductsList />
       <CategoriesList />

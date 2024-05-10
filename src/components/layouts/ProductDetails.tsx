@@ -26,7 +26,7 @@ import imageBlue4 from "../../assets/products/product-info/blue/4.png";
 
 import PrimaryButton from "../layouts/PrimaryButton";
 import SelectedColorItem from "../layouts/SelectedColorItem";
-import SliderProduct from "../layouts/SliderProduct";
+import SlideCategoryProduct from "./SlideCategoryProduct";
 import { useState } from "react";
 
 export default function ProductDetails() {
@@ -76,7 +76,7 @@ export default function ProductDetails() {
           <SlickSlider {...settings}>
             {productWithColorsAndImages[selectedColorProduct].imagesProduct.map(
               (image, index) => {
-                return <SliderProduct imagesProduct={image} key={index} />;
+                return <SlideCategoryProduct imagesProduct={image} key={index} />;
               },
             )}
           </SlickSlider>
