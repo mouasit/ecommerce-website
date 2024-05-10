@@ -16,7 +16,7 @@ function App() {
         {/* <Category /> */}
         <Product />
       </main>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }

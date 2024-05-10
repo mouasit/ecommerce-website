@@ -34,7 +34,11 @@ export function Tabs({ children, className }: Props) {
 
 export function TabsList({ children, className }: Props) {
   return (
-    <div className={`flex items-end text-sm ${className}`}>{children}</div>
+    <div
+      className={`flex items-end border-b text-sm md:gap-[4rem] 2xlg:gap-[7rem] ${className}`}
+    >
+      {children}
+    </div>
   );
 }
 
@@ -43,10 +47,10 @@ export function Tab({ children, onClick }: Props) {
 
   return (
     <button
-      className={`flex flex-1 items-center justify-center border-b pb-4 text-[1rem] lg:text-[1.125rem] ${
+      className={`flex  w-full items-center justify-center border-b-2 px-5 pb-5 text-[1rem] md:w-auto  md:justify-start lg:text-[1.125rem] ${
         tabs.state === tabs.count++
           ? "border-b-yellowPrimary font-medium text-bluePrimary"
-          : "border-b-gray-300 text-grayPrimary"
+          : "border-b-transparent text-grayPrimary"
       }`}
       onClick={(e) => {
         let index = getIndexElement(e);
@@ -72,9 +76,7 @@ export function TabsPanels({ children, className }: Props) {
 }
 
 export function TabContent({ children, className }: Props) {
-  return (
-    <div className={`${className}`}>{children}</div>
-  );
+  return <div className={`${className}`}>{children}</div>;
 }
 
 export function getIndexElement(
