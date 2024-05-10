@@ -13,7 +13,7 @@ export default function ProductsCardsSlider() {
   const [screenWidth, setScreenWidth] = React.useState(window.innerWidth);
   const settings = {
     infinite: true,
-    speed: 500,
+    speed: 700,
     slidesToShow:
       screenWidth >= 632 && screenWidth < 898
         ? 2
@@ -22,7 +22,14 @@ export default function ProductsCardsSlider() {
           : screenWidth >= 1190
             ? 4
             : 1,
-    slidesToScroll: 1,
+    slidesToScroll:
+      screenWidth >= 632 && screenWidth < 898
+        ? 2
+        : screenWidth >= 898 && screenWidth < 1190
+          ? 3
+          : screenWidth >= 1190
+            ? 4
+            : 1,
     nextArrow: <SliderNextArrow />,
     prevArrow: <SliderPrevArrow />,
     customPaging: () => (
