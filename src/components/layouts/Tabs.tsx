@@ -23,7 +23,9 @@ export function Tabs({ children, className }: Props) {
 
   return (
     <indexTab.Provider value={{ state: state, setState: setState, count: 0 }}>
-      <div className={`flex h-full flex-col gap-6 lg:overflow-hidden ${className}`}>
+      <div
+        className={`flex h-full flex-col gap-6 lg:overflow-hidden ${className}`}
+      >
         {children}
       </div>
     </indexTab.Provider>
@@ -31,7 +33,9 @@ export function Tabs({ children, className }: Props) {
 }
 
 export function TabsList({ children, className }: Props) {
-  return <div className={`flex items-center text-sm ${className}`}>{children}</div>;
+  return (
+    <div className={`flex items-end text-sm ${className}`}>{children}</div>
+  );
 }
 
 export function Tab({ children, onClick }: Props) {
@@ -39,10 +43,10 @@ export function Tab({ children, onClick }: Props) {
 
   return (
     <button
-      className={`flex flex-1 items-center justify-center border-b-[1px] pb-2 ${
+      className={`flex flex-1 items-center justify-center border-b pb-4 text-[1rem] lg:text-[1.125rem] ${
         tabs.state === tabs.count++
-          ? "text-primaryText border-b-primary"
-          : "text-secondaryText border-b-shape"
+          ? "border-b-yellowPrimary font-medium text-bluePrimary"
+          : "border-b-gray-300 text-grayPrimary"
       }`}
       onClick={(e) => {
         let index = getIndexElement(e);
@@ -61,12 +65,16 @@ export function TabsPanels({ children, className }: Props) {
   const index = useContext(indexTab).state;
   let arrChildren = Children.toArray(children);
   return (
-    <div className={`h-full overflow-hidden ${className}`}>{arrChildren[index]}</div>
+    <div className={`h-full overflow-hidden ${className}`}>
+      {arrChildren[index]}
+    </div>
   );
 }
 
 export function TabContent({ children, className }: Props) {
-  return <div className={`h-full overflow-hidden ${className}`}>{children}</div>;
+  return (
+    <div className={`${className}`}>{children}</div>
+  );
 }
 
 export function getIndexElement(
