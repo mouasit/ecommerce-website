@@ -6,6 +6,7 @@ import Home from "./components/pages/Home";
 import Footer from "./components/layouts/Footer";
 import Product from "./components/pages/Product";
 import Category from "./components/pages/Category";
+import Checkout from "./components/pages/Checkout";
 function App() {
   return (
     <>
@@ -14,9 +15,10 @@ function App() {
       <main className="app-container">
         {/* <Home /> */}
         {/* <Category /> */}
-        <Product />
+        {/* <Product /> */}
+        <Checkout />
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
