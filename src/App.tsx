@@ -1,20 +1,20 @@
 import "./App.css";
 import "./animation.css";
-import AnnouncementBar from "./components/AnnouncementBar";
-import Navbar from "./components/Navbar";
-import Home from "./components/Home";
-import Footer from "./components/Footer";
-import CategoryProduct from "./components/CategoryProduct";
-import ProductInfo from "./components/ProductInfo";
+import AnnouncementBar from "./components/layouts/AnnouncementBar";
+import Navbar from "./components/layouts/Navbar";
+import Home from "./components/pages/Home";
+import Footer from "./components/layouts/Footer";
+import Product from "./components/pages/Product";
+import Category from "./components/pages/Category";
 function App() {
   return (
     <>
       <AnnouncementBar />
       <Navbar />
       <main className="app-container">
-        <Home />
-        {/* <CategoryProduct /> */}
-        {/* <ProductInfo /> */}
+        {/* <Home /> */}
+        {/* <Category /> */}
+        <Product />
       </main>
       <Footer />
     </>

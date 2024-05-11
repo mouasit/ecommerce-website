@@ -14,6 +14,7 @@ export default {
         poppins: ["Poppins", "sans-serif"],
       },
       screens: {
+        xs:"375px",
         ms: "447px",
         mxs: "483px",
         mlg: "1105px",

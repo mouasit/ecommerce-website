@@ -6,11 +6,11 @@ import {
   ShoppingCartIcon,
   TrashIcon,
 } from "./Icons";
-import logo from "../assets/logo.svg";
-import iphone from "../assets/products/iphone.png";
-import cable from "../assets/products/cable.png";
-import SecondaryButton from "./layouts/SecondaryButton";
-import PrimaryButton from "./layouts/PrimaryButton";
+import logo from "../../assets/logo.svg";
+import iphone from "../../assets/products/iphone.png";
+import cable from "../../assets/products/cable.png";
+import SecondaryButton from "./SecondaryButton";
+import PrimaryButton from "./PrimaryButton";
 
 export default function Navbar() {
   const [clickBurgerMenu, setClickBurgerMenu] = React.useState<boolean>(false);

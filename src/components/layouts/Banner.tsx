@@ -1,5 +1,5 @@
-import bannerDesktop from "../assets/banner-desktop.png";
-import bannerMobile from "../assets/banner-mobile.png";
+import bannerDesktop from "../../assets/banner-desktop.png";
+import bannerMobile from "../../assets/banner-mobile.png";
 
 export default function Banner() {
   return (

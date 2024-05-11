@@ -1,5 +1,5 @@
 import { ChatIcon, RefreshIcon, TrackIcon } from "./Icons";
-import CardService from "./layouts/CardService";
+import CardService from "./CardService";
 
 export default function Services() {
   return (
