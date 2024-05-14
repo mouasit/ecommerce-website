@@ -9,12 +9,13 @@ export default {
         blueSky: "#75C2F6",
         grayPrimary: "#959595",
         grayLight: "#F6F6F6",
+        redError: "#FF5656",
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
       },
       screens: {
-        xs:"375px",
+        xs: "375px",
         ms: "447px",
         mxs: "483px",
         mlg: "1105px",

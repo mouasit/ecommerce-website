@@ -256,3 +256,23 @@ export function FullScreenIcon({ className }: { className?: string }) {
     </svg>
   );
 }
+
+export function ExclamationIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      version="1.1"
+      x="0"
+      y="0"
+      viewBox="0 0 24 24"
+      className={className}
+    >
+      <g>
+        <path
+          d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm.71 14.71c-.38.37-1.04.37-1.42 0-.181-.19-.29-.45-.29-.71s.109-.52.29-.71c.19-.18.45-.29.71-.29s.52.11.71.29c.18.19.29.45.29.71s-.11.52-.29.71zM13 13a1 1 0 1 1-2 0V8a1 1 0 1 1 2 0z"
+          opacity="1"
+        ></path>
+      </g>
+    </svg>
+  );
+}
