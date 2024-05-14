@@ -1,6 +1,7 @@
 import Input from "../layouts/Input";
 import redmi from "../../assets/products/redmi.png";
 import ProductCardCheckout from "../layouts/ProductCardCheckout";
+import PrimaryButton from "../layouts/PrimaryButton";
 
 export default function Checkout() {
   return (
@@ -22,7 +23,7 @@ export default function Checkout() {
         <h2 className="px-4 text-lg font-semibold text-bluePrimary">
           Your Order
         </h2>
-        <div className="w-full bg-grayLight px-4 py-8">
+        <div className="flex w-full flex-col gap-8 bg-grayLight px-4 py-8">
           <div className="flex flex-col gap-8">
             <ProductCardCheckout
               imageProduct={redmi}
@@ -43,10 +44,13 @@ export default function Checkout() {
               price={1500}
             />
           </div>
-          <div className="flex w-full items-center justify-between text-bluePrimary border-t">
-            <span className="capitalize">subtotal</span>
-            <span className="font-bold">$500,00</span>
+          <div className="flex w-full items-center justify-between border-t pt-8 text-xl text-bluePrimary">
+            <span className="font-bold capitalize">total</span>
+            <span className="font-bold">
+              4500 <span className="text-yellowPrimary">DH</span>
+            </span>
           </div>
+          <PrimaryButton value="Place order" className="mt-9"/>
         </div>
       </div>
     </div>
