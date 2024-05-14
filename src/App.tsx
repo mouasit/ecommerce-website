@@ -18,7 +18,7 @@ function App() {
         {/* <Product /> */}
         <Checkout />
       </main>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }
