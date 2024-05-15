@@ -21,10 +21,10 @@ export default function ProductCard({
         <img src={imageProduct} alt="product" className="w-[13rem]" />
       </button>
       <div className="flex flex-col justify-center gap-1">
-        <span className="text-center text-[1.1rem] capitalize text-bluePrimary">
+        <span className="truncate text-center text-[1.1rem] capitalize text-bluePrimary">
           {name}
         </span>
-        <div className="flex justify-center gap-1 text-[1.5rem] font-bold text-bluePrimary">
+        <div className="flex justify-center gap-1 truncate text-[1.5rem] font-bold text-bluePrimary">
           {price}
           <span className="text-yellowPrimary">DH</span>
         </div>

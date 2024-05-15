@@ -192,8 +192,10 @@ export default function Navbar() {
           className={`fixed right-0 top-0  w-full transition-transform duration-500 sm:w-[26rem] ${clickShoppingCart ? "translate-x-0" : "translate-x-full"}`}
         >
           <div className="relative h-screen bg-white py-4 pb-[16.1rem]">
-            <div className="flex items-center justify-between border-b px-4 pb-4 text-lg font-semibold capitalize  text-bluePrimary">
-              shopping cart
+            <div className="flex items-center justify-between gap-2 border-b px-4 pb-4 text-lg font-semibold  capitalize text-bluePrimary">
+              <span className="overflow-hidden whitespace-nowrap">
+                shopping cart
+              </span>
               <button
                 className="rounded-full bg-yellowPrimary p-2"
                 onClick={() => {
