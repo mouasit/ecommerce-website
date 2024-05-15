@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function SecondaryButton({
   value,
   className,
@@ -9,7 +7,7 @@ export default function SecondaryButton({
 }) {
   return (
     <button
-      className={`rounded-[0.5rem] border-2 border-bluePrimary p-2 font-medium capitalize text-bluePrimary ${className}`}
+      className={`overflow-hidden rounded-[0.5rem] border-2 border-bluePrimary p-2 font-medium capitalize text-bluePrimary ${className}`}
     >
       {value}
     </button>

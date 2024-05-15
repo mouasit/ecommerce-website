@@ -4,13 +4,13 @@ import {
   BurgerMenuIcon,
   CloseIcon,
   ShoppingCartIcon,
-  TrashIcon,
 } from "./Icons";
 import logo from "../../assets/logo.svg";
 import iphone from "../../assets/products/iphone.png";
 import cable from "../../assets/products/cable.png";
 import SecondaryButton from "./SecondaryButton";
 import PrimaryButton from "./PrimaryButton";
+import ProductShoppoingCartCard from "./ProductShoppoingCartCard";
 
 export default function Navbar() {
   const [clickBurgerMenu, setClickBurgerMenu] = React.useState<boolean>(false);
@@ -205,47 +205,21 @@ export default function Navbar() {
               </button>
             </div>
             <div className="flex h-full flex-col gap-8 overflow-auto px-4 py-8">
-              <div className="flex items-center justify-between">
-                <button className="flex gap-3 text-left">
-                  <div className="flex items-center justify-center rounded-xl bg-grayLight p-3">
-                    <img
-                      src={iphone}
-                      alt="product image"
-                      className="h-[5rem] w-[5rem]"
-                    />
-                  </div>
-                  <span className="flex flex-col gap-1 capitalize text-bluePrimary">
-                    <span className="font-medium">iphone 14 plus</span>
-                    <span className="font-light text-grayPrimary">$600,00</span>
-                  </span>
-                </button>
-                <button className="rounded-full bg-gray-100 p-2">
-                  <TrashIcon className="h-5 w-5 fill-bluePrimary" />
-                </button>
-              </div>
-              <div className="flex items-center justify-between">
-                <button className="flex gap-3 text-left">
-                  <div className="flex items-center justify-center rounded-xl bg-grayLight p-3">
-                    <img
-                      src={cable}
-                      alt="product image"
-                      className="h-[5rem] w-[5rem]"
-                    />
-                  </div>
-                  <span className="flex flex-col gap-1 capitalize text-bluePrimary">
-                    <span className="font-medium">Baseus Tungsten</span>
-                    <span className="font-light text-grayPrimary">$15,00</span>
-                  </span>
-                </button>
-                <button className="rounded-full bg-gray-100 p-2">
-                  <TrashIcon className="h-5 w-5 fill-bluePrimary" />
-                </button>
-              </div>
+              <ProductShoppoingCartCard
+                name="iphone 14 plus"
+                price="1500"
+                imageProduct={iphone}
+              />
+              <ProductShoppoingCartCard
+                name="Baseus Tungsten"
+                price="400"
+                imageProduct={cable}
+              />
             </div>
             <div className="absolute bottom-4 flex w-full flex-col gap-8 border-t px-4 pt-8 text-lg">
-              <div className="flex w-full items-center justify-between text-bluePrimary">
-                <span className="capitalize">subtotal</span>
-                <span className="font-bold">$500,00</span>
+              <div className="flex w-full items-center justify-between gap-2 text-bluePrimary">
+                <span className="truncate capitalize">subtotal</span>
+                <span className="truncate font-bold">$500,00</span>
               </div>
               <div className="flex flex-col items-center gap-2">
                 <SecondaryButton value="view cart" className="w-full" />

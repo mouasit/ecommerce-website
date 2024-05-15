@@ -31,7 +31,7 @@ export default function SlideHeroContent({
             </p>
           </div>
           <PrimaryButton
-            value="shop now"
+            value="Shop now"
             className="w-[11rem]  sm:w-[10.264rem]"
           />
         </div>
