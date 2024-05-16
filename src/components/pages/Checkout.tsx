@@ -71,8 +71,8 @@ export default function Checkout() {
                 price="1500"
               />
             </div>
-            <div className="flex w-full items-center justify-between border-t pt-8 text-xl text-bluePrimary">
-              <span className="font-bold capitalize">total</span>
+            <div className="flex w-full items-center justify-between break-all border-t pt-8 text-xl text-bluePrimary gap-6">
+              <span className="font-bold capitalize flex-1">total</span>
               <span className="font-bold">
                 4500 <span className="text-yellowPrimary">DH</span>
               </span>

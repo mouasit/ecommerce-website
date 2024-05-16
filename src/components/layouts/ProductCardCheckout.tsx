@@ -22,7 +22,7 @@ export default function ProductCardCheckout({
           <span className="text-grayPrimary">X{quantity}</span>
         </div>
       </div>
-      <span className="font-semibold text-bluePrimary">56 DH</span>
+      <span className="font-semibold text-bluePrimary">{price} DH</span>
     </div>
   );
 }
