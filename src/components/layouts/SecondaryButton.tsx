@@ -7,7 +7,7 @@ export default function SecondaryButton({
 }) {
   return (
     <button
-      className={`overflow-hidden rounded-[0.5rem] border-2 border-bluePrimary p-2 font-medium capitalize text-bluePrimary ${className}`}
+      className={`  break-words rounded-[0.5rem] border-2 border-bluePrimary p-2 font-medium capitalize text-bluePrimary ${className}`}
     >
       {value}
     </button>

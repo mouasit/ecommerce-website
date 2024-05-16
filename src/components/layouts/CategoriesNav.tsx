@@ -1,6 +1,6 @@
 export default function CategoriesNav() {
   return (
-    <div className="flex flex-col  gap-7 capitalize text-bluePrimary lg:w-[19rem] overflow-hidden">
+    <div className="flex flex-col  gap-7 break-all capitalize text-bluePrimary lg:w-[19rem]">
       <span className="text-xl font-semibold">categories</span>
       <ul className="flex flex-col gap-5 font-light">
         <li>

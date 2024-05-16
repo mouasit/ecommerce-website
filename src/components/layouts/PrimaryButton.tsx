@@ -11,7 +11,7 @@ export default function PrimaryButton({
 }) {
   return (
     <button
-      className={`overflow-hidden rounded-[0.5rem] border-2 border-yellowPrimary bg-yellowPrimary p-2 font-medium text-bluePrimary ${className}`}
+      className={`break-words rounded-[0.5rem] border-2 border-yellowPrimary bg-yellowPrimary p-2 font-medium text-bluePrimary ${className}`}
       onClick={() => {
         if (onClick) onClick();
       }}

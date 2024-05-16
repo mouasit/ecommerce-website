@@ -17,7 +17,7 @@ export default function ProductShoppoingCartCard({
         </div>
         <span className="flex w-[50vw] flex-col gap-1 capitalize text-bluePrimary sm:w-[13rem] ">
           <span className="truncate font-medium">{name}</span>
-          <span className="truncate font-light text-grayPrimary">
+          <span className="break-words font-light text-grayPrimary">
             {price} DH
           </span>
         </span>

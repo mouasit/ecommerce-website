@@ -24,12 +24,14 @@ export default function ProductCard({
         <span className="truncate text-center text-[1.1rem] capitalize text-bluePrimary">
           {name}
         </span>
-        <div className="flex justify-center gap-1 truncate text-[1.5rem] font-bold text-bluePrimary">
-          {price}
-          <span className="text-yellowPrimary">DH</span>
+        <div className="flex w-full justify-center break-all text-[1.5rem] font-bold text-bluePrimary">
+          <div className="space-x-1">
+            <span>{price}</span>
+            <span className="break-words text-yellowPrimary">DH</span>
+          </div>
         </div>
       </div>
-      <div className="flex gap-2">
+      <div className="flex  gap-2">
         <SecondaryButton value="view more" className="w-full" />
         <PrimaryButton
           icon={<AddToCartIcon className="h-7 w-7 fill-bluePrimary" />}

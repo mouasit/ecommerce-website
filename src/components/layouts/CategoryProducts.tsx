@@ -14,7 +14,7 @@ export default function CategoryProducts() {
       <h1 className="text-center text-[1.9rem] font-semibold capitalize text-bluePrimary">
         electronics
       </h1>
-      <div className="mt-[4rem] flex flex-col items-center gap-16 sm:flex-row sm:flex-wrap sm:justify-start sm:gap-x-[2.1vw] md:gap-x-[8%] lg:gap-x-[5%]  xl:gap-x-[2%] 2xlg:gap-x-[3.3%]">
+      <div className="mt-[4rem] flex flex-col items-center gap-16 sm:flex-row sm:flex-wrap sm:items-start sm:justify-start sm:gap-x-[2.1vw] md:gap-x-[8%] lg:gap-x-[5%]  xl:gap-x-[2%] 2xlg:gap-x-[3.3%]">
         <ProductCard
           name="Xiaomi redmi R..."
           price="1 500"
