@@ -219,9 +219,9 @@ export default function Navbar() {
               />
             </div>
             <div className="absolute bottom-4 flex w-full flex-col gap-8 border-t px-4 pt-8 text-lg">
-              <div className="flex w-full items-center justify-between gap-2 text-bluePrimary">
-                <span className="truncate capitalize">subtotal</span>
-                <span className="truncate font-bold">$500,00</span>
+              <div className="flex w-full items-center justify-between gap-2 break-all text-bluePrimary">
+                <span className="flex-1 capitalize">subtotal</span>
+                <span className="font-bold">1900 DH</span>
               </div>
               <div className="flex flex-col items-center gap-2">
                 <SecondaryButton value="view cart" className="w-full" />
