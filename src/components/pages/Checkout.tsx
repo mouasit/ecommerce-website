@@ -54,21 +54,21 @@ export default function Checkout() {
             <div className="flex flex-col gap-8">
               <ProductCardCheckout
                 imageProduct={redmi}
-                name="Xiaomi redmi R..."
-                quantity={2}
-                price={1500}
+                name="Xiaomi redmi"
+                quantity="2"
+                price="1500"
               />
               <ProductCardCheckout
                 imageProduct={redmi}
                 name="Xiaomi redmi R..."
-                quantity={2}
-                price={1500}
+                quantity="2"
+                price="1500"
               />
               <ProductCardCheckout
                 imageProduct={redmi}
                 name="Xiaomi redmi R..."
-                quantity={2}
-                price={1500}
+                quantity="2"
+                price="1500"
               />
             </div>
             <div className="flex w-full items-center justify-between border-t pt-8 text-xl text-bluePrimary">

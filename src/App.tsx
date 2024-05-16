@@ -12,11 +12,11 @@ function App() {
     <>
       <AnnouncementBar />
       <Navbar />
-      <main className="app-container overflow-hidden">
-        <Home />
+      <main className="app-container">
+        {/* <Home /> */}
         {/* <Category /> */}
         {/* <Product /> */}
-        {/* <Checkout /> */}
+        <Checkout />
       </main>
       <Footer />
     </>
