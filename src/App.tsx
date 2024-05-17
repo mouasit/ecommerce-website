@@ -13,9 +13,9 @@ function App() {
       <AnnouncementBar />
       <Navbar />
       <main className="app-container">
-        {/* <Home /> */}
+        <Home />
         {/* <Category /> */}
-        <Product />
+        {/* <Product /> */}
         {/* <Checkout /> */}
       </main>
       <Footer />

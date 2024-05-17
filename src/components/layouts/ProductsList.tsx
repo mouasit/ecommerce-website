@@ -1,11 +1,11 @@
-import iphone from "../../assets/products/iphone.png";
-import tShirt from "../../assets/products/t-shirt.png";
-import speaker from "../../assets/products/speaker.png";
-import microwave from "../../assets/products/microwave.png";
-import laptop from "../../assets/products/laptop.png";
-import cable from "../../assets/products/cable.png";
-import airpods from "../../assets/products/airpods.png";
-import powerBank from "../../assets/products/power-bank.png";
+import iphone from "../../assets/products/iphone.jpg";
+import tShirt from "../../assets/products/t-shirt.jpg";
+import speaker from "../../assets/products/speaker.jpg";
+import microwave from "../../assets/products/microwave.jpg";
+import laptop from "../../assets/products/laptop.jpg";
+import cable from "../../assets/products/cable.jpg";
+import airpods from "../../assets/products/airpods.jpg";
+import powerBank from "../../assets/products/power-bank.jpg";
 import ProductCard from "./ProductCard";
 
 export default function ProductsList() {

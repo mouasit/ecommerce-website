@@ -6,8 +6,8 @@ import {
   ShoppingCartIcon,
 } from "./Icons";
 import logo from "../../assets/logo.svg";
-import iphone from "../../assets/products/iphone.png";
-import cable from "../../assets/products/cable.png";
+import iphone from "../../assets/products/iphone.jpg";
+import cable from "../../assets/products/cable.jpg";
 import SecondaryButton from "./SecondaryButton";
 import PrimaryButton from "./PrimaryButton";
 import ProductShoppoingCartCard from "./ProductShoppoingCartCard";

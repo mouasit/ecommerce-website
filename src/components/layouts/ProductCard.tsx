@@ -17,9 +17,10 @@ export default function ProductCard({
 }: Product) {
   return (
     <div className={`card flex w-[15.5rem] ${responsiveWidth} flex-col gap-5`}>
-      <button className="flex  items-center justify-center rounded-[1rem] bg-grayLight p-6">
+      <img src={imageProduct} alt="product" className="w-full rounded-[1rem]" />
+      {/* <button className="flex  items-center justify-center rounded-[1rem] bg-grayLight p-6">
         <img src={imageProduct} alt="product" className="w-[13rem]" />
-      </button>
+      </button> */}
       <div className="flex flex-col justify-center gap-1">
         <span className="truncate text-center text-[1.1rem] capitalize text-bluePrimary">
           {name}
