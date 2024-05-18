@@ -12,9 +12,7 @@ export default function ProductShoppoingCartCard({
   return (
     <div className="flex w-full items-center justify-between gap-1">
       <button className="flex flex-shrink-0 gap-3 text-left">
-        <div className="flex items-center justify-center rounded-xl bg-grayLight p-3">
-          <img src={imageProduct} alt="product" className="h-[5rem] w-[5rem]" />
-        </div>
+        <img src={imageProduct} alt="product" className="w-[5rem] rounded-xl" />
         <span className="flex w-[50vw] flex-col gap-1 capitalize text-bluePrimary sm:w-[13rem] ">
           <span className="truncate font-medium">{name}</span>
           <span className="break-words font-light text-grayPrimary">
