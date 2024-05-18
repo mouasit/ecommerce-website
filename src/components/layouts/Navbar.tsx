@@ -25,7 +25,7 @@ export default function Navbar() {
 
   return (
     <nav className="sticky top-0 z-[2] bg-white shadow-sm">
-      <div className="padding-layouts app-container flex w-full items-center justify-between 2xlg:px-0">
+      <div className="app-container flex h-auto w-full justify-between p-4 lg:h-[4.5rem] lg:py-0 2xlg:px-0">
         <span className="flex items-center gap-5">
           <button
             className="lg:hidden"
@@ -43,7 +43,7 @@ export default function Navbar() {
             <img src={logo} alt="logo" className="w-[8.5rem]" />
           </button>
         </span>
-        <ul className="hidden items-center gap-20 lg:flex">
+        <ul className="hidden gap-20 lg:flex">
           <li
             className="relative"
             onFocus={() => {
@@ -65,7 +65,7 @@ export default function Navbar() {
               });
             }}
           >
-            <button className="flex items-center gap-2 text-bluePrimary">
+            <button className="flex h-full items-center gap-2 text-bluePrimary">
               All products
               <ArrowDownIcon
                 className={`rotate h-3 w-3 fill-yellowPrimary ${hoverAnimation ? "down" : ""}`}
@@ -73,7 +73,7 @@ export default function Navbar() {
             </button>
             {hoverDropDown ? (
               <div
-                className="fadein-down absolute w-[15rem] bg-white pt-4 text-sm"
+                className="fadein-down absolute top-12 w-[15rem] bg-white pt-4 text-sm"
                 ref={dropDownRef}
               >
                 <div className="flex flex-col gap-3 rounded-lg py-2 font-light text-bluePrimary shadow-xs">
@@ -94,13 +94,19 @@ export default function Navbar() {
             ) : null}
           </li>
           <li>
-            <button className="text-bluePrimary">Electronics</button>
+            <button className="flex h-full items-center text-bluePrimary">
+              Electronics
+            </button>
           </li>
           <li>
-            <button className="text-bluePrimary">Home Appliance</button>
+            <button className="flex h-full items-center text-bluePrimary">
+              Home Appliance
+            </button>
           </li>
           <li>
-            <button className="text-bluePrimary">Gaming</button>
+            <button className="flex h-full items-center text-bluePrimary">
+              Gaming
+            </button>
           </li>
         </ul>
         <ul
@@ -167,18 +173,20 @@ export default function Navbar() {
             <button className="text-bluePrimary">Furniture</button>
           </li>
         </ul>
-        <button
-          className="flex items-start gap-[.2rem]"
-          onClick={() => {
-            setClickShoppingCart(true);
-            document.body.classList.add("overflow-hidden");
-          }}
-        >
-          <ShoppingCartIcon className="h-[2.3rem] w-[2.3rem] fill-bluePrimary" />
-          <span className="flex h-[1.5rem] w-[1.5rem] items-center justify-center rounded-full bg-yellowPrimary font-bold text-bluePrimary">
-            0
-          </span>
-        </button>
+        <div className="flex items-center">
+          <button
+            className="flex items-start gap-[.2rem]"
+            onClick={() => {
+              setClickShoppingCart(true);
+              document.body.classList.add("overflow-hidden");
+            }}
+          >
+            <ShoppingCartIcon className="h-[2.3rem] w-[2.3rem] fill-bluePrimary" />
+            <span className="flex h-[1.5rem] w-[1.5rem] items-center justify-center rounded-full bg-yellowPrimary font-bold text-bluePrimary">
+              0
+            </span>
+          </button>
+        </div>
         {clickShoppingCart ? (
           <div
             className="fixed left-0 top-0 h-screen w-full bg-black bg-opacity-1"
