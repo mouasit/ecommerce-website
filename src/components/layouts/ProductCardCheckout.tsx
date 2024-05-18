@@ -14,9 +14,11 @@ export default function ProductCardCheckout({
   return (
     <div className="flex items-center gap-6 break-all">
       <div className="flex flex-1 items-center gap-6">
-        <div className="flex-none rounded-xl bg-white">
-          <img src={imageProduct} alt="product" className="w-[6rem]" />
-        </div>
+        <img
+          src={imageProduct}
+          alt="product"
+          className="w-[6rem] flex-none rounded-lg"
+        />
         <div className="flex flex-col">
           <span className="text-bluePrimary">{name}</span>
           <span className="text-grayPrimary">X{quantity}</span>
