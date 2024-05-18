@@ -13,8 +13,8 @@ function App() {
       <AnnouncementBar />
       <Navbar />
       <main className="app-container">
-        <Home />
-        {/* <Category /> */}
+        {/* <Home /> */}
+        <Category />
         {/* <Product /> */}
         {/* <Checkout /> */}
       </main>

@@ -1,9 +1,9 @@
-import redmi from "../../assets/products/redmi.png";
-import airpods from "../../assets/products/airpods.png";
-import ipad from "../../assets/products/ipad.png";
-import headPhones from "../../assets/products/headphones-black.png";
-import smartWatch from "../../assets/products/smart-watch-red.png";
-import powerBank from "../../assets/products/power-bank.png";
+import redmi from "../../assets/products/redmi.jpg";
+import airpods from "../../assets/products/airpods.jpg";
+import ipad from "../../assets/products/ipad.jpg";
+import headPhones from "../../assets/products/headphones-black.jpg";
+import smartWatch from "../../assets/products/smart-watch-red.jpg";
+import powerBank from "../../assets/products/power-bank.jpg";
 import ProductCard from "./ProductCard";
 
 export default function CategoryProducts() {
