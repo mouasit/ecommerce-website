@@ -13,6 +13,7 @@ import imageBlack1 from "../../assets/products/product-info/black/1.jpg";
 import imageBlack2 from "../../assets/products/product-info/black/2.jpg";
 import imageBlack3 from "../../assets/products/product-info/black/3.jpg";
 import imageBlack4 from "../../assets/products/product-info/black/4.jpg";
+import imageBlack5 from "../../assets/products/product-info/black/5.jpg";
 
 import imageGreen1 from "../../assets/products/product-info/green/1.jpg";
 import imageGreen2 from "../../assets/products/product-info/green/2.jpg";
@@ -33,7 +34,13 @@ export default function ProductDetails() {
   const [selectedColorProduct, setSelectedColorProduct] = useState<number>(0);
   const productWithColorsAndImages = [
     {
-      imagesProduct: [imageBlack1, imageBlack2, imageBlack3, imageBlack4],
+      imagesProduct: [
+        imageBlack1,
+        imageBlack2,
+        imageBlack3,
+        imageBlack4,
+        imageBlack5,
+      ],
       colorProduct: "#000",
     },
     {
