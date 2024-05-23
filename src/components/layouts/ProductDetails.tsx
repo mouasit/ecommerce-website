@@ -45,7 +45,7 @@ export default function ProductDetails() {
         imageBlack2,
         imageBlack3,
         imageBlack4,
-        // imageBlack5,
+        imageBlack5,
       ],
       colorProduct: "#000",
     },
@@ -75,6 +75,7 @@ export default function ProductDetails() {
           }
           alt="product"
           className="product-slider-dots  w-full cursor-pointer rounded-xl border-[3px] border-grayLight"
+          draggable={false}
         />
       );
     },
@@ -119,7 +120,31 @@ export default function ProductDetails() {
     }
   };
 
+  let isDragging = false;
+
+  const handleDragging = (event: any) => {
+    const container = sectionRef.current?.querySelector(
+      ".slick-dots",
+    ) as HTMLElement;
+    if (!isDragging) return;
+    if (isVertical) container.scrollTop -= event.movementY;
+    else container.scrollLeft -= event.movementX;
+  };
+
+  const handleMouseDown = () => {
+    isDragging = true;
+  };
+
+  const handleDragStop = () => {
+    isDragging = false;
+  };
   useEffect(() => {
+    const container = sectionRef.current?.querySelector(
+      ".slick-dots",
+    ) as HTMLElement;
+
+    container.classList.add("no-scrollbar")
+
     const handleResize = () => {
       setScreenWidth(window.innerWidth);
       setIsVertical(window.innerWidth >= screenSize);
@@ -138,12 +163,11 @@ export default function ProductDetails() {
     ) as HTMLElement;
 
     const preventScroll = (e: any) => e.preventDefault();
-    // container.addEventListener('wheel', preventScroll, { passive: false });
+    container.addEventListener("wheel", preventScroll, { passive: false });
 
     if (isVertical) {
       const section = sectionRef.current as HTMLElement;
       const dimensionSection = section.getBoundingClientRect();
-      console.log(dimensionSection.width);
 
       if (container.childElementCount <= 3) setShowNextArrow(false);
       else if (
@@ -158,10 +182,16 @@ export default function ProductDetails() {
     }
 
     container.addEventListener("scroll", handleScroll);
+    container.addEventListener("mousedown", handleMouseDown);
+    container.addEventListener("mousemove", handleDragging);
+    document.addEventListener("mouseup", handleDragStop);
 
     return () => {
-      // container.removeEventListener('wheel', preventScroll);
+      container.removeEventListener("wheel", preventScroll);
       container.removeEventListener("scroll", handleScroll);
+      container.removeEventListener("mousedown", handleMouseDown);
+      container.removeEventListener("mousemove", handleDragging);
+      document.removeEventListener("mouseup", handleDragStop);
     };
   }, [screenWidth]);
 
