@@ -71,6 +71,6 @@ body {
   justify-content: center !important;
 }
 
-.active{
-  @apply border-b-2 border-b-yellowPrimary
+.active {
+  @apply border-b-2 border-b-yellowPrimary;
 }

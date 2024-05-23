@@ -28,10 +28,16 @@ import imageBlue4 from "../../assets/products/product-info/blue/4.jpg";
 import PrimaryButton from "../layouts/PrimaryButton";
 import SelectedColorItem from "../layouts/SelectedColorItem";
 import SlideCategoryProduct from "./SlideCategoryProduct";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function ProductDetails() {
+  const sectionRef = useRef<HTMLElement>(null);
   const [selectedColorProduct, setSelectedColorProduct] = useState<number>(0);
+  const screenSize = 1024;
+  const [showPrevArrow, setShowPrevArrow] = useState(false);
+  const [showNextArrow, setShowNextArrow] = useState(false);
+  const [isVertical, setIsVertical] = useState(window.innerWidth >= screenSize);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const productWithColorsAndImages = [
     {
       imagesProduct: [
@@ -39,7 +45,7 @@ export default function ProductDetails() {
         imageBlack2,
         imageBlack3,
         imageBlack4,
-        imageBlack5,
+        // imageBlack5,
       ],
       colorProduct: "#000",
     },
@@ -73,8 +79,97 @@ export default function ProductDetails() {
       );
     },
   };
+
+  const scrollPrev = () => {
+    const container = sectionRef.current?.querySelector(
+      ".slick-dots",
+    ) as HTMLElement;
+    if (isVertical) {
+      container.scrollBy({ top: -container.clientHeight, behavior: "smooth" });
+    } else {
+      container.scrollBy({ left: -container.clientWidth, behavior: "smooth" });
+    }
+  };
+
+  const scrollNext = () => {
+    const container = sectionRef.current?.querySelector(
+      ".slick-dots",
+    ) as HTMLElement;
+    if (isVertical) {
+      container.scrollBy({ top: container.clientHeight, behavior: "smooth" });
+    } else {
+      container.scrollBy({ left: container.clientWidth, behavior: "smooth" });
+    }
+  };
+
+  const handleScroll = () => {
+    const container = sectionRef.current?.querySelector(
+      ".slick-dots",
+    ) as HTMLElement;
+    if (isVertical) {
+      setShowPrevArrow(container.scrollTop > 0);
+      setShowNextArrow(
+        container.scrollTop + container.clientHeight < container.scrollHeight,
+      );
+    } else {
+      setShowPrevArrow(container.scrollLeft > 0);
+      setShowNextArrow(
+        container.scrollLeft + container.clientWidth < container.scrollWidth,
+      );
+    }
+  };
+
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+      setIsVertical(window.innerWidth >= screenSize);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    const container = sectionRef.current?.querySelector(
+      ".slick-dots",
+    ) as HTMLElement;
+
+    const preventScroll = (e: any) => e.preventDefault();
+    // container.addEventListener('wheel', preventScroll, { passive: false });
+
+    if (isVertical) {
+      const section = sectionRef.current as HTMLElement;
+      const dimensionSection = section.getBoundingClientRect();
+      console.log(dimensionSection.width);
+
+      if (container.childElementCount <= 3) setShowNextArrow(false);
+      else if (
+        container.childElementCount === 4 &&
+        dimensionSection.width >= 1169
+      ) {
+        setShowNextArrow(false);
+      } else setShowNextArrow(true);
+    } else {
+      if (container.scrollWidth > container.clientWidth) setShowNextArrow(true);
+      else setShowNextArrow(false);
+    }
+
+    container.addEventListener("scroll", handleScroll);
+
+    return () => {
+      // container.removeEventListener('wheel', preventScroll);
+      container.removeEventListener("scroll", handleScroll);
+    };
+  }, [screenWidth]);
+
   return (
-    <section className="mt-[2rem] items-start gap-8 px-4 md:flex md:justify-between lg:gap-12 2xlg:px-0">
+    <section
+      className="relative mt-[2rem] items-start gap-8 px-4 md:flex md:justify-between lg:gap-12 2xlg:px-0"
+      ref={sectionRef}
+    >
       <div className="relative  md:w-[50%] lg:ml-[8.5rem] lg:w-[45%]">
         <SlickSlider {...settings}>
           {productWithColorsAndImages[selectedColorProduct].imagesProduct.map(
@@ -86,8 +181,47 @@ export default function ProductDetails() {
         <button className="absolute right-5 top-5 h-7 w-7">
           <FullScreenIcon className="fill-bluePrimary" />
         </button>
+        {!isVertical && showPrevArrow ? (
+          <div className="absolute top-[105%] flex h-[6.5rem] items-center">
+            <button
+              className="rounded-full bg-white p-3 shadow-xl"
+              onClick={scrollPrev}
+            >
+              <ArrowLeftIcon className="h-3 w-3 fill-bluePrimary" />
+            </button>
+          </div>
+        ) : null}
+        {!isVertical && showNextArrow ? (
+          <div className="absolute right-0 top-[105%] flex h-[6.5rem] items-center">
+            <button
+              className="rounded-full bg-white p-3 shadow-xl"
+              onClick={scrollNext}
+            >
+              <ArrowRightIcon className="h-3 w-3 fill-bluePrimary" />
+            </button>
+          </div>
+        ) : null}
       </div>
-
+      {isVertical && showPrevArrow ? (
+        <div className="absolute top-0 flex w-[6.5rem] justify-center">
+          <button
+            className="rounded-full bg-white p-3 shadow-xl"
+            onClick={scrollPrev}
+          >
+            <ArrowLeftIcon className="h-3 w-3 rotate-90 fill-bluePrimary" />
+          </button>
+        </div>
+      ) : null}
+      {isVertical && showNextArrow ? (
+        <div className="absolute bottom-0 flex w-[6.5rem] justify-center">
+          <button
+            className="rounded-full bg-white p-3 shadow-xl"
+            onClick={scrollNext}
+          >
+            <ArrowRightIcon className="h-3 w-3 rotate-90 fill-bluePrimary" />
+          </button>
+        </div>
+      ) : null}
       <div className="mt-[11rem]  flex flex-col gap-5 md:mt-2 md:w-[50%] lg:space-y-8">
         <span className="text-[1.5rem] font-semibold capitalize text-bluePrimary">
           Apple iPhone 13 6,1" 5G
