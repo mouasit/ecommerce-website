@@ -1,6 +1,11 @@
 .fadein-down {
   animation: fadeInDown 0.4s forwards;
 }
+
+.fadein {
+  animation: fadeIn 0.4s forwards;
+}
+
 .fadeout-up {
   animation: fadeOutUp 0.4s forwards;
 }
@@ -14,6 +19,15 @@
 }
 .rotate.down {
   transform: rotate(-180deg);
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes fadeInDown {

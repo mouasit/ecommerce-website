@@ -29,6 +29,8 @@ import PrimaryButton from "../layouts/PrimaryButton";
 import SelectedColorItem from "../layouts/SelectedColorItem";
 import SlideCategoryProduct from "./SlideCategoryProduct";
 import { useEffect, useRef, useState } from "react";
+import FullScreenSlider from "./FullScreenSlider";
+import { getInitialSlide } from "../../Helpers";
 
 export default function ProductDetails() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -38,6 +40,7 @@ export default function ProductDetails() {
   const [showNextArrow, setShowNextArrow] = useState(false);
   const [isVertical, setIsVertical] = useState(window.innerWidth >= screenSize);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [fullScreenSlider, setFullScreenSlider] = useState<boolean>(false);
   const productWithColorsAndImages = [
     {
       imagesProduct: [
@@ -143,7 +146,7 @@ export default function ProductDetails() {
       ".slick-dots",
     ) as HTMLElement;
 
-    container.classList.add("no-scrollbar")
+    container.classList.add("no-scrollbar");
 
     const handleResize = () => {
       setScreenWidth(window.innerWidth);
@@ -208,7 +211,13 @@ export default function ProductDetails() {
             },
           )}
         </SlickSlider>
-        <button className="absolute right-5 top-5 h-7 w-7">
+        <button
+          className="absolute right-5 top-5 h-7 w-7"
+          onClick={() => {
+            setFullScreenSlider(true);
+            document.body.classList.add("overflow-hidden");
+          }}
+        >
           <FullScreenIcon className="fill-bluePrimary" />
         </button>
         {!isVertical && showPrevArrow ? (
@@ -297,6 +306,17 @@ export default function ProductDetails() {
           />
         </div>
       </div>
+      {fullScreenSlider ? (
+        <FullScreenSlider
+          productImages={
+            productWithColorsAndImages[selectedColorProduct].imagesProduct
+          }
+          initialSlide={getInitialSlide(
+            sectionRef.current?.querySelector(".slick-dots") as HTMLElement,
+          )}
+          setFullScreenSlider={setFullScreenSlider}
+        />
+      ) : null}
     </section>
   );
 }
