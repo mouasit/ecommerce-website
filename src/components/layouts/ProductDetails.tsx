@@ -172,9 +172,14 @@ export default function ProductDetails() {
       const section = sectionRef.current as HTMLElement;
       const dimensionSection = section.getBoundingClientRect();
 
-      if (container.childElementCount <= 3) setShowNextArrow(false);
+      if (
+        productWithColorsAndImages[selectedColorProduct].imagesProduct.length <=
+        3
+      )
+        setShowNextArrow(false);
       else if (
-        container.childElementCount === 4 &&
+        productWithColorsAndImages[selectedColorProduct].imagesProduct
+          .length === 4 &&
         dimensionSection.width >= 1169
       ) {
         setShowNextArrow(false);
@@ -196,7 +201,7 @@ export default function ProductDetails() {
       container.removeEventListener("mousemove", handleDragging);
       document.removeEventListener("mouseup", handleDragStop);
     };
-  }, [screenWidth]);
+  }, [selectedColorProduct, screenWidth]);
 
   return (
     <section
