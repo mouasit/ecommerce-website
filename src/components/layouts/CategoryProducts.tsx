@@ -1,9 +1,9 @@
-import redmi from "../../assets/products/redmi.png";
-import airpods from "../../assets/products/airpods.png";
-import ipad from "../../assets/products/ipad.png";
-import headPhones from "../../assets/products/headphones-black.png";
-import smartWatch from "../../assets/products/smart-watch-red.png";
-import powerBank from "../../assets/products/power-bank.png";
+import redmi from "../../assets/products/redmi.jpg";
+import airpods from "../../assets/products/airpods.jpg";
+import ipad from "../../assets/products/ipad.jpg";
+import headPhones from "../../assets/products/headphones-black.jpg";
+import smartWatch from "../../assets/products/smart-watch-red.jpg";
+import powerBank from "../../assets/products/power-bank.jpg";
 import ProductCard from "./ProductCard";
 
 export default function CategoryProducts() {
@@ -14,7 +14,7 @@ export default function CategoryProducts() {
       <h1 className="text-center text-[1.9rem] font-semibold capitalize text-bluePrimary">
         electronics
       </h1>
-      <div className="mt-[4rem] flex flex-col items-center gap-16 sm:flex-row sm:flex-wrap sm:justify-start sm:gap-x-[2.1vw] md:gap-x-[8%] lg:gap-x-[5%]  xl:gap-x-[2%] 2xlg:gap-x-[3.3%]">
+      <div className="mt-[4rem] flex flex-col items-center gap-16 sm:flex-row sm:flex-wrap sm:items-start sm:justify-start sm:gap-x-[2.1vw] md:gap-x-[8%] lg:gap-x-[5%]  xl:gap-x-[2%] 2xlg:gap-x-[3.3%]">
         <ProductCard
           name="Xiaomi redmi R..."
           price="1 500"

@@ -2,7 +2,7 @@ import { Tab, TabContent, Tabs, TabsList, TabsPanels } from "./Tabs";
 
 export default function ProductTabs() {
   return (
-    <Tabs className="mt-[5.7rem] px-4 2xlg:px-0">
+    <Tabs className="mt-[5.7rem] md:mt-[14rem] lg:mt-[5.7rem] px-4 2xlg:px-0">
       <TabsList>
         <Tab>Description</Tab>
         <Tab>Information</Tab>

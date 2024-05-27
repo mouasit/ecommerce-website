@@ -1,18 +1,18 @@
-import iphone from "../../assets/products/iphone.png";
-import tShirt from "../../assets/products/t-shirt.png";
-import speaker from "../../assets/products/speaker.png";
-import microwave from "../../assets/products/microwave.png";
-import laptop from "../../assets/products/laptop.png";
-import cable from "../../assets/products/cable.png";
-import airpods from "../../assets/products/airpods.png";
-import powerBank from "../../assets/products/power-bank.png";
+import iphone from "../../assets/products/iphone.jpg";
+import tShirt from "../../assets/products/t-shirt.jpg";
+import speaker from "../../assets/products/speaker.jpg";
+import microwave from "../../assets/products/microwave.jpg";
+import laptop from "../../assets/products/laptop.jpg";
+import cable from "../../assets/products/cable.jpg";
+import airpods from "../../assets/products/airpods.jpg";
+import powerBank from "../../assets/products/power-bank.jpg";
 import ProductCard from "./ProductCard";
 
 export default function ProductsList() {
   const responsiveWidth =
     "md:w-[28%] lg:w-[30%] mlg:w-[21.3%] xl:w-[21.3%] xlg:w-[22.2%]";
   return (
-    <section className="cards mt-[5.7rem] flex flex-col items-center gap-16 px-4 sm:flex-row sm:flex-wrap sm:justify-between sm:gap-x-0  sm:px-[8vw] md:justify-start md:gap-x-[7.4vw] md:px-4 lg:gap-x-[4.7vw] lg:px-4 xlg:gap-x-[3rem] 2xlg:px-0">
+    <section className="cards mt-[5.7rem] flex flex-col items-center gap-16 px-4 sm:flex-row sm:flex-wrap sm:items-start sm:justify-between sm:gap-x-0  sm:px-[8vw] md:justify-start md:gap-x-[7.4vw] md:px-4 lg:gap-x-[4.7vw] lg:px-4 xlg:gap-x-[3rem] 2xlg:px-0">
       <ProductCard
         name="iphone 14 plus"
         price="11 000"

@@ -1,5 +1,5 @@
 import Input from "../layouts/Input";
-import redmi from "../../assets/products/redmi.png";
+import redmi from "../../assets/products/redmi.jpg";
 import ProductCardCheckout from "../layouts/ProductCardCheckout";
 import PrimaryButton from "../layouts/PrimaryButton";
 import { useState } from "react";
@@ -50,29 +50,29 @@ export default function Checkout() {
           <h2 className="px-4 text-lg font-semibold text-bluePrimary md:px-0">
             Your Order
           </h2>
-          <div className="flex w-full flex-col gap-8 bg-grayLight px-4 py-8 md:rounded-xl">
+          <div className="flex w-full flex-col gap-8 border px-4 py-8 md:rounded-xl">
             <div className="flex flex-col gap-8">
               <ProductCardCheckout
                 imageProduct={redmi}
-                name="Xiaomi redmi R..."
-                quantity={2}
-                price={1500}
+                name="Xiaomi redmi"
+                quantity="2"
+                price="1500"
               />
               <ProductCardCheckout
                 imageProduct={redmi}
                 name="Xiaomi redmi R..."
-                quantity={2}
-                price={1500}
+                quantity="2"
+                price="1500"
               />
               <ProductCardCheckout
                 imageProduct={redmi}
                 name="Xiaomi redmi R..."
-                quantity={2}
-                price={1500}
+                quantity="2"
+                price="1500"
               />
             </div>
-            <div className="flex w-full items-center justify-between border-t pt-8 text-xl text-bluePrimary">
-              <span className="font-bold capitalize">total</span>
+            <div className="flex w-full items-center justify-between gap-6 break-all border-t pt-8 text-xl text-bluePrimary">
+              <span className="flex-1 font-bold capitalize">total</span>
               <span className="font-bold">
                 4500 <span className="text-yellowPrimary">DH</span>
               </span>

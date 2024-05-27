@@ -3,7 +3,7 @@ import { FacebookIcon, InstagramIcon } from "./Icons";
 
 export default function Footer() {
   return (
-    <footer className="mt-[12rem]">
+    <footer className="mt-[12rem] overflow-hidden">
       <div className="app-container flex flex-col items-center gap-16 px-4 mmd:flex-row mmd:items-start mmd:justify-between mmd:gap-0 2xlg:px-0">
         <button className="mb-10 mmd:mb-0">
           <img src={logo} alt="logo" className="w-[10rem]" />

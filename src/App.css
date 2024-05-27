@@ -37,21 +37,19 @@ body {
 }
 
 .slick-dots:has(.product-slider-dots) {
-  @apply relative top-0 w-auto items-center  justify-center gap-[4vw] bg-white pt-[3.5rem] sm:gap-[6vw] md:gap-3 lg:absolute  lg:left-[-8.5rem] lg:flex-col lg:items-start lg:justify-between lg:gap-2 lg:bg-transparent lg:pt-0;
-}
-
-.slick-dots:has(.product-slider-dots)::before {
-  content: "";
-  @apply absolute top-0 h-7 w-full rounded-b-3xl bg-grayLight lg:hidden;
+  @apply top-[105%]  h-[7.6rem] gap-8 overflow-auto bg-white  lg:left-[-8.5rem] lg:top-0 lg:h-auto lg:w-[7.6rem] lg:flex-col  lg:bg-transparent;
 }
 
 .slick-dots:has(.product-slider-dots) li {
-  width: 30% !important;
-  @apply sm:w-[20%] md:w-[50%] lg:w-[6.5rem]  !important;
+  @apply w-[6.5rem] flex-none  !important;
 }
 
-.slick-dots:has(.product-slider-dots) > .slick-active div {
+.slick-dots:has(.product-slider-dots) > .slick-active img {
   @apply border-yellowPrimary;
+}
+
+.slick-list:has(.product-slider-media) {
+  @apply overflow-hidden rounded-3xl;
 }
 
 .padding-layouts {
@@ -71,4 +69,16 @@ body {
 .card-slide {
   display: flex !important;
   justify-content: center !important;
+}
+
+.active {
+  @apply border-b-2 border-b-yellowPrimary;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
