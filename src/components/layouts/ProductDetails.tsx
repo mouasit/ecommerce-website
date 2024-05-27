@@ -31,6 +31,7 @@ import SlideCategoryProduct from "./SlideCategoryProduct";
 import { useEffect, useRef, useState } from "react";
 import FullScreenSlider from "./FullScreenSlider";
 import { getInitialSlide } from "../../Helpers";
+import DropDown from "./DropDown";
 
 export default function ProductDetails() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -266,7 +267,7 @@ export default function ProductDetails() {
           </button>
         </div>
       ) : null}
-      <div className="mt-[11rem]  flex flex-col gap-5 md:mt-2 md:w-[50%] lg:space-y-8">
+      <div className="mt-[11rem]  flex flex-col gap-5 md:mt-2 md:w-[50%] lg:space-y-4">
         <span className="text-[1.5rem] font-semibold capitalize text-bluePrimary">
           Apple iPhone 13 6,1" 5G
         </span>
@@ -279,19 +280,27 @@ export default function ProductDetails() {
           <li>Display with 3088 x 1440 pixels resolution</li>
           <li>Memory, Storage & SIM: 12GB RAM, 256GB</li>
         </ul>
-        <div className="flex items-center gap-5 text-lg font-medium text-bluePrimary">
-          Chose color
-          <div className="flex items-center gap-3">
-            {productWithColorsAndImages.map((product, index) => {
-              return (
-                <SelectedColorItem
-                  backgroundColor={product.colorProduct}
-                  key={index}
-                  selected={index === selectedColorProduct ? true : false}
-                  onClick={() => setSelectedColorProduct(index)}
-                />
-              );
-            })}
+        <div className="flex flex-col gap-8">
+          <div className="flex items-center gap-5">
+            <span className="w-[6.8rem] flex-none text-lg font-medium text-bluePrimary">
+              Chose size
+            </span>
+            <DropDown />
+          </div>
+          <div className="flex items-center gap-5 text-lg font-medium text-bluePrimary">
+            <span className="w-[6.8rem]">Chose color</span>
+            <div className="flex items-center gap-3">
+              {productWithColorsAndImages.map((product, index) => {
+                return (
+                  <SelectedColorItem
+                    backgroundColor={product.colorProduct}
+                    key={index}
+                    selected={index === selectedColorProduct ? true : false}
+                    onClick={() => setSelectedColorProduct(index)}
+                  />
+                );
+              })}
+            </div>
           </div>
         </div>
         <div className="mt-5 flex max-w-[533px] gap-2 md:max-w-none">
