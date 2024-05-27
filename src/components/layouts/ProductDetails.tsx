@@ -42,6 +42,7 @@ export default function ProductDetails() {
   const [isVertical, setIsVertical] = useState(window.innerWidth >= screenSize);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [fullScreenSlider, setFullScreenSlider] = useState<boolean>(false);
+  const [quantity, setQuantity] = useState<number>(1);
   const productWithColorsAndImages = [
     {
       imagesProduct: [
@@ -305,11 +306,21 @@ export default function ProductDetails() {
         </div>
         <div className="mt-5 flex max-w-[533px] gap-2 md:max-w-none">
           <div className="flex w-[60%] items-center justify-between rounded-2xl bg-grayLight p-3 text-xl font-medium text-bluePrimary xlg:w-[65%]">
-            <button className="rounded-full bg-yellowPrimary p-1">
+            <button
+              className="rounded-full bg-yellowPrimary p-1"
+              onClick={() => {
+                if (quantity > 0) setQuantity(quantity - 1);
+              }}
+            >
               <MinusIcon className="h-4 w-4 fill-bluePrimary" />
             </button>
-            1
-            <button className="rounded-full bg-yellowPrimary p-1">
+            {quantity}
+            <button
+              className="rounded-full bg-yellowPrimary p-1"
+              onClick={() => {
+                setQuantity(quantity + 1);
+              }}
+            >
               <PlusIcon className="h-4 w-4 fill-bluePrimary" />
             </button>
           </div>
