@@ -36,7 +36,7 @@ export default function FullScreenSlider({
         {productImages.map((image, index) => (
           <div className="h-screen" key={index}>
             <div className="flex h-screen items-center justify-center">
-              <img src={image} alt="product" className="rounded-3xl" />
+              <img src={image} alt="product" className="sm:w-[33rem] md:w-[40rem] xl:w-[43rem]" />
             </div>
           </div>
         ))}
