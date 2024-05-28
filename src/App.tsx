@@ -13,10 +13,10 @@ function App() {
       <AnnouncementBar />
       <Navbar />
       <main className="app-container">
-        {/* <Home /> */}
+        <Home />
         {/* <Category /> */}
         {/* <Product /> */}
-        <Checkout />
+        {/* <Checkout /> */}
       </main>
       <Footer />
     </>
