@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowDownIcon, CloseIcon, SearchIcon } from "./Icons";
+import { ArrowDownIcon, CloseIcon, ExclamationIcon, SearchIcon } from "./Icons";
+import { filterByName } from "../../Helpers";
 
 type DropDownSearch = {
   title: string;
@@ -16,11 +17,14 @@ export default function DropDownSearch({
 }: DropDownSearch) {
   const dropDownRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [clickDropDown, setClickDropDown] = useState<boolean>(true);
+  const [clickDropDown, setClickDropDown] = useState<boolean>(false);
   const [endAnimation, setEndAnimation] = useState<boolean>(false);
   const [selectedItem, setSelectedItem] = useState<string>(title);
+  const [showClose, setShowClose] = useState<boolean>(false);
+  const [searchText, setSearchText] = useState<string>("");
   const selectedItemStarter = title;
-  const cities = ["casablanca", "rabat", "fes", "agadir", "marrakech"];
+  const citiesStarter = ["casablanca", "rabat", "fes", "agadir", "marrakech"];
+  const [cities, setCities] = useState<string[]>(citiesStarter);
   function handleBlur(e: any) {
     if (
       containerRef.current &&
@@ -60,6 +64,9 @@ export default function DropDownSearch({
             }
             setClickDropDown(true);
             setEndAnimation(true);
+            setCities(citiesStarter);
+            setSearchText("");
+            setShowClose(false);
           }
         }}
       >
@@ -83,23 +90,45 @@ export default function DropDownSearch({
               <input
                 type="text"
                 placeholder="Search for city"
+                value={searchText}
                 className="flex-1 text-sm text-bluePrimary outline-none placeholder:text-grayPrimary"
+                onChange={(e) => {
+                  if (e.target.value.length === 0) setShowClose(false);
+                  else setShowClose(true);
+                  setSearchText(e.target.value);
+                  setCities(filterByName(citiesStarter, e.target.value));
+                }}
               />
-              <button className="rounded-full" type="button">
+              <button
+                className={`rounded-full ${!showClose ? "hidden" : ""}`}
+                type="button"
+                onClick={() => {
+                  setSearchText("");
+                  setShowClose(false);
+                  setCities(citiesStarter);
+                }}
+              >
                 <CloseIcon className="h-3 w-3 fill-bluePrimary" />
               </button>
             </div>
             <div className="flex max-h-[14.6rem] flex-col gap-3 overflow-auto border-t pt-1  text-bluePrimary">
-              {cities.map((city: string, index: number) => (
-                <button
-                  key={index}
-                  className="p-2 text-left capitalize hover:bg-gray-50"
-                  onClick={selectItem}
-                  type="button"
-                >
-                  {city}
-                </button>
-              ))}
+              {cities.length ? (
+                cities.map((city: string, index: number) => (
+                  <button
+                    key={index}
+                    className="p-2 text-left capitalize hover:bg-gray-50"
+                    onClick={selectItem}
+                    type="button"
+                  >
+                    {city}
+                  </button>
+                ))
+              ) : (
+                <div className="flex items-center justify-center gap-2 p-2 text-bluePrimary">
+                  <ExclamationIcon className="h-4 w-4 fill-bluePrimary" />
+                  <span>City not found.</span>
+                </div>
+              )}
             </div>
           </div>
         </div>

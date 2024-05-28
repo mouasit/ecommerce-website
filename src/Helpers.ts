@@ -15,3 +15,13 @@ export function getInitialSlide(elementStarter: HTMLElement): number {
   });
   return initialSlider;
 }
+
+export function filterByName(data: string[], value: string): string[] {
+  let newData: string[];
+
+  newData = data.filter((e: string) => {
+    if (e.toLowerCase().indexOf(value.toLowerCase()) !== -1) return e;
+    return false;
+  });
+  return newData;
+}
