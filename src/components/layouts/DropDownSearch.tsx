@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowDownIcon } from "./Icons";
+import { ArrowDownIcon, CloseIcon, SearchIcon } from "./Icons";
 
 type DropDownSearch = {
   title: string;
@@ -16,7 +16,7 @@ export default function DropDownSearch({
 }: DropDownSearch) {
   const dropDownRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [clickDropDown, setClickDropDown] = useState<boolean>(false);
+  const [clickDropDown, setClickDropDown] = useState<boolean>(true);
   const [endAnimation, setEndAnimation] = useState<boolean>(false);
   const [selectedItem, setSelectedItem] = useState<string>(title);
   const selectedItemStarter = title;
@@ -77,17 +77,30 @@ export default function DropDownSearch({
           className="fadein-down absolute z-[1] w-full pt-2 text-sm"
           ref={dropDownRef}
         >
-          <div className="flex max-h-[15.5rem] flex-col gap-3 overflow-auto rounded-lg border-2 border-bluePrimary bg-white py-2 text-bluePrimary">
-            {cities.map((city: string, index: number) => (
-              <button
-                key={index}
-                className="p-2 text-left capitalize hover:bg-gray-50"
-                onClick={selectItem}
-                type="button"
-              >
-                {city}
+          <div className="flex  flex-col rounded-lg border-2 border-bluePrimary bg-white pb-2 ">
+            <div className="flex items-center gap-3 px-3 py-4">
+              <SearchIcon className="h-4 w-4 fill-bluePrimary" />
+              <input
+                type="text"
+                placeholder="Search for city"
+                className="flex-1 text-sm text-bluePrimary outline-none placeholder:text-grayPrimary"
+              />
+              <button className="rounded-full" type="button">
+                <CloseIcon className="h-3 w-3 fill-bluePrimary" />
               </button>
-            ))}
+            </div>
+            <div className="flex max-h-[14.6rem] flex-col gap-3 overflow-auto border-t pt-1  text-bluePrimary">
+              {cities.map((city: string, index: number) => (
+                <button
+                  key={index}
+                  className="p-2 text-left capitalize hover:bg-gray-50"
+                  onClick={selectItem}
+                  type="button"
+                >
+                  {city}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       ) : null}
