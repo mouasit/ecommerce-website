@@ -15,8 +15,8 @@ function App() {
       <main className="app-container">
         {/* <Home /> */}
         {/* <Category /> */}
-        <Product />
-        {/* <Checkout /> */}
+        {/* <Product /> */}
+        <Checkout />
       </main>
       <Footer />
     </>
