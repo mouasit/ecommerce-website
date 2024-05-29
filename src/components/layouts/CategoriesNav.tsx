@@ -1,29 +1,30 @@
-export default function CategoriesNav() {
+import { Link } from "react-router-dom";
+import { DisplayedSousCategory } from "../../API";
+import { capitalizeFirstLetter } from "../../Helpers";
+
+export default function CategoriesNav({
+  sousCategories,
+  title,
+}: {
+  sousCategories: DisplayedSousCategory[];
+  title: string;
+}) {
   return (
     <div className="flex flex-col  gap-7 break-all capitalize text-bluePrimary lg:w-[19rem]">
       <span className="text-xl font-semibold">categories</span>
       <ul className="flex flex-col gap-5 font-light">
-        <li>
-          <button className="text-left capitalize">phones</button>
-        </li>
-        <li>
-          <button className="text-left capitalize">tablets</button>
-        </li>
-        <li>
-          <button className="text-left capitalize">air pods</button>
-        </li>
-        <li>
-          <button className="text-left capitalize">headphones</button>
-        </li>
-        <li>
-          <button className="text-left capitalize">laptops</button>
-        </li>
-        <li>
-          <button className="text-left capitalize">smart watches</button>
-        </li>
-        <li>
-          <button className="text-left capitalize">accessories</button>
-        </li>
+        {sousCategories.map(
+          (sousCategory: DisplayedSousCategory, index: number) => (
+            <li key={index}>
+              <Link
+                to={`/Category/${capitalizeFirstLetter(title)}/${capitalizeFirstLetter(sousCategory.name)}`}
+                className="text-left capitalize"
+              >
+                {sousCategory.name}
+              </Link>
+            </li>
+          ),
+        )}
       </ul>
     </div>
   );

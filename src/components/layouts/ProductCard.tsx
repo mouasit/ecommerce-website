@@ -1,47 +1,52 @@
+import { useEffect, useState } from "react";
 import { AddToCartIcon } from "./Icons";
 import PrimaryButton from "./PrimaryButton";
 import SecondaryButton from "./SecondaryButton";
-
-type Product = {
-  name: string;
-  price: string | number;
-  imageProduct: any;
-  responsiveWidth?: string;
-};
+import type { Product } from "../../data";
+import { getProduct } from "../../API";
 
 export default function ProductCard({
-  name,
-  price,
-  imageProduct,
+  productId,
   responsiveWidth,
-}: Product) {
-  return (
-    <div className={`card flex w-[15.5rem] ${responsiveWidth} flex-col gap-5`}>
-      <button>
-        <img
-          src={imageProduct}
-          alt="product"
-          className="w-full rounded-[1rem]"
-        />
-      </button>
-      <div className="flex flex-col justify-center gap-1">
-        <span className="truncate text-center text-[1.1rem] capitalize text-bluePrimary">
-          {name}
-        </span>
-        <div className="flex w-full justify-center break-all text-[1.5rem] font-bold text-bluePrimary">
-          <div className="space-x-1">
-            <span>{price}</span>
-            <span className="break-words text-yellowPrimary">DH</span>
+}: {
+  productId: string;
+  responsiveWidth?: string;
+}) {
+  const [product, setProduct] = useState<Product>();
+  useEffect(() => {
+    setProduct(getProduct(productId));
+  }, [productId]);
+  if (product)
+    return (
+      <div
+        className={`card flex w-[15.5rem] ${responsiveWidth} flex-col gap-5`}
+      >
+        <button>
+          <img
+            src={product.imageProduct}
+            alt="product"
+            className="w-full rounded-[1rem]"
+          />
+        </button>
+        <div className="flex flex-col justify-center gap-1">
+          <span className="truncate text-center text-[1.1rem] capitalize text-bluePrimary">
+            {product.name}
+          </span>
+          <div className="flex w-full justify-center break-all text-[1.5rem] font-bold text-bluePrimary">
+            <div className="space-x-1">
+              <span>{product.price}</span>
+              <span className="break-words text-yellowPrimary">DH</span>
+            </div>
           </div>
         </div>
+        <div className="flex  gap-2">
+          <SecondaryButton value="view more" className="w-full" />
+          <PrimaryButton
+            icon={<AddToCartIcon className="h-7 w-7 fill-bluePrimary" />}
+            className="flex w-[4.5rem] items-center justify-center"
+          />
+        </div>
       </div>
-      <div className="flex  gap-2">
-        <SecondaryButton value="view more" className="w-full" />
-        <PrimaryButton
-          icon={<AddToCartIcon className="h-7 w-7 fill-bluePrimary" />}
-          className="flex w-[4.5rem] items-center justify-center"
-        />
-      </div>
-    </div>
-  );
+    );
+  return <div className="h-screen"></div>;
 }

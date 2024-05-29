@@ -11,6 +11,7 @@ import cable from "../../assets/products/cable.jpg";
 import SecondaryButton from "./SecondaryButton";
 import PrimaryButton from "./PrimaryButton";
 import ProductShoppoingCartCard from "./ProductShoppoingCartCard";
+import { NavLink, Link } from "react-router-dom";
 
 export default function Navbar() {
   const [clickBurgerMenu, setClickBurgerMenu] = React.useState<boolean>(false);
@@ -39,9 +40,9 @@ export default function Navbar() {
           >
             <BurgerMenuIcon className="h-7 w-7 fill-bluePrimary" />
           </button>
-          <button>
+          <Link to="/">
             <img src={logo} alt="logo" className="w-[8.5rem]" />
-          </button>
+          </Link>
         </span>
         <ul className="hidden gap-20 lg:flex">
           <li
@@ -65,12 +66,15 @@ export default function Navbar() {
               });
             }}
           >
-            <button className="flex h-full items-center gap-2 text-bluePrimary">
+            <NavLink
+              to="/"
+              className="flex h-full items-center gap-2 text-bluePrimary"
+            >
               All products
               <ArrowDownIcon
                 className={`rotate h-3 w-3 fill-yellowPrimary ${hoverAnimation ? "down" : ""}`}
               />
-            </button>
+            </NavLink>
             {hoverDropDown ? (
               <div
                 className="fadein-down absolute top-12 w-[15rem] bg-white pt-4 text-sm"
@@ -94,19 +98,28 @@ export default function Navbar() {
             ) : null}
           </li>
           <li>
-            <button className="flex h-full items-center text-bluePrimary">
+            <NavLink
+              to="/Category/Electronics"
+              className="flex h-full items-center text-bluePrimary"
+            >
               Electronics
-            </button>
+            </NavLink>
           </li>
           <li>
-            <button className="flex h-full items-center text-bluePrimary">
+            <NavLink
+              to="/Category/Home Appliance"
+              className="flex h-full items-center text-bluePrimary"
+            >
               Home Appliance
-            </button>
+            </NavLink>
           </li>
           <li>
-            <button className="flex h-full items-center text-bluePrimary">
+            <NavLink
+              to="/Category/Gaming"
+              className="flex h-full items-center text-bluePrimary"
+            >
               Gaming
-            </button>
+            </NavLink>
           </li>
         </ul>
         <ul
@@ -125,9 +138,16 @@ export default function Navbar() {
           </li>
           <li>
             <div className="flex items-center gap-5">
-              <button className="flex items-center gap-2 text-bluePrimary">
+              <Link
+                onClick={() => {
+                  setClickBurgerMenu(false);
+                  document.body.classList.remove("overflow-hidden");
+                }}
+                to="/"
+                className="flex items-center gap-2 text-bluePrimary"
+              >
                 All products
-              </button>
+              </Link>
               <button
                 className="rounded-full bg-yellowPrimary p-[.4rem]"
                 onClick={() => {
@@ -164,13 +184,40 @@ export default function Navbar() {
             ) : null}
           </li>
           <li>
-            <button className="text-bluePrimary">Electronic</button>
+            <Link
+              onClick={() => {
+                setClickBurgerMenu(false);
+                document.body.classList.remove("overflow-hidden");
+              }}
+              to="/Category/Electronics"
+              className="text-bluePrimary"
+            >
+              Electronics
+            </Link>
           </li>
           <li>
-            <button className="text-bluePrimary">Audio & Video</button>
+            <Link
+              onClick={() => {
+                setClickBurgerMenu(false);
+                document.body.classList.remove("overflow-hidden");
+              }}
+              to="/Category/Home Appliance"
+              className="text-bluePrimary"
+            >
+              Home Appliance
+            </Link>
           </li>
           <li>
-            <button className="text-bluePrimary">Furniture</button>
+            <Link
+              onClick={() => {
+                setClickBurgerMenu(false);
+                document.body.classList.remove("overflow-hidden");
+              }}
+              to="/Category/Gaming"
+              className="text-bluePrimary"
+            >
+              Gaming
+            </Link>
           </li>
         </ul>
         <div className="flex items-center">
