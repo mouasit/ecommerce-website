@@ -72,3 +72,7 @@ export function getSousCategory({
 export function getProduct(productId: string): Product | undefined {
   return products.find((product: Product) => product.id === productId);
 }
+
+export function getRecentProduct(): string[] {
+  return ["p7", "p9", "p10", "p11", "p12", "p2", "p6"];
+}

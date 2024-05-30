@@ -4,6 +4,11 @@ import ipad from "./assets/products/ipad.jpg";
 import headPhones from "./assets/products/headphones-black.jpg";
 import smartWatch from "./assets/products/smart-watch-red.jpg";
 import powerBank from "./assets/products/power-bank.jpg";
+import iphone from "./assets/products/iphone.jpg";
+import speaker from "./assets/products/speaker.jpg";
+import microwave from "./assets/products/microwave.jpg";
+import laptop from "./assets/products/laptop.jpg";
+import cable from "./assets/products/cable.jpg";
 
 export type Category = {
   id: string;
@@ -34,37 +39,49 @@ export const categories: Category[] = [
       {
         id: "sc10",
         name: "phones",
-        products: ["p7", "p8", "p9", "p10", "p11", "p12"],
+        products: ["p1", "p7"],
       },
       {
         id: "sc20",
         name: "tablets",
-        products: ["p13", "p14", "p15", "p16", "p17", "p18"],
+        products: ["p3"],
       },
       {
         id: "sc30",
         name: "air pods",
-        products: ["p19", "p20", "p21", "p22", "p23", "p24"],
+        products: ["p2"],
       },
       {
         id: "sc40",
         name: "head phones",
-        products: ["p25", "p26", "p27", "p28", "p29", "p30"],
+        products: ["p4"],
       },
       {
         id: "sc50",
         name: "laptops",
-        products: ["p31", "p31", "p32", "p33", "p34", "p35"],
+        products: ["p11"],
       },
       {
         id: "sc60",
         name: "smart watches",
-        products: ["p36", "p37", "p38", "p39", "p40", "p41"],
+        products: ["p5"],
       },
       {
         id: "sc70",
         name: "accessories",
-        products: ["p42", "p43", "p44", "p45", "p46", "p47"],
+        products: ["p6", "p9","p12"],
+      },
+    ],
+  },
+  {
+    id: "c2",
+    name: "home appliance",
+    products: ["p10"],
+    sousCategories: [
+      {
+        id: "sc80",
+        name: "microwaves",
+        products: ["p10"],
       },
     ],
   },
@@ -106,5 +123,41 @@ export const products: Product[] = [
     name: "Power Bank",
     price: 600,
     imageProduct: powerBank,
+  },
+  {
+    id: "p7",
+    name: "iphone 14 plus",
+    price: 11000,
+    imageProduct: iphone,
+  },
+  {
+    id: "p8",
+    name: "JBL Flip 5",
+    price: 1500,
+    imageProduct: speaker,
+  },
+  {
+    id: "p9",
+    name: "JBL Flip 5",
+    price: 1500,
+    imageProduct: speaker,
+  },
+  {
+    id: "p10",
+    name: "Microwave oven",
+    price: 3000,
+    imageProduct: microwave,
+  },
+  {
+    id: "p11",
+    name: "OMEN 16-wd0040nf",
+    price: 12000,
+    imageProduct: laptop,
+  },
+  {
+    id: "p12",
+    name: "Baseus Tungsten",
+    price: 400,
+    imageProduct: cable,
   },
 ];
