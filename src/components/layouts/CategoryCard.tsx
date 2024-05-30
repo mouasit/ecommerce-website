@@ -1,14 +1,18 @@
+import { Link } from "react-router-dom";
+
 type CategoryCard = {
   name: string;
   imageProduct: any;
   backgroundColor: string;
   textColor: string;
+  link: string;
 };
 export default function CategoryCard({
   name,
   imageProduct,
   backgroundColor,
   textColor,
+  link,
 }: CategoryCard) {
   return (
     <div
@@ -18,7 +22,9 @@ export default function CategoryCard({
         <span className=" w-[8rem] text-[1.688rem] font-semibold capitalize mxs:w-auto md:w-[2rem] md:text-[2.4vw] lg:text-[1.7rem]">
           {name}
         </span>
-        <button className="w-[5.9rem]  text-left  md:text-sm">Shop now</button>
+        <Link to={link} className="w-[5.9rem]  text-left  md:text-sm">
+          Shop now
+        </Link>
       </div>
       <img
         src={imageProduct}

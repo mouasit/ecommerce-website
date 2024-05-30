@@ -23,7 +23,17 @@ export default function Navbar() {
     React.useState<boolean>(false);
   const dropDownRef = React.useRef<any>(null);
   const dropDownMobileRef = React.useRef<any>(null);
-
+  const closeDropDown = () => {
+    setHoverAnimation(false);
+    dropDownRef.current?.classList.replace("fadein-down", "fadeout-up");
+    dropDownRef.current?.addEventListener("animationend", () => {
+      setHoverDropDown(false);
+    });
+  };
+  const closeBurgerMenu = () => {
+    setClickBurgerMenu(false);
+    document.body.classList.remove("overflow-hidden");
+  };
   return (
     <nav className="sticky top-0 z-[2] bg-white shadow-sm">
       <div className="app-container flex h-auto w-full justify-between p-4 lg:h-[4.5rem] lg:py-0 2xlg:px-0">
@@ -56,14 +66,7 @@ export default function Navbar() {
               setHoverDropDown(true);
             }}
             onMouseLeave={() => {
-              setHoverAnimation(false);
-              dropDownRef.current?.classList.replace(
-                "fadein-down",
-                "fadeout-up",
-              );
-              dropDownRef.current?.addEventListener("animationend", () => {
-                setHoverDropDown(false);
-              });
+              closeDropDown();
             }}
           >
             <NavLink
@@ -81,18 +84,34 @@ export default function Navbar() {
                 ref={dropDownRef}
               >
                 <div className="flex flex-col gap-3 rounded-lg py-2 font-light text-bluePrimary shadow-xs">
-                  <button className="p-2 text-left capitalize hover:bg-gray-50">
-                    pc & laptop
-                  </button>
-                  <button className="p-2 text-left capitalize hover:bg-gray-50">
-                    smart home
-                  </button>
-                  <button className="p-2 text-left capitalize hover:bg-gray-50">
+                  <Link
+                    onClick={closeDropDown}
+                    to="/Category/Electronics/Laptops"
+                    className="p-2 text-left capitalize hover:bg-gray-50"
+                  >
+                    laptops
+                  </Link>
+                  <Link
+                    onClick={closeDropDown}
+                    to="/Category/Electronics/Smart Watches"
+                    className="p-2 text-left capitalize hover:bg-gray-50"
+                  >
+                    smart watches
+                  </Link>
+                  <Link
+                    onClick={closeDropDown}
+                    to="/Category/Electronics/Phones"
+                    className="p-2 text-left capitalize hover:bg-gray-50"
+                  >
                     phones
-                  </button>
-                  <button className="p-2 text-left capitalize hover:bg-gray-50">
-                    accessoires
-                  </button>
+                  </Link>
+                  <Link
+                    onClick={closeDropDown}
+                    to="/Category/Electronics/Accessories"
+                    className="p-2 text-left capitalize hover:bg-gray-50"
+                  >
+                    accessories
+                  </Link>
                 </div>
               </div>
             ) : null}
@@ -139,10 +158,7 @@ export default function Navbar() {
           <li>
             <div className="flex items-center gap-5">
               <Link
-                onClick={() => {
-                  setClickBurgerMenu(false);
-                  document.body.classList.remove("overflow-hidden");
-                }}
+                onClick={closeBurgerMenu}
                 to="/"
                 className="flex items-center gap-2 text-bluePrimary"
               >
@@ -176,19 +192,40 @@ export default function Navbar() {
                 className="fadein-down mt-9 flex flex-col gap-7  border-l pl-5 text-sm font-light text-bluePrimary"
                 ref={dropDownMobileRef}
               >
-                <button className="text-left capitalize">pc & laptop</button>
-                <button className="text-left capitalize">smart home</button>
-                <button className="text-left capitalize">phones</button>
-                <button className="text-left capitalize">accessoires</button>
+                <Link
+                  onClick={closeBurgerMenu}
+                  to="/Category/Electronics/Laptops"
+                  className="text-left capitalize"
+                >
+                  laptops
+                </Link>
+                <Link
+                  onClick={closeBurgerMenu}
+                  to="/Category/Electronics/Smart Watches"
+                  className="text-left capitalize"
+                >
+                  smart watches
+                </Link>
+                <Link
+                  onClick={closeBurgerMenu}
+                  to="/Category/Electronics/Phones"
+                  className="text-left capitalize"
+                >
+                  phones
+                </Link>
+                <Link
+                  onClick={closeBurgerMenu}
+                  to="/Category/Electronics/Accessories"
+                  className="text-left capitalize"
+                >
+                  accessories
+                </Link>
               </div>
             ) : null}
           </li>
           <li>
             <Link
-              onClick={() => {
-                setClickBurgerMenu(false);
-                document.body.classList.remove("overflow-hidden");
-              }}
+              onClick={closeBurgerMenu}
               to="/Category/Electronics"
               className="text-bluePrimary"
             >
@@ -197,10 +234,7 @@ export default function Navbar() {
           </li>
           <li>
             <Link
-              onClick={() => {
-                setClickBurgerMenu(false);
-                document.body.classList.remove("overflow-hidden");
-              }}
+              onClick={closeBurgerMenu}
               to="/Category/Home Appliance"
               className="text-bluePrimary"
             >
@@ -209,10 +243,7 @@ export default function Navbar() {
           </li>
           <li>
             <Link
-              onClick={() => {
-                setClickBurgerMenu(false);
-                document.body.classList.remove("overflow-hidden");
-              }}
+              onClick={closeBurgerMenu}
               to="/Category/Gaming"
               className="text-bluePrimary"
             >

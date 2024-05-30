@@ -4,6 +4,7 @@ import PrimaryButton from "./PrimaryButton";
 import SecondaryButton from "./SecondaryButton";
 import type { Product } from "../../data";
 import { getProduct } from "../../API";
+import { formatNumberWithSpaces } from "../../Helpers";
 
 export default function ProductCard({
   productId,
@@ -34,7 +35,7 @@ export default function ProductCard({
           </span>
           <div className="flex w-full justify-center break-all text-[1.5rem] font-bold text-bluePrimary">
             <div className="space-x-1">
-              <span>{product.price}</span>
+              <span>{formatNumberWithSpaces(product.price)}</span>
               <span className="break-words text-yellowPrimary">DH</span>
             </div>
           </div>

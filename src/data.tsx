@@ -9,6 +9,10 @@ import speaker from "./assets/products/speaker.jpg";
 import microwave from "./assets/products/microwave.jpg";
 import laptop from "./assets/products/laptop.jpg";
 import cable from "./assets/products/cable.jpg";
+import controller from "./assets/products/controller.jpg";
+import cd from "./assets/products/cd.jpg";
+import chair from "./assets/products/chair.jpg";
+import microphone from "./assets/products/microphone.jpg";
 
 export type Category = {
   id: string;
@@ -69,7 +73,7 @@ export const categories: Category[] = [
       {
         id: "sc70",
         name: "accessories",
-        products: ["p6", "p9","p12"],
+        products: ["p6", "p9", "p12"],
       },
     ],
   },
@@ -82,6 +86,33 @@ export const categories: Category[] = [
         id: "sc80",
         name: "microwaves",
         products: ["p10"],
+      },
+    ],
+  },
+  {
+    id: "c3",
+    name: "gaming",
+    products: ["p13", "p14", "p15", "p16"],
+    sousCategories: [
+      {
+        id: "sc90",
+        name: "Consoles & Controllers",
+        products: ["p13"],
+      },
+      {
+        id: "sc100",
+        name: "games",
+        products: ["p14"],
+      },
+      {
+        id: "sc110",
+        name: "Chairs",
+        products: ["p15"],
+      },
+      {
+        id: "sc111",
+        name: "microphones",
+        products: ["p16"],
       },
     ],
   },
@@ -159,5 +190,29 @@ export const products: Product[] = [
     name: "Baseus Tungsten",
     price: 400,
     imageProduct: cable,
+  },
+  {
+    id: "p13",
+    name: "controller PS5",
+    price: 600,
+    imageProduct: controller,
+  },
+  {
+    id: "p14",
+    name: "FC 24 PS5",
+    price: 600,
+    imageProduct: cd,
+  },
+  {
+    id: "p15",
+    name: "gaming chair",
+    price: 4000,
+    imageProduct: chair,
+  },
+  {
+    id: "p16",
+    name: "microphone RGB",
+    price: 1200,
+    imageProduct: microphone,
   },
 ];

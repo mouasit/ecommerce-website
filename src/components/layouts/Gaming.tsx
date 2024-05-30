@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import ProductsCardsSlider from "./ProductsCardsSlider";
 
 export default function Gaming() {
@@ -7,9 +8,12 @@ export default function Gaming() {
         <span className="text-center text-[1.9rem] font-semibold capitalize">
           gaming
         </span>
-        <button className="relative top-[.1rem] text-sm font-light underline">
+        <Link
+          to="/Category/Gaming"
+          className="relative top-[.1rem] text-sm font-light underline"
+        >
           View more
-        </button>
+        </Link>
       </div>
       <div className="mt-[4rem]">
         <ProductsCardsSlider />

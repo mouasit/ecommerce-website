@@ -1,15 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import SlickSlider from "react-slick";
-import controller from "../../assets/products/controller.jpg";
-import cd from "../../assets/products/cd.jpg";
-import chair from "../../assets/products/chair.jpg";
-import microphone from "../../assets/products/microphone.jpg";
 import { ArrowLeftIcon, ArrowRightIcon } from "./Icons";
 import ProductCard from "./ProductCard";
+import { getProductsByCategory } from "../../API";
 
 export default function ProductsCardsSlider() {
+  const [products, setProducts] = useState<string[]>();
   const [screenWidth, setScreenWidth] = React.useState(window.innerWidth);
   const settings = {
     infinite: true,
@@ -38,32 +36,22 @@ export default function ProductsCardsSlider() {
   };
 
   React.useEffect(() => {
+    setProducts(getProductsByCategory({ nameCategory: "gaming" }));
     window.addEventListener("resize", () => {
       setScreenWidth(window.innerWidth);
     });
   }, []);
   return (
     <SlickSlider {...settings} className="px-7">
-      <div className="card-slide">
-        <ProductCard
-          name="controller PS5"
-          price="800"
-          imageProduct={controller}
-        />
-      </div>
-      <div className="card-slide">
-        <ProductCard name="FC 24 PS5" price="600" imageProduct={cd} />
-      </div>
-      <div className="card-slide">
-        <ProductCard name="gaming chair" price="4 000" imageProduct={chair} />
-      </div>
-      <div className="card-slide">
-        <ProductCard
-          name="microphone RGB"
-          price="1 200"
-          imageProduct={microphone}
-        />
-      </div>
+      {products ? (
+        products.map((productId: string, index: number) => (
+          <div className="card-slide" key={index}>
+            <ProductCard productId={productId} />
+          </div>
+        ))
+      ) : (
+        <div className="h-[5rem]"></div>
+      )}
     </SlickSlider>
   );
 }
