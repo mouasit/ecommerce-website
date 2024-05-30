@@ -1,6 +1,6 @@
 import "./App.css";
 import "./animation.css";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import AnnouncementBar from "./components/layouts/AnnouncementBar";
 import Navbar from "./components/layouts/Navbar";
