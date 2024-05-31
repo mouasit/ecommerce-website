@@ -74,7 +74,7 @@ export function getProduct(productId: string): Product | undefined {
 }
 
 export function getRecentProduct(): string[] {
-  return ["p7", "p9", "p10", "p11", "p12", "p3", "p2", "p6"];
+  return ["p17", "p10", "p3", "p11", "p12", "p9", "p2", "p6"];
 }
 
 export function getProductsByCategory({

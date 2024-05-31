@@ -4,7 +4,7 @@ import ipad from "./assets/products/ipad.jpg";
 import headPhones from "./assets/products/headphones-black.jpg";
 import smartWatch from "./assets/products/smart-watch-red.jpg";
 import powerBank from "./assets/products/power-bank.jpg";
-import iphone from "./assets/products/iphone.jpg";
+import iphone14 from "./assets/products/iphone.jpg";
 import speaker from "./assets/products/speaker.jpg";
 import microwave from "./assets/products/microwave.jpg";
 import laptop from "./assets/products/laptop.jpg";
@@ -13,6 +13,7 @@ import controller from "./assets/products/controller.jpg";
 import cd from "./assets/products/cd.jpg";
 import chair from "./assets/products/chair.jpg";
 import microphone from "./assets/products/microphone.jpg";
+import iphone13 from "./assets/products/iphone-13/black/1.jpg";
 
 export type Category = {
   id: string;
@@ -38,12 +39,12 @@ export const categories: Category[] = [
   {
     id: "c1",
     name: "electronics",
-    products: ["p1", "p2", "p3", "p4", "p5", "p6"],
+    products: ["p17", "p2", "p3", "p4", "p5", "p6"],
     sousCategories: [
       {
         id: "sc10",
         name: "phones",
-        products: ["p1", "p7"],
+        products: ["p17", "p7", "p1"],
       },
       {
         id: "sc20",
@@ -159,7 +160,7 @@ export const products: Product[] = [
     id: "p7",
     name: "iphone 14 plus",
     price: 11000,
-    imageProduct: iphone,
+    imageProduct: iphone14,
   },
   {
     id: "p8",
@@ -214,5 +215,11 @@ export const products: Product[] = [
     name: "microphone RGB",
     price: 1200,
     imageProduct: microphone,
+  },
+  {
+    id: "p17",
+    name: "iphone 13",
+    price: 10000,
+    imageProduct: iphone13,
   },
 ];
