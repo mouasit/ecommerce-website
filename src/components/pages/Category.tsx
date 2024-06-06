@@ -3,7 +3,7 @@ import CategoriesNav from "../layouts/CategoriesNav";
 import CategoryProducts from "../layouts/CategoryProducts";
 import { useEffect, useState } from "react";
 import { getCategory, getSousCategory } from "../../API";
-import type { DisplayedCategory, DisplayedSousCategory } from "../../API";
+import type { DisplayedCategory } from "../../API";
 import NotFound from "./NotFound";
 
 export default function Category() {
@@ -22,7 +22,7 @@ export default function Category() {
           nameSousCategory: action,
         }),
       );
-    else setCategory(getCategory({ nameCategory: id as string }));
+    else if (id) setCategory(getCategory({ nameCategory: id }));
     setDataLoaded(true);
   }, [id, action]);
 

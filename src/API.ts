@@ -1,6 +1,11 @@
-import { categories, products } from "./data";
-import type { Category, SousCategory } from "./data";
-import type { Product } from "./data";
+import { categories, products } from "./DataBase";
+import type {
+  Category,
+  SousCategory,
+  Product,
+  Variants,
+  ColorsDefinition,
+} from "./DataBase";
 
 export type DisplayedCategory = {
   id: string;
@@ -12,6 +17,25 @@ export type DisplayedCategory = {
 export type DisplayedSousCategory = {
   id: string;
   name: string;
+};
+
+export type DisplayProduct = {
+  id: string;
+  name: string;
+  price: number;
+  imageProduct: any;
+};
+
+export type DisplayProductDetails = {
+  id: string;
+  name: string;
+  title?: string;
+  price: number;
+  features?: string[];
+  itemsAttributes: {};
+  images?: string[] | null;
+  variants?: Variants;
+  colorsDefinition?: ColorsDefinition[];
 };
 
 export function getCategory({
@@ -69,8 +93,19 @@ export function getSousCategory({
   return undefined;
 }
 
-export function getProduct(productId: string): Product | undefined {
-  return products.find((product: Product) => product.id === productId);
+export function getProduct(productId: string): DisplayProduct | undefined {
+  const targetProduct = products.find(
+    (product: Product) => product.id === productId,
+  );
+
+  if (targetProduct)
+    return {
+      id: targetProduct.id,
+      name: targetProduct.name,
+      price: targetProduct.price,
+      imageProduct: targetProduct.imageProduct,
+    };
+  return undefined;
 }
 
 export function getRecentProduct(): string[] {
@@ -84,4 +119,49 @@ export function getProductsByCategory({
 }): string[] | undefined {
   return categories.find((category: Category) => category.name === nameCategory)
     ?.products;
+}
+
+export function getProductDetails({
+  productId,
+}: {
+  productId: string;
+}): DisplayProductDetails | undefined {
+  const targetProduct: Product | undefined = products.find(
+    (product: Product) => product.id === productId,
+  );
+  if (targetProduct) {
+    let itemsAttributes: any = {};
+    if (targetProduct.variants) {
+      targetProduct.variants.attributesName.forEach((attributeName: string) => {
+        if (attributeName !== "quantity") {
+          itemsAttributes[attributeName] = [];
+          targetProduct.variants?.itemsAttributes.forEach(
+            (itemAttribute: any) => {
+              if (
+                !itemsAttributes[attributeName].includes(
+                  itemAttribute[attributeName],
+                )
+              )
+                itemsAttributes[attributeName].push(
+                  itemAttribute[attributeName],
+                );
+            },
+          );
+        }
+      });
+    }
+    return {
+      id: targetProduct.id,
+      name: targetProduct.name,
+      title: targetProduct.title ? targetProduct.title : targetProduct.name,
+      price: targetProduct.price,
+      features: targetProduct.features,
+      itemsAttributes: itemsAttributes,
+      images: targetProduct.images,
+      variants: targetProduct.variants,
+      colorsDefinition: targetProduct.colorsDefinition,
+    };
+  }
+
+  return;
 }

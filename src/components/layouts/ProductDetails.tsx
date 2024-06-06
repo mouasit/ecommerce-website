@@ -30,10 +30,31 @@ import SelectedColorItem from "../layouts/SelectedColorItem";
 import SlideCategoryProduct from "./SlideCategoryProduct";
 import { useEffect, useRef, useState } from "react";
 import FullScreenSlider from "./FullScreenSlider";
-import { getInitialSlide } from "../../Helpers";
+import {
+  capitalizeFirstLetter,
+  formatNumberWithSpaces,
+  getInitialSlide,
+} from "../../Helpers";
 import DropDown from "./DropDown";
+import type { ColorsDefinition, Variants } from "../../DataBase";
 
-export default function ProductDetails() {
+export default function ProductDetails({
+  title,
+  price,
+  features,
+  itemsAttributes,
+  images,
+  variants,
+  colorsDefinition,
+}: {
+  title: string;
+  price: number;
+  features?: string[];
+  itemsAttributes: {};
+  images?: string[] | null;
+  variants?: Variants;
+  colorsDefinition?: ColorsDefinition[];
+}) {
   const sectionRef = useRef<HTMLElement>(null);
   const [selectedColorProduct, setSelectedColorProduct] = useState<number>(0);
   const screenSize = 1024;
@@ -270,17 +291,19 @@ export default function ProductDetails() {
       ) : null}
       <div className="mt-[11rem]  flex flex-col gap-5 md:mt-2 md:w-[50%] lg:space-y-4">
         <span className="text-[1.5rem] font-semibold capitalize text-bluePrimary">
-          Apple iPhone 13 6,1" 5G
+          {title}
         </span>
         <div className="space-x-2 text-[1.6rem] font-bold text-bluePrimary">
-          <span>10 000</span>
+          <span>{formatNumberWithSpaces(price)}</span>
           <span className="text-yellowPrimary">DH</span>
         </div>
-        <ul className="ml-5 list-disc space-y-3 text-sm font-light text-grayPrimary">
-          <li>Bass and Stereo Sound</li>
-          <li>Display with 3088 x 1440 pixels resolution</li>
-          <li>Memory, Storage & SIM: 12GB RAM, 256GB</li>
-        </ul>
+        {features ? (
+          <ul className="ml-5 list-disc space-y-3 text-sm font-light text-grayPrimary">
+            {features.map((feature: string, index: number) => (
+              <li key={index}>{capitalizeFirstLetter(feature)}</li>
+            ))}
+          </ul>
+        ) : null}
         <div className="flex flex-col gap-8">
           <div className="flex items-center gap-5">
             <span className="w-[6.8rem] flex-none text-lg font-medium text-bluePrimary">

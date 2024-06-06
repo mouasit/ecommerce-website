@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import { AddToCartIcon } from "./Icons";
 import PrimaryButton from "./PrimaryButton";
 import SecondaryButton from "./SecondaryButton";
-import type { Product } from "../../data";
 import { getProduct } from "../../API";
 import { formatNumberWithSpaces } from "../../Helpers";
+import type { DisplayProduct } from "../../API";
+import { Link } from "react-router-dom";
 
 export default function ProductCard({
   productId,
@@ -13,7 +14,7 @@ export default function ProductCard({
   productId: string;
   responsiveWidth?: string;
 }) {
-  const [product, setProduct] = useState<Product>();
+  const [product, setProduct] = useState<DisplayProduct>();
   useEffect(() => {
     setProduct(getProduct(productId));
   }, [productId]);
@@ -22,13 +23,13 @@ export default function ProductCard({
       <div
         className={`card flex w-[15.5rem] ${responsiveWidth} flex-col gap-5`}
       >
-        <button>
+        <Link to={`/Product/${productId}`}>
           <img
             src={product.imageProduct}
             alt="product"
             className="w-full rounded-[1rem]"
           />
-        </button>
+        </Link>
         <div className="flex flex-col justify-center gap-1">
           <span className="truncate text-center text-[1.1rem] capitalize text-bluePrimary">
             {product.name}
