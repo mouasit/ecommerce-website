@@ -14,7 +14,6 @@ import cd from "./assets/products/cd.jpg";
 import chair from "./assets/products/chair.jpg";
 import microphone from "./assets/products/microphone.jpg";
 import iphone13 from "./assets/products/iphone-13/black/1.jpg";
-import imageBlack1 from "./assets/products/iphone-13/black/1.jpg";
 import imageBlack2 from "./assets/products/iphone-13/black/2.jpg";
 import imageBlack3 from "./assets/products/iphone-13/black/3.jpg";
 import imageBlack4 from "./assets/products/iphone-13/black/4.jpg";
@@ -272,7 +271,7 @@ export const products: Product[] = [
       "display with 3088 x 1440 pixels resolution",
       "memory, Storage & SIM: 12GB RAM, 256GB",
     ],
-    images: [imageBlack1, imageBlack2, imageBlack3, imageBlack4, imageBlack5],
+    images: [iphone13, imageBlack2, imageBlack3, imageBlack4, imageBlack5],
     variants: {
       attributesName: ["storage", "color", "quantity"],
       itemsAttributes: [
