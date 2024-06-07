@@ -272,7 +272,7 @@ export const products: Product[] = [
       "display with 3088 x 1440 pixels resolution",
       "memory, Storage & SIM: 12GB RAM, 256GB",
     ],
-    images: [imageBlack1, imageBlack2, imageBlack3, imageBlack4],
+    images: [imageBlack1, imageBlack2, imageBlack3, imageBlack4, imageBlack5],
     variants: {
       attributesName: ["storage", "color", "quantity"],
       itemsAttributes: [

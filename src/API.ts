@@ -157,7 +157,9 @@ export function getProductDetails({
       price: targetProduct.price,
       features: targetProduct.features,
       itemsAttributes: itemsAttributes,
-      images: targetProduct.images,
+      images: targetProduct.images
+        ? targetProduct.images
+        : [targetProduct.imageProduct],
       variants: targetProduct.variants,
       colorsDefinition: targetProduct.colorsDefinition,
     };

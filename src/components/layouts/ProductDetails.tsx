@@ -39,6 +39,7 @@ import DropDown from "./DropDown";
 import type { ColorsDefinition, Variants } from "../../DataBase";
 
 export default function ProductDetails({
+  productId,
   title,
   price,
   features,
@@ -47,6 +48,7 @@ export default function ProductDetails({
   variants,
   colorsDefinition,
 }: {
+  productId: string;
   title: string;
   price: number;
   features?: string[];
@@ -64,33 +66,45 @@ export default function ProductDetails({
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [fullScreenSlider, setFullScreenSlider] = useState<boolean>(false);
   const [quantity, setQuantity] = useState<number>(1);
-  const productWithColorsAndImages = [
-    {
-      imagesProduct: [
-        imageBlack1,
-        imageBlack2,
-        imageBlack3,
-        imageBlack4,
-        imageBlack5,
-      ],
-      colorProduct: "#000",
-    },
-    {
-      imagesProduct: [imageGreen1, imageGreen2, imageGreen3, imageGreen4],
-      colorProduct: "#59965C",
-    },
+  let productWithColorsAndImages: {
+    imagesProduct: string[];
+    colorProduct?: string;
+  }[] = [];
 
-    {
-      imagesProduct: [imageBlue1, imageBlue2, imageBlue3, imageBlue4],
-      colorProduct: "#3694C7",
-    },
-  ];
+  if (!colorsDefinition && images) {
+    productWithColorsAndImages = [
+      {
+        imagesProduct: images,
+      },
+    ];
+  }
+
+  // {
+  //   imagesProduct: [
+  //     imageBlack1,
+  //     imageBlack2,
+  //     imageBlack3,
+  //     imageBlack4,
+  //     imageBlack5,
+  //   ],
+  //   colorProduct: "#000",
+  // },
+  // {
+  //   imagesProduct: [imageGreen1, imageGreen2, imageGreen3, imageGreen4],
+  //   colorProduct: "#59965C",
+  // },
+
+  // {
+  //   imagesProduct: [imageBlue1, imageBlue2, imageBlue3, imageBlue4],
+  //   colorProduct: "#3694C7",
+  // },
   const settings = {
     dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    adaptiveHeight: images ? (images.length === 1 ? true : false) : false,
     nextArrow: <SliderNextArrow />,
     prevArrow: <SliderPrevArrow />,
     customPaging: (i: number) => {
@@ -224,7 +238,12 @@ export default function ProductDetails({
       container.removeEventListener("mousemove", handleDragging);
       document.removeEventListener("mouseup", handleDragStop);
     };
-  }, [selectedColorProduct, screenWidth]);
+  }, [
+    productWithColorsAndImages,
+    productId,
+    selectedColorProduct,
+    screenWidth,
+  ]);
 
   return (
     <section
@@ -304,7 +323,7 @@ export default function ProductDetails({
             ))}
           </ul>
         ) : null}
-        <div className="flex flex-col gap-8">
+        {/* <div className="flex flex-col gap-8">
           <div className="flex items-center gap-5">
             <span className="w-[6.8rem] flex-none text-lg font-medium text-bluePrimary">
               Chose size
@@ -326,7 +345,7 @@ export default function ProductDetails({
               })}
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="mt-5 flex max-w-[533px] gap-2 md:max-w-none">
           <div className="flex w-[60%] items-center justify-between rounded-2xl bg-grayLight p-3 text-xl font-medium text-bluePrimary xlg:w-[65%]">
             <button

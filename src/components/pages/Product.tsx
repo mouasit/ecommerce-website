@@ -23,6 +23,7 @@ export default function Product() {
     return (
       <div>
         <ProductDetails
+          productId={id as string}
           title={product.title as string}
           price={product.price}
           images={product.images}
