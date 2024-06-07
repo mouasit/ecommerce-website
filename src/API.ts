@@ -32,10 +32,15 @@ export type DisplayProductDetails = {
   title?: string;
   price: number;
   features?: string[];
-  itemsAttributes: {};
+  itemsAttributes: ItemAttributes[];
   images?: string[] | null;
   variants?: Variants;
   colorsDefinition?: ColorsDefinition[];
+};
+
+export type ItemAttributes = {
+  name: string;
+  items: string[];
 };
 
 export function getCategory({
@@ -130,25 +135,27 @@ export function getProductDetails({
     (product: Product) => product.id === productId,
   );
   if (targetProduct) {
-    let itemsAttributes: any = {};
+    let itemsAttributes: ItemAttributes[] = [];
     if (targetProduct.variants) {
-      targetProduct.variants.attributesName.forEach((attributeName: string) => {
-        if (attributeName !== "quantity") {
-          itemsAttributes[attributeName] = [];
-          targetProduct.variants?.itemsAttributes.forEach(
-            (itemAttribute: any) => {
-              if (
-                !itemsAttributes[attributeName].includes(
-                  itemAttribute[attributeName],
+      targetProduct.variants.attributesName.forEach(
+        (attributeName: string, index: number) => {
+          if (attributeName !== "quantity") {
+            itemsAttributes.push({ name: attributeName, items: [] });
+            targetProduct.variants?.itemsAttributes.forEach(
+              (itemAttribute: any) => {
+                if (
+                  !itemsAttributes[index].items.includes(
+                    itemAttribute[attributeName],
+                  )
                 )
-              )
-                itemsAttributes[attributeName].push(
-                  itemAttribute[attributeName],
-                );
-            },
-          );
-        }
-      });
+                  itemsAttributes[index].items.push(
+                    itemAttribute[attributeName],
+                  );
+              },
+            );
+          }
+        },
+      );
     }
     return {
       id: targetProduct.id,

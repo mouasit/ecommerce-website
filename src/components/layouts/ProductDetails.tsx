@@ -37,6 +37,7 @@ import {
 } from "../../Helpers";
 import DropDown from "./DropDown";
 import type { ColorsDefinition, Variants } from "../../DataBase";
+import type { ItemAttributes } from "../../API";
 
 export default function ProductDetails({
   productId,
@@ -52,7 +53,7 @@ export default function ProductDetails({
   title: string;
   price: number;
   features?: string[];
-  itemsAttributes: {};
+  itemsAttributes: ItemAttributes[];
   images?: string[] | null;
   variants?: Variants;
   colorsDefinition?: ColorsDefinition[];
@@ -328,14 +329,21 @@ export default function ProductDetails({
             ))}
           </ul>
         ) : null}
-        {/* <div className="flex flex-col gap-8">
-          <div className="flex items-center gap-5">
-            <span className="w-[6.8rem] flex-none text-lg font-medium text-bluePrimary">
-              Chose size
-            </span>
-            <DropDown />
-          </div>
-          <div className="flex items-center gap-5 text-lg font-medium text-bluePrimary">
+        <div className="flex flex-col gap-8">
+          {itemsAttributes.map(
+            (itemAttributes: ItemAttributes, index: number) => (
+              <div className="flex items-center gap-5" key={index}>
+                <span className="w-[8.3rem] flex-none text-lg font-medium text-bluePrimary">
+                  Chose {itemAttributes.name}
+                </span>
+                <DropDown
+                  items={itemAttributes.items}
+                  attributeName={itemAttributes.name}
+                />
+              </div>
+            ),
+          )}
+          {/* <div className="flex items-center gap-5 text-lg font-medium text-bluePrimary">
             <span className="w-[6.8rem]">Chose color</span>
             <div className="flex items-center gap-3">
               {productWithColorsAndImages.map((product, index) => {
@@ -349,8 +357,8 @@ export default function ProductDetails({
                 );
               })}
             </div>
-          </div>
-        </div> */}
+          </div> */}
+        </div>
         <div className="mt-5 flex max-w-[533px] gap-2 md:max-w-none">
           <div className="flex w-[60%] items-center justify-between rounded-2xl bg-grayLight p-3 text-xl font-medium text-bluePrimary xlg:w-[65%]">
             <button
