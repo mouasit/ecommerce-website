@@ -104,7 +104,7 @@ export default function ProductDetails({
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    adaptiveHeight: images ? (images.length === 1 ? true : false) : false,
+    adaptiveHeight: true,
     nextArrow: <SliderNextArrow />,
     prevArrow: <SliderPrevArrow />,
     customPaging: (i: number) => {
