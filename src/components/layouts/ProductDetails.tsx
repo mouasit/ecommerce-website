@@ -198,6 +198,11 @@ export default function ProductDetails({
   }, []);
 
   useEffect(() => {
+    setFullScreenSlider(false);
+    document.body.classList.remove("overflow-hidden");
+  }, [productId]);
+
+  useEffect(() => {
     const container = sectionRef.current?.querySelector(
       ".slick-dots",
     ) as HTMLElement;
