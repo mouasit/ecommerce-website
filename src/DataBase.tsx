@@ -276,32 +276,32 @@ export const products: Product[] = [
       attributesName: ["storage", "color", "quantity"],
       itemsAttributes: [
         {
-          storage: "64",
+          storage: "64 GB",
           color: "black",
           quantity: "44",
         },
         {
-          storage: "128",
+          storage: "128 GB",
           color: "green",
           quantity: "12",
         },
         {
-          storage: "64",
+          storage: "64 GB",
           color: "green",
           quantity: "05",
         },
         {
-          storage: "512",
+          storage: "512 GB",
           color: "green",
           quantity: "10",
         },
         {
-          storage: "64",
+          storage: "64 GB",
           color: "blue",
           quantity: "28",
         },
         {
-          storage: "512",
+          storage: "512 GB",
           color: "black",
           quantity: "20",
         },

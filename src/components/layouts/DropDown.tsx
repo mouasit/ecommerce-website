@@ -1,12 +1,17 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowDownIcon } from "./Icons";
+import { Filter } from "./ProductDetails";
 
 export default function DropDown({
   items,
   attributeName,
+  filter,
+  setFilter,
 }: {
   items: string[];
   attributeName: string;
+  filter: Filter | undefined;
+  setFilter: React.Dispatch<React.SetStateAction<Filter | undefined>>;
 }) {
   const dropDownRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -33,8 +38,19 @@ export default function DropDown({
   }
   function selectItem(e: any) {
     setSelectedItem(e.target.textContent);
+    if (!filter || filter.name === attributeName)
+      setFilter({ name: attributeName, value: e.target.textContent });
     closeDropDown();
   }
+  useEffect(() => {
+    if (
+      filter &&
+      filter.name !== attributeName &&
+      !items.includes(selectedItem)
+    ) {
+      setSelectedItem(selectedItemStarter);
+    }
+  }, [filter]);
   useEffect(() => {
     document.addEventListener("click", handleBlur);
     return () => {

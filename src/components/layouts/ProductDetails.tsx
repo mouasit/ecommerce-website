@@ -38,6 +38,10 @@ import {
 import DropDown from "./DropDown";
 import type { ColorsDefinition, Variants } from "../../DataBase";
 import type { ItemAttributes } from "../../API";
+export type Filter = {
+  name: string;
+  value: string;
+};
 
 export default function ProductDetails({
   productId,
@@ -67,6 +71,7 @@ export default function ProductDetails({
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [fullScreenSlider, setFullScreenSlider] = useState<boolean>(false);
   const [quantity, setQuantity] = useState<number>(1);
+  const [filter, setFilter] = useState<Filter>();
   let productWithColorsAndImages: {
     imagesProduct: string[];
     colorProduct?: string;
@@ -197,6 +202,25 @@ export default function ProductDetails({
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  const filteredItems = ({
+    filter,
+    attributeName,
+  }: {
+    filter: Filter | undefined;
+    attributeName: string;
+  }): any => {
+    let items: string[] = [];
+    if (variants && filter) {
+      return variants.itemsAttributes
+        .filter(
+          (itemAttribute: any) => itemAttribute[filter.name] === filter.value,
+        )
+        .map((item: any) => item[attributeName]);
+    }
+
+    return items;
+  };
 
   useEffect(() => {
     setFullScreenSlider(false);
@@ -337,8 +361,17 @@ export default function ProductDetails({
                   Chose {itemAttributes.name}
                 </span>
                 <DropDown
-                  items={itemAttributes.items}
+                  items={
+                    filter && itemAttributes.name !== filter.name
+                      ? filteredItems({
+                          filter,
+                          attributeName: itemAttributes.name,
+                        })
+                      : itemAttributes.items
+                  }
                   attributeName={itemAttributes.name}
+                  filter={filter}
+                  setFilter={setFilter}
                 />
               </div>
             ),
