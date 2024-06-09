@@ -14,6 +14,7 @@ import cd from "./assets/products/cd.jpg";
 import chair from "./assets/products/chair.jpg";
 import microphone from "./assets/products/microphone.jpg";
 import iphone13 from "./assets/products/iphone-13/black/1.jpg";
+import imageBlack1 from "./assets/products/iphone-13/black/1.jpg";
 import imageBlack2 from "./assets/products/iphone-13/black/2.jpg";
 import imageBlack3 from "./assets/products/iphone-13/black/3.jpg";
 import imageBlack4 from "./assets/products/iphone-13/black/4.jpg";
@@ -252,26 +253,6 @@ export const products: Product[] = [
     price: 4000,
     imageProduct: chair,
     images: null,
-  },
-  {
-    id: "p16",
-    name: "microphone RGB",
-    price: 1200,
-    imageProduct: microphone,
-    images: null,
-  },
-  {
-    id: "p17",
-    name: "iphone 13",
-    title: `apple iPhone 13 6,1" 5G`,
-    price: 10000,
-    imageProduct: iphone13,
-    features: [
-      "bass and Stereo Sound",
-      "display with 3088 x 1440 pixels resolution",
-      "memory, Storage & SIM: 12GB RAM, 256GB",
-    ],
-    images: [iphone13, imageBlack2, imageBlack3, imageBlack4, imageBlack5],
     variants: {
       attributesName: ["storage", "color", "quantity"],
       itemsAttributes: [
@@ -307,28 +288,106 @@ export const products: Product[] = [
         },
       ],
     },
-    // colorsDefinition: [
-    //   {
-    //     name: "black",
-    //     code: "#000",
-    //     imagesColor: [
-    //       imageBlack1,
-    //       imageBlack2,
-    //       imageBlack3,
-    //       imageBlack4,
-    //       imageBlack5,
-    //     ],
-    //   },
-    //   {
-    //     name: "green",
-    //     code: "#59965C",
-    //     imagesColor: [imageGreen1, imageGreen2, imageGreen3, imageGreen4],
-    //   },
-    //   {
-    //     name: "blue",
-    //     code: "#3694C7",
-    //     imagesColor: [imageBlue1, imageBlue2, imageBlue3, imageBlue4],
-    //   },
-    // ],
+    colorsDefinition: [
+      {
+        name: "black",
+        code: "#000",
+        imagesColor: [
+          imageBlack1,
+          imageBlack2,
+          imageBlack3,
+          imageBlack4,
+          imageBlack5,
+        ],
+      },
+      {
+        name: "green",
+        code: "#59965C",
+        imagesColor: [imageGreen1, imageGreen2, imageGreen3, imageGreen4],
+      },
+      {
+        name: "blue",
+        code: "#3694C7",
+        imagesColor: [imageBlue1, imageBlue2, imageBlue3, imageBlue4],
+      },
+    ],
+  },
+  {
+    id: "p16",
+    name: "microphone RGB",
+    price: 1200,
+    imageProduct: microphone,
+    images: null,
+  },
+  {
+    id: "p17",
+    name: "iphone 13",
+    title: `apple iPhone 13 6,1" 5G`,
+    price: 10000,
+    imageProduct: iphone13,
+    features: [
+      "bass and Stereo Sound",
+      "display with 3088 x 1440 pixels resolution",
+      "memory, Storage & SIM: 12GB RAM, 256GB",
+    ],
+    images: null,
+    variants: {
+      attributesName: ["storage", "color", "quantity"],
+      itemsAttributes: [
+        {
+          storage: "64 GB",
+          color: "black",
+          quantity: "44",
+        },
+        {
+          storage: "128 GB",
+          color: "green",
+          quantity: "12",
+        },
+        {
+          storage: "64 GB",
+          color: "green",
+          quantity: "05",
+        },
+        {
+          storage: "512 GB",
+          color: "green",
+          quantity: "10",
+        },
+        {
+          storage: "64 GB",
+          color: "blue",
+          quantity: "28",
+        },
+        {
+          storage: "512 GB",
+          color: "black",
+          quantity: "20",
+        },
+      ],
+    },
+    colorsDefinition: [
+      {
+        name: "black",
+        code: "#000",
+        imagesColor: [
+          imageBlack1,
+          imageBlack2,
+          imageBlack3,
+          imageBlack4,
+          imageBlack5,
+        ],
+      },
+      {
+        name: "green",
+        code: "#59965C",
+        imagesColor: [imageGreen1, imageGreen2, imageGreen3, imageGreen4],
+      },
+      {
+        name: "blue",
+        code: "#3694C7",
+        imagesColor: [imageBlue1, imageBlue2, imageBlue3, imageBlue4],
+      },
+    ],
   },
 ];

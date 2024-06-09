@@ -71,8 +71,13 @@ export default function ProductDetails({
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [fullScreenSlider, setFullScreenSlider] = useState<boolean>(false);
   const [quantity, setQuantity] = useState<number>(1);
-  const [filter, setFilter] = useState<Filter>();
+  const [filter, setFilter] = useState<Filter | undefined>(
+    colorsDefinition
+      ? { name: "color", value: colorsDefinition[0].name }
+      : undefined,
+  );
   let productWithColorsAndImages: {
+    name?: string;
     imagesProduct: string[];
     colorProduct?: string;
   }[] = [];
@@ -84,26 +89,13 @@ export default function ProductDetails({
       },
     ];
   }
-
-  // {
-  //   imagesProduct: [
-  //     imageBlack1,
-  //     imageBlack2,
-  //     imageBlack3,
-  //     imageBlack4,
-  //     imageBlack5,
-  //   ],
-  //   colorProduct: "#000",
-  // },
-  // {
-  //   imagesProduct: [imageGreen1, imageGreen2, imageGreen3, imageGreen4],
-  //   colorProduct: "#59965C",
-  // },
-
-  // {
-  //   imagesProduct: [imageBlue1, imageBlue2, imageBlue3, imageBlue4],
-  //   colorProduct: "#3694C7",
-  // },
+  colorsDefinition?.forEach((color: any) => {
+    productWithColorsAndImages.push({
+      name: color.name,
+      imagesProduct: color.imagesColor,
+      colorProduct: color.code,
+    });
+  });
   const settings = {
     dots: true,
     infinite: true,
@@ -225,6 +217,12 @@ export default function ProductDetails({
   useEffect(() => {
     setFullScreenSlider(false);
     document.body.classList.remove("overflow-hidden");
+    setFilter(
+      colorsDefinition
+        ? { name: "color", value: colorsDefinition[0].name }
+        : undefined,
+    );
+    setSelectedColorProduct(0);
   }, [productId]);
 
   useEffect(() => {
@@ -355,42 +353,53 @@ export default function ProductDetails({
         ) : null}
         <div className="flex flex-col gap-8">
           {itemsAttributes.map(
-            (itemAttributes: ItemAttributes, index: number) => (
-              <div className="flex items-center gap-5" key={index}>
-                <span className="w-[8.3rem] flex-none text-lg font-medium text-bluePrimary">
-                  Chose {itemAttributes.name}
-                </span>
-                <DropDown
-                  items={
-                    filter && itemAttributes.name !== filter.name
-                      ? filteredItems({
-                          filter,
-                          attributeName: itemAttributes.name,
-                        })
-                      : itemAttributes.items
-                  }
-                  attributeName={itemAttributes.name}
-                  filter={filter}
-                  setFilter={setFilter}
-                />
-              </div>
-            ),
-          )}
-          {/* <div className="flex items-center gap-5 text-lg font-medium text-bluePrimary">
-            <span className="w-[6.8rem]">Chose color</span>
-            <div className="flex items-center gap-3">
-              {productWithColorsAndImages.map((product, index) => {
-                return (
-                  <SelectedColorItem
-                    backgroundColor={product.colorProduct}
-                    key={index}
-                    selected={index === selectedColorProduct ? true : false}
-                    onClick={() => setSelectedColorProduct(index)}
+            (itemAttributes: ItemAttributes, index: number) =>
+              itemAttributes.name === "color" ? (
+                <div className="flex items-center gap-5 text-lg font-medium text-bluePrimary">
+                  <span className="w-[8.3rem]">Chose color</span>
+                  <div className="flex items-center gap-3">
+                    {productWithColorsAndImages.map((product, index) => {
+                      return (
+                        <SelectedColorItem
+                          backgroundColor={product.colorProduct as string}
+                          key={index}
+                          selected={
+                            index === selectedColorProduct ? true : false
+                          }
+                          onClick={() => {
+                            setFilter({
+                              name: itemAttributes.name,
+                              value: product.name as string,
+                            });
+                            setSelectedColorProduct(index);
+                          }}
+                        />
+                      );
+                    })}
+                  </div>
+                </div>
+              ) : (
+                <div className="flex items-center gap-5" key={index}>
+                  <span className="w-[8.3rem] flex-none text-lg font-medium text-bluePrimary">
+                    Chose {itemAttributes.name}
+                  </span>
+                  <DropDown
+                    productId={productId}
+                    items={
+                      filter && itemAttributes.name !== filter.name
+                        ? filteredItems({
+                            filter,
+                            attributeName: itemAttributes.name,
+                          })
+                        : itemAttributes.items
+                    }
+                    attributeName={itemAttributes.name}
+                    filter={filter}
+                    setFilter={setFilter}
                   />
-                );
-              })}
-            </div>
-          </div> */}
+                </div>
+              ),
+          )}
         </div>
         <div className="mt-5 flex max-w-[533px] gap-2 md:max-w-none">
           <div className="flex w-[60%] items-center justify-between rounded-2xl bg-grayLight p-3 text-xl font-medium text-bluePrimary xlg:w-[65%]">
