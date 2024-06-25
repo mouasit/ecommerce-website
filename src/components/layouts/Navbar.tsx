@@ -3,6 +3,7 @@ import {
   ArrowDownIcon,
   BurgerMenuIcon,
   CloseIcon,
+  EmptyCartIcon,
   ShoppingCartIcon,
 } from "./Icons";
 import logo from "../../assets/logo.svg";
@@ -277,7 +278,8 @@ export default function Navbar() {
         <div
           className={`fixed inset-0 top-0 w-full transition-transform duration-500 sm:left-auto sm:right-0 sm:w-[26rem] ${clickShoppingCart ? "translate-x-0" : "translate-x-full"}`}
         >
-          <div className="relative h-full bg-white py-4 pb-[16.1rem] sm:h-screen">
+          {/* pb-[16.1rem] */}
+          <div className="relative h-full bg-white py-4 sm:h-screen">
             <div className="flex items-center justify-between gap-2 border-b px-4 pb-4 text-lg font-semibold  capitalize text-bluePrimary">
               <span className="overflow-hidden whitespace-nowrap">
                 shopping cart
@@ -292,7 +294,14 @@ export default function Navbar() {
                 <CloseIcon className="h-[.6rem] w-[.6rem] fill-bluePrimary" />
               </button>
             </div>
-            <div className="flex h-full flex-col gap-8 overflow-auto px-4 py-8">
+
+            <div className="flex h-full flex-col items-center justify-center gap-4">
+              <EmptyCartIcon className="h-[3.5rem] w-[3.5rem]" />
+              <span className="text-[1rem] text-bluePrimary">
+                Your cart is empty.
+              </span>
+            </div>
+            {/* <div className="flex h-full flex-col gap-8 overflow-auto px-4 py-8">
               <ProductShoppoingCartCard
                 name="iphone 14 plus"
                 price="1500"
@@ -313,7 +322,7 @@ export default function Navbar() {
                 <SecondaryButton value="view cart" className="w-full" />
                 <PrimaryButton value="Checkout" className="w-full" />
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
