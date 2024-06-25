@@ -52,8 +52,6 @@ export default function DropDown({
       setSelectedItem(selectedItemStarter);
   }, [productId]);
   useEffect(() => {
-    console.log(filter);
-
     if (
       filter &&
       filter.name !== attributeName &&
