@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   ArrowDownIcon,
   BurgerMenuIcon,
@@ -11,10 +11,12 @@ import iphone from "../../assets/products/iphone.jpg";
 import cable from "../../assets/products/cable.jpg";
 import SecondaryButton from "./SecondaryButton";
 import PrimaryButton from "./PrimaryButton";
-import ProductShoppoingCartCard from "./ProductShoppoingCartCard";
+import ProductShoppingCartCard from "./ProductShoppingCartCard";
 import { NavLink, Link } from "react-router-dom";
+import { ShoppingCart, ShoppingCartContext } from "../../App";
 
 export default function Navbar() {
+  const shoppingCartContext = useContext(ShoppingCartContext);
   const [clickBurgerMenu, setClickBurgerMenu] = React.useState<boolean>(false);
   const [hoverDropDown, setHoverDropDown] = React.useState<boolean>(false);
   const [clickDropDown, setClickDropDown] = React.useState<boolean>(false);
@@ -278,8 +280,9 @@ export default function Navbar() {
         <div
           className={`fixed inset-0 top-0 w-full transition-transform duration-500 sm:left-auto sm:right-0 sm:w-[26rem] ${clickShoppingCart ? "translate-x-0" : "translate-x-full"}`}
         >
-          {/* pb-[16.1rem] */}
-          <div className="relative h-full bg-white py-4 sm:h-screen">
+          <div
+            className={`relative h-full  bg-white py-4 ${shoppingCartContext.shoppingCart.length ? "pb-[16.1rem]" : ""} sm:h-screen`}
+          >
             <div className="flex items-center justify-between gap-2 border-b px-4 pb-4 text-lg font-semibold  capitalize text-bluePrimary">
               <span className="overflow-hidden whitespace-nowrap">
                 shopping cart
@@ -295,34 +298,39 @@ export default function Navbar() {
               </button>
             </div>
 
-            <div className="flex h-full flex-col items-center justify-center gap-4">
-              <EmptyCartIcon className="h-[3.5rem] w-[3.5rem]" />
-              <span className="text-[1rem] text-bluePrimary">
-                Your cart is empty.
-              </span>
-            </div>
-            {/* <div className="flex h-full flex-col gap-8 overflow-auto px-4 py-8">
-              <ProductShoppoingCartCard
-                name="iphone 14 plus"
-                price="1500"
-                imageProduct={iphone}
-              />
-              <ProductShoppoingCartCard
-                name="Baseus Tungsten"
-                price="400"
-                imageProduct={cable}
-              />
-            </div>
-            <div className="absolute bottom-4 flex w-full flex-col gap-8 border-t px-4 pt-8 text-lg">
-              <div className="flex w-full items-center justify-between gap-2 break-all text-bluePrimary">
-                <span className="flex-1 capitalize">subtotal</span>
-                <span className="font-bold">1900 DH</span>
+            {shoppingCartContext.shoppingCart.length ? (
+              <>
+                <div className="flex h-full flex-col gap-8 overflow-auto px-4 py-8">
+                  {shoppingCartContext.shoppingCart.map(
+                    (product: ShoppingCart, index: number) => (
+                      <ProductShoppingCartCard
+                        key={index}
+                        name={product.nameProduct}
+                        price={product.price}
+                        imageProduct={product.imageProduct}
+                      />
+                    ),
+                  )}
+                </div>
+                <div className="absolute bottom-4 flex w-full flex-col gap-8 border-t px-4 pt-8 text-lg">
+                  <div className="flex w-full items-center justify-between gap-2 break-all text-bluePrimary">
+                    <span className="flex-1 capitalize">subtotal</span>
+                    <span className="font-bold">1900 DH</span>
+                  </div>
+                  <div className="flex flex-col items-center gap-2">
+                    <SecondaryButton value="view cart" className="w-full" />
+                    <PrimaryButton value="Checkout" className="w-full" />
+                  </div>
+                </div>
+              </>
+            ) : (
+              <div className="flex h-full flex-col items-center justify-center gap-4">
+                <EmptyCartIcon className="h-[3.5rem] w-[3.5rem]" />
+                <span className="text-[1rem] text-bluePrimary">
+                  Your cart is empty.
+                </span>
               </div>
-              <div className="flex flex-col items-center gap-2">
-                <SecondaryButton value="view cart" className="w-full" />
-                <PrimaryButton value="Checkout" className="w-full" />
-              </div>
-            </div> */}
+            )}
           </div>
         </div>
       </div>

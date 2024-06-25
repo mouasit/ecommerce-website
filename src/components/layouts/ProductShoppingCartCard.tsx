@@ -1,12 +1,13 @@
+import { formatNumberWithSpaces } from "../../Helpers";
 import { TrashIcon } from "./Icons";
 
-export default function ProductShoppoingCartCard({
+export default function ProductShoppingCartCard({
   name,
   price,
   imageProduct,
 }: {
   name: string;
-  price: string;
+  price: number;
   imageProduct: any;
 }) {
   return (
@@ -16,7 +17,7 @@ export default function ProductShoppoingCartCard({
         <span className="flex w-[50vw] flex-col gap-1 capitalize text-bluePrimary sm:w-[13rem] ">
           <span className="truncate font-medium">{name}</span>
           <span className="break-words font-light text-grayPrimary">
-            {price} DH
+            {formatNumberWithSpaces(price)} DH
           </span>
         </span>
       </button>

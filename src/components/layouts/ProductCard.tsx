@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { useEffect, useState } from "react";
 import { AddToCartIcon } from "./Icons";
 import PrimaryButton from "./PrimaryButton";
@@ -6,6 +7,7 @@ import { getProduct } from "../../API";
 import { formatNumberWithSpaces } from "../../Helpers";
 import type { DisplayProduct } from "../../API";
 import { Link } from "react-router-dom";
+import { ShoppingCartContext } from "../../App";
 
 export default function ProductCard({
   productId,
@@ -14,6 +16,7 @@ export default function ProductCard({
   productId: string;
   responsiveWidth?: string;
 }) {
+  const shoppingCartContext = useContext(ShoppingCartContext);
   const [product, setProduct] = useState<DisplayProduct>();
   useEffect(() => {
     setProduct(getProduct(productId));
@@ -46,6 +49,16 @@ export default function ProductCard({
           <PrimaryButton
             icon={<AddToCartIcon className="h-7 w-7 fill-bluePrimary" />}
             className="flex w-[4.5rem] items-center justify-center"
+            onClick={() => {
+              shoppingCartContext.setShoppingCart([
+                ...shoppingCartContext.shoppingCart,
+                {
+                  nameProduct: product.name,
+                  price: product.price,
+                  imageProduct: product.imageProduct,
+                },
+              ]);
+            }}
           />
         </div>
       </div>
