@@ -38,5 +38,7 @@ export default function Category() {
     );
   }
   if (dataLoaded) return <NotFound />;
-  return <div className="h-screen"></div>;
+  return (
+    <div className="fixed left-0 top-0 z-[2] h-full w-full bg-white"></div>
+  );
 }

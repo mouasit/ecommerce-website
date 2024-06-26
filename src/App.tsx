@@ -39,6 +39,7 @@ function App() {
         <main className="app-container">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/Home" element={<Home />} />
             <Route path="/Category/:id" element={<Category />} />
             <Route path="/Category/:id/:action" element={<Category />} />
             <Route path="/Product/:id" element={<Product />} />
