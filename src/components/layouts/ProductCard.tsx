@@ -1,13 +1,13 @@
 import { useContext } from "react";
 import { useEffect, useState } from "react";
-import { AddToCartIcon } from "./Icons";
+import { AddToCartIcon, CheckCartIcon } from "./Icons";
 import PrimaryButton from "./PrimaryButton";
 import SecondaryButton from "./SecondaryButton";
 import { getProduct } from "../../API";
 import { formatNumberWithSpaces } from "../../Helpers";
 import type { DisplayProduct } from "../../API";
 import { Link } from "react-router-dom";
-import { ShoppingCartContext } from "../../App";
+import { ShoppingCart, ShoppingCartContext } from "../../App";
 
 export default function ProductCard({
   productId,
@@ -18,9 +18,27 @@ export default function ProductCard({
 }) {
   const shoppingCartContext = useContext(ShoppingCartContext);
   const [product, setProduct] = useState<DisplayProduct>();
+  const [addToShoppingCart, setAddToShoppingCart] = useState<boolean>(
+    shoppingCartContext.shoppingCart.find(
+      (productShoppingCart: ShoppingCart) =>
+        productShoppingCart.idProduct === productId,
+    )
+      ? true
+      : false,
+  );
+  useEffect(() => {
+    if (
+      !shoppingCartContext.shoppingCart.find(
+        (productShoppingCart: ShoppingCart) =>
+          productShoppingCart.idProduct === productId,
+      )
+    )
+      setAddToShoppingCart(false);
+  }, [shoppingCartContext]);
   useEffect(() => {
     setProduct(getProduct(productId));
   }, [productId]);
+
   if (product)
     return (
       <div
@@ -45,19 +63,45 @@ export default function ProductCard({
           </div>
         </div>
         <div className="flex  gap-2">
-          <SecondaryButton value="view more" className="w-full" />
+          <SecondaryButton
+            value="view more"
+            className="w-full"
+            to={`/Product/${productId}`}
+          />
           <PrimaryButton
-            icon={<AddToCartIcon className="h-7 w-7 fill-bluePrimary" />}
+            icon={
+              addToShoppingCart ? (
+                <CheckCartIcon className="h-7 w-7 fill-bluePrimary" />
+              ) : (
+                <AddToCartIcon className="h-7 w-7 fill-bluePrimary" />
+              )
+            }
             className="flex w-[4.5rem] items-center justify-center"
             onClick={() => {
-              shoppingCartContext.setShoppingCart([
-                ...shoppingCartContext.shoppingCart,
-                {
-                  nameProduct: product.name,
-                  price: product.price,
-                  imageProduct: product.imageProduct,
-                },
-              ]);
+              if (
+                !shoppingCartContext.shoppingCart.find(
+                  (productShoppingCart: ShoppingCart) =>
+                    productShoppingCart.idProduct === productId,
+                )
+              ) {
+                shoppingCartContext.setShoppingCart([
+                  ...shoppingCartContext.shoppingCart,
+                  {
+                    idProduct: product.id,
+                    nameProduct: product.name,
+                    price: product.price,
+                    imageProduct: product.imageProduct,
+                  },
+                ]);
+                setAddToShoppingCart(true);
+              } else {
+                shoppingCartContext.setShoppingCart(
+                  shoppingCartContext.shoppingCart.filter(
+                    (productShoppingCart: ShoppingCart) =>
+                      productShoppingCart.idProduct !== product.id,
+                  ),
+                );
+              }
             }}
           />
         </div>

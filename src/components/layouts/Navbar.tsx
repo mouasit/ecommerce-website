@@ -264,7 +264,7 @@ export default function Navbar() {
           >
             <ShoppingCartIcon className="h-[2.3rem] w-[2.3rem] fill-bluePrimary" />
             <span className="flex h-[1.5rem] w-[1.5rem] items-center justify-center rounded-full bg-yellowPrimary font-bold text-bluePrimary">
-              0
+              {shoppingCartContext.shoppingCart.length}
             </span>
           </button>
         </div>
@@ -304,6 +304,7 @@ export default function Navbar() {
                   {shoppingCartContext.shoppingCart.map(
                     (product: ShoppingCart, index: number) => (
                       <ProductShoppingCartCard
+                        productId={product.idProduct}
                         key={index}
                         name={product.nameProduct}
                         price={product.price}

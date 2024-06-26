@@ -13,6 +13,7 @@ import Checkout from "./components/pages/Checkout";
 import NotFound from "./components/pages/NotFound";
 
 export type ShoppingCart = {
+  idProduct: string;
   nameProduct: string;
   price: number;
   imageProduct: any;
