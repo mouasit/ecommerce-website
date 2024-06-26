@@ -9,21 +9,6 @@ import {
   MinusIcon,
   PlusIcon,
 } from "./Icons";
-import imageBlack1 from "../../assets/products/iphone-13/black/1.jpg";
-import imageBlack2 from "../../assets/products/iphone-13/black/2.jpg";
-import imageBlack3 from "../../assets/products/iphone-13/black/3.jpg";
-import imageBlack4 from "../../assets/products/iphone-13/black/4.jpg";
-import imageBlack5 from "../../assets/products/iphone-13/black/5.jpg";
-
-import imageGreen1 from "../../assets/products/iphone-13/green/1.jpg";
-import imageGreen2 from "../../assets/products/iphone-13/green/2.jpg";
-import imageGreen3 from "../../assets/products/iphone-13/green/3.jpg";
-import imageGreen4 from "../../assets/products/iphone-13/green/4.jpg";
-
-import imageBlue1 from "../../assets/products/iphone-13/blue/1.jpg";
-import imageBlue2 from "../../assets/products/iphone-13/blue/2.jpg";
-import imageBlue3 from "../../assets/products/iphone-13/blue/3.jpg";
-import imageBlue4 from "../../assets/products/iphone-13/blue/4.jpg";
 
 import PrimaryButton from "../layouts/PrimaryButton";
 import SelectedColorItem from "../layouts/SelectedColorItem";
@@ -355,7 +340,10 @@ export default function ProductDetails({
           {itemsAttributes.map(
             (itemAttributes: ItemAttributes, index: number) =>
               itemAttributes.name === "color" ? (
-                <div className="flex items-center gap-5 text-lg font-medium text-bluePrimary">
+                <div
+                  className="flex items-center gap-5 text-lg font-medium text-bluePrimary"
+                  key={index}
+                >
                   <span className="w-[8.3rem]">Chose color</span>
                   <div className="flex items-center gap-3">
                     {productWithColorsAndImages.map((product, index) => {

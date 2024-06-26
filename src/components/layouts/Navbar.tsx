@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   ArrowDownIcon,
   BurgerMenuIcon,
@@ -7,13 +7,12 @@ import {
   ShoppingCartIcon,
 } from "./Icons";
 import logo from "../../assets/logo.svg";
-import iphone from "../../assets/products/iphone.jpg";
-import cable from "../../assets/products/cable.jpg";
 import SecondaryButton from "./SecondaryButton";
 import PrimaryButton from "./PrimaryButton";
 import ProductShoppingCartCard from "./ProductShoppingCartCard";
 import { NavLink, Link } from "react-router-dom";
 import { ShoppingCart, ShoppingCartContext } from "../../App";
+import { formatNumberWithSpaces } from "../../Helpers";
 
 export default function Navbar() {
   const shoppingCartContext = useContext(ShoppingCartContext);
@@ -37,6 +36,22 @@ export default function Navbar() {
     setClickBurgerMenu(false);
     document.body.classList.remove("overflow-hidden");
   };
+
+  const [subtotal, setSubtotal] = useState<number>(0);
+  useEffect(() => {
+    if (shoppingCartContext.shoppingCart.length) {
+      const pricesOfProduct = shoppingCartContext.shoppingCart.map(
+        (product: ShoppingCart) => product.price,
+      );
+      setSubtotal(
+        pricesOfProduct.reduce((acc: number, val: number) => acc + val),
+      );
+    } else setSubtotal(0);
+    localStorage.setItem(
+      "shoppingCart",
+      JSON.stringify(shoppingCartContext.shoppingCart),
+    );
+  }, [shoppingCartContext]);
   return (
     <nav className="sticky top-0 z-[2] bg-white shadow-sm">
       <div className="app-container flex h-auto w-full justify-between p-4 lg:h-[4.5rem] lg:py-0 2xlg:px-0">
@@ -316,7 +331,9 @@ export default function Navbar() {
                 <div className="absolute bottom-4 flex w-full flex-col gap-8 border-t px-4 pt-8 text-lg">
                   <div className="flex w-full items-center justify-between gap-2 break-all text-bluePrimary">
                     <span className="flex-1 capitalize">subtotal</span>
-                    <span className="font-bold">1900 DH</span>
+                    <span className="font-bold">
+                      {formatNumberWithSpaces(subtotal)} DH
+                    </span>
                   </div>
                   <div className="flex flex-col items-center gap-2">
                     <SecondaryButton value="view cart" className="w-full" />

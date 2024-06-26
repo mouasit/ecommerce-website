@@ -253,64 +253,6 @@ export const products: Product[] = [
     price: 4000,
     imageProduct: chair,
     images: null,
-    variants: {
-      attributesName: ["storage", "color", "quantity"],
-      itemsAttributes: [
-        {
-          storage: "64 GB",
-          color: "black",
-          quantity: "44",
-        },
-        {
-          storage: "128 GB",
-          color: "green",
-          quantity: "12",
-        },
-        {
-          storage: "64 GB",
-          color: "green",
-          quantity: "05",
-        },
-        {
-          storage: "512 GB",
-          color: "green",
-          quantity: "10",
-        },
-        {
-          storage: "64 GB",
-          color: "blue",
-          quantity: "28",
-        },
-        {
-          storage: "512 GB",
-          color: "black",
-          quantity: "20",
-        },
-      ],
-    },
-    colorsDefinition: [
-      {
-        name: "black",
-        code: "#000",
-        imagesColor: [
-          imageBlack1,
-          imageBlack2,
-          imageBlack3,
-          imageBlack4,
-          imageBlack5,
-        ],
-      },
-      {
-        name: "green",
-        code: "#59965C",
-        imagesColor: [imageGreen1, imageGreen2, imageGreen3, imageGreen4],
-      },
-      {
-        name: "blue",
-        code: "#3694C7",
-        imagesColor: [imageBlue1, imageBlue2, imageBlue3, imageBlue4],
-      },
-    ],
   },
   {
     id: "p16",

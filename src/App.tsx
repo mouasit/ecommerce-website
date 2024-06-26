@@ -28,7 +28,9 @@ export const ShoppingCartContext = React.createContext<{
 });
 
 function App() {
-  const [shoppingCart, setShoppingCart] = useState<ShoppingCart[]>([]);
+  const [shoppingCart, setShoppingCart] = useState<ShoppingCart[]>(
+    JSON.parse(localStorage.getItem("shoppingCart") as string),
+  );
   return (
     <BrowserRouter>
       <ShoppingCartContext.Provider value={{ shoppingCart, setShoppingCart }}>
