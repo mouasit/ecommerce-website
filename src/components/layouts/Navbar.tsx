@@ -10,11 +10,12 @@ import logo from "../../assets/logo.svg";
 import SecondaryButton from "./SecondaryButton";
 import PrimaryButton from "./PrimaryButton";
 import ProductShoppingCartCard from "./ProductShoppingCartCard";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useLocation } from "react-router-dom";
 import { ShoppingCart, ShoppingCartContext } from "../../App";
 import { formatNumberWithSpaces } from "../../Helpers";
 
 export default function Navbar() {
+  const location = useLocation();
   const shoppingCartContext = useContext(ShoppingCartContext);
   const [clickBurgerMenu, setClickBurgerMenu] = React.useState<boolean>(false);
   const [hoverDropDown, setHoverDropDown] = React.useState<boolean>(false);
@@ -36,7 +37,6 @@ export default function Navbar() {
     setClickBurgerMenu(false);
     document.body.classList.remove("overflow-hidden");
   };
-
   const [subtotal, setSubtotal] = useState<number>(0);
   useEffect(() => {
     if (shoppingCartContext.shoppingCart.length) {
@@ -273,8 +273,10 @@ export default function Navbar() {
           <button
             className="flex items-start gap-[.2rem]"
             onClick={() => {
-              setClickShoppingCart(true);
-              document.body.classList.add("overflow-hidden");
+              if (location.pathname !== "/checkout") {
+                setClickShoppingCart(true);
+                document.body.classList.add("overflow-hidden");
+              }
             }}
           >
             <ShoppingCartIcon className="h-[2.3rem] w-[2.3rem] fill-bluePrimary" />
@@ -324,6 +326,10 @@ export default function Navbar() {
                         name={product.nameProduct}
                         price={product.price}
                         imageProduct={product.imageProduct}
+                        onClick={() => {
+                          setClickShoppingCart(false);
+                          document.body.classList.remove("overflow-hidden");
+                        }}
                       />
                     ),
                   )}
@@ -336,8 +342,20 @@ export default function Navbar() {
                     </span>
                   </div>
                   <div className="flex flex-col items-center gap-2">
-                    <SecondaryButton value="view cart" className="w-full" />
-                    <PrimaryButton value="Checkout" className="w-full" />
+                    <SecondaryButton
+                      value="view cart"
+                      className="w-full cursor-not-allowed"
+                    />
+                    <PrimaryButton
+                      value="Checkout"
+                      className="w-full"
+                      to="/Checkout"
+                      type="button"
+                      onClick={() => {
+                        setClickShoppingCart(false);
+                        document.body.classList.remove("overflow-hidden");
+                      }}
+                    />
                   </div>
                 </div>
               </>
