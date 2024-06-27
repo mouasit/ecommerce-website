@@ -5,6 +5,7 @@ import {
   AddToCartProductIcon,
   ArrowLeftIcon,
   ArrowRightIcon,
+  CheckCartIcon,
   FullScreenIcon,
   MinusIcon,
   PlusIcon,
@@ -13,7 +14,7 @@ import {
 import PrimaryButton from "../layouts/PrimaryButton";
 import SelectedColorItem from "../layouts/SelectedColorItem";
 import SlideCategoryProduct from "./SlideCategoryProduct";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import FullScreenSlider from "./FullScreenSlider";
 import {
   capitalizeFirstLetter,
@@ -24,6 +25,7 @@ import {
 import DropDown from "./DropDown";
 import type { ColorsDefinition, Variants } from "../../DataBase";
 import type { ItemAttributes } from "../../API";
+import { ShoppingCart, ShoppingCartContext } from "../../App";
 export type Filter = {
   name: string;
   value: string;
@@ -31,6 +33,8 @@ export type Filter = {
 
 export default function ProductDetails({
   productId,
+  productName,
+  imageProduct,
   title,
   price,
   features,
@@ -40,6 +44,8 @@ export default function ProductDetails({
   colorsDefinition,
 }: {
   productId: string;
+  productName: string;
+  imageProduct: any;
   title: string;
   price: number;
   features?: string[];
@@ -62,6 +68,18 @@ export default function ProductDetails({
       ? { name: "color", value: colorsDefinition[0].name }
       : undefined,
   );
+
+  const shoppingCartContext = useContext(ShoppingCartContext);
+
+  const [addToShoppingCart, setAddToShoppingCart] = useState<boolean>(
+    shoppingCartContext.shoppingCart.find(
+      (productShoppingCart: ShoppingCart) =>
+        productShoppingCart.idProduct === productId,
+    )
+      ? true
+      : false,
+  );
+
   let productWithColorsAndImages: {
     name?: string;
     imagesProduct: string[];
@@ -259,6 +277,15 @@ export default function ProductDetails({
     screenWidth,
   ]);
 
+  useEffect(() => {
+    if (
+      !shoppingCartContext.shoppingCart.find(
+        (productShoppingCart: ShoppingCart) =>
+          productShoppingCart.idProduct === productId,
+      )
+    )
+      setAddToShoppingCart(false);
+  }, [shoppingCartContext]);
   return (
     <section
       className="relative mt-[2rem] items-start gap-8 px-4 md:flex md:justify-between lg:gap-12 2xlg:px-0"
@@ -411,9 +438,41 @@ export default function ProductDetails({
             </button>
           </div>
           <PrimaryButton
-            icon={<AddToCartProductIcon className="h-8 w-8 fill-bluePrimary" />}
-            value="Add to cart"
+            icon={
+              addToShoppingCart ? (
+                <CheckCartIcon className="h-8 w-8 fill-bluePrimary" />
+              ) : (
+                <AddToCartProductIcon className="h-8 w-8 fill-bluePrimary" />
+              )
+            }
+            value={addToShoppingCart ? "Already in cart" : "Add to cart"}
             className="flex w-full items-center justify-center gap-3 text-lg"
+            onClick={() => {
+              if (
+                !shoppingCartContext.shoppingCart.find(
+                  (productShoppingCart: ShoppingCart) =>
+                    productShoppingCart.idProduct === productId,
+                )
+              ) {
+                shoppingCartContext.setShoppingCart([
+                  ...shoppingCartContext.shoppingCart,
+                  {
+                    idProduct: productId,
+                    nameProduct: productName,
+                    price,
+                    imageProduct: imageProduct,
+                  },
+                ]);
+                setAddToShoppingCart(true);
+              } else {
+                shoppingCartContext.setShoppingCart(
+                  shoppingCartContext.shoppingCart.filter(
+                    (productShoppingCart: ShoppingCart) =>
+                      productShoppingCart.idProduct !== productId,
+                  ),
+                );
+              }
+            }}
           />
         </div>
       </div>

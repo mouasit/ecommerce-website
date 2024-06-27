@@ -29,6 +29,7 @@ export type DisplayProduct = {
 export type DisplayProductDetails = {
   id: string;
   name: string;
+  imageProduct: any;
   title?: string;
   price: number;
   features?: string[];
@@ -160,6 +161,7 @@ export function getProductDetails({
     return {
       id: targetProduct.id,
       name: targetProduct.name,
+      imageProduct: targetProduct.imageProduct,
       title: targetProduct.title ? targetProduct.title : targetProduct.name,
       price: targetProduct.price,
       features: targetProduct.features,
