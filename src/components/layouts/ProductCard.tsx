@@ -4,7 +4,7 @@ import { AddToCartIcon, CheckCartIcon } from "./Icons";
 import PrimaryButton from "./PrimaryButton";
 import SecondaryButton from "./SecondaryButton";
 import { getProduct } from "../../API";
-import { formatNumberWithSpaces } from "../../Helpers";
+import { currency, formatNumberWithSpaces } from "../../Helpers";
 import type { DisplayProduct } from "../../API";
 import { Link } from "react-router-dom";
 import { ShoppingCart, ShoppingCartContext } from "../../App";
@@ -58,7 +58,7 @@ export default function ProductCard({
           <div className="flex w-full justify-center break-all text-[1.5rem] font-bold text-bluePrimary">
             <div className="space-x-1">
               <span>{formatNumberWithSpaces(product.price)}</span>
-              <span className="break-words text-yellowPrimary">DH</span>
+              <span className="break-words text-yellowPrimary">{currency}</span>
             </div>
           </div>
         </div>

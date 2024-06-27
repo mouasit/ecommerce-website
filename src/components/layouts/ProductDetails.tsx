@@ -17,6 +17,7 @@ import { useEffect, useRef, useState } from "react";
 import FullScreenSlider from "./FullScreenSlider";
 import {
   capitalizeFirstLetter,
+  currency,
   formatNumberWithSpaces,
   getInitialSlide,
 } from "../../Helpers";
@@ -325,9 +326,9 @@ export default function ProductDetails({
         <span className="text-[1.5rem] font-semibold capitalize text-bluePrimary">
           {title}
         </span>
-        <div className="space-x-2 text-[1.6rem] font-bold text-bluePrimary">
+        <div className="space-x-1 text-[1.6rem] font-bold text-bluePrimary">
           <span>{formatNumberWithSpaces(price)}</span>
-          <span className="text-yellowPrimary">DH</span>
+          <span className="text-yellowPrimary">{currency}</span>
         </div>
         {features ? (
           <ul className="ml-5 list-disc space-y-3 text-sm font-light text-grayPrimary">

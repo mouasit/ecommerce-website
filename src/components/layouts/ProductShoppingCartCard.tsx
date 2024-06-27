@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { formatNumberWithSpaces } from "../../Helpers";
+import { currency, formatNumberWithSpaces } from "../../Helpers";
 import { TrashIcon } from "./Icons";
 import { ShoppingCartContext } from "../../App";
 import type { ShoppingCart } from "../../App";
@@ -31,8 +31,9 @@ export default function ProductShoppingCartCard({
         <img src={imageProduct} alt="product" className="w-[5rem] rounded-lg" />
         <span className="flex w-[50vw] flex-col gap-1 capitalize text-bluePrimary sm:w-[13rem] ">
           <span className="truncate font-medium">{name}</span>
-          <span className="break-words font-light text-grayPrimary">
-            {formatNumberWithSpaces(price)} DH
+          <span className="space-x-1 break-words font-light text-grayPrimary">
+            <span>{formatNumberWithSpaces(price)}</span>
+            <span>{currency}</span>
           </span>
         </span>
       </Link>

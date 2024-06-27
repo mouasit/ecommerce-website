@@ -1,10 +1,14 @@
 import { useContext, useEffect } from "react";
 import Input from "../layouts/Input";
-import redmi from "../../assets/products/redmi.jpg";
 import ProductCardCheckout from "../layouts/ProductCardCheckout";
 import PrimaryButton from "../layouts/PrimaryButton";
 import { useState } from "react";
-import { isDigit, isEmptyString } from "../../Helpers";
+import {
+  currency,
+  formatNumberWithSpaces,
+  isDigit,
+  isEmptyString,
+} from "../../Helpers";
 import DropDownForm from "../layouts/DropDownForm";
 import { TrackIcon } from "../layouts/Icons";
 import { ShoppingCartContext } from "../../App";
@@ -23,7 +27,11 @@ export default function Checkout() {
   const [errorAddress, setErrorAddress] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
   const [errorPhone, setErrorPhone] = useState<string>("");
+  const shippingCost: number = 20;
   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
     if (!shoppingCartContext.shoppingCart.length) {
       navigate("/");
     }
@@ -76,30 +84,30 @@ export default function Checkout() {
             </h2>
             <div className="flex w-full flex-col gap-8 border px-4 py-8 md:rounded-xl">
               <div className="flex flex-col gap-8">
-                <ProductCardCheckout
-                  imageProduct={redmi}
-                  name="Xiaomi redmi"
-                  quantity="2"
-                  price="1500"
-                />
-                <ProductCardCheckout
-                  imageProduct={redmi}
-                  name="Xiaomi redmi R..."
-                  quantity="2"
-                  price="1500"
-                />
-                <ProductCardCheckout
-                  imageProduct={redmi}
-                  name="Xiaomi redmi R..."
-                  quantity="2"
-                  price="1500"
-                />
+                {shoppingCartContext.shoppingCart.map(
+                  (productShoppingCart: ShoppingCart, index: number) => (
+                    <ProductCardCheckout
+                      key={index}
+                      imageProduct={productShoppingCart.imageProduct}
+                      name={productShoppingCart.nameProduct}
+                      quantity={1}
+                      price={productShoppingCart.price}
+                    />
+                  ),
+                )}
               </div>
               <div className="flex w-full items-center justify-between gap-6 break-all border-t pt-8  text-bluePrimary">
                 <span className="flex-1 capitalize text-grayPrimary">
                   subtotal
                 </span>
-                <span className="font-medium">4500 DH</span>
+                <span className="space-x-1 font-medium">
+                  <span>
+                    {formatNumberWithSpaces(
+                      shoppingCartContext.subTotal as number,
+                    )}
+                  </span>
+                  <span>{currency}</span>
+                </span>
               </div>
               <div className="flex w-full items-center justify-between gap-6 break-all border-t pt-8  text-bluePrimary">
                 {city !== cityStarter ? (
@@ -108,7 +116,9 @@ export default function Checkout() {
                       shipping
                     </span>
                     <span className="font-medium">
-                      {city.toLowerCase() !== "casablanca" ? "20 DH" : "Free"}
+                      {city.toLowerCase() !== "casablanca"
+                        ? `${shippingCost} ${currency}`
+                        : "Free"}
                     </span>
                   </>
                 ) : (
@@ -120,8 +130,17 @@ export default function Checkout() {
               </div>
               <div className="flex w-full items-center justify-between gap-6 break-all border-t pt-8 text-xl text-bluePrimary">
                 <span className="flex-1 font-bold capitalize">total</span>
-                <span className="font-bold">
-                  4500 <span className="text-yellowPrimary">DH</span>
+                <span className="space-x-1 font-bold">
+                  <span>
+                    {formatNumberWithSpaces(
+                      city !== cityStarter
+                        ? city.toLowerCase() === "casablanca"
+                          ? Number(shoppingCartContext.subTotal + 0)
+                          : Number(shoppingCartContext.subTotal + shippingCost)
+                        : Number(shoppingCartContext.subTotal + 0),
+                    )}
+                  </span>
+                  <span className="text-yellowPrimary">{currency}</span>
                 </span>
               </div>
               <PrimaryButton

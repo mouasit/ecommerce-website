@@ -35,3 +35,5 @@ export function formatNumberWithSpaces(number: number) {
   let numStr = number.toString();
   return numStr.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 }
+
+export const currency = "DH";

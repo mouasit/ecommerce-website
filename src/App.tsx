@@ -22,18 +22,30 @@ export type ShoppingCart = {
 export const ShoppingCartContext = React.createContext<{
   shoppingCart: ShoppingCart[];
   setShoppingCart: React.Dispatch<React.SetStateAction<ShoppingCart[]>>;
+  subTotal: number;
+  setSubTotal: React.Dispatch<React.SetStateAction<number>>;
 }>({
   shoppingCart: [],
   setShoppingCart: () => {},
+  subTotal: 0,
+  setSubTotal: () => {},
 });
 
 function App() {
+  const shoppingCartLocalStorage = JSON.parse(
+    localStorage.getItem("shoppingCart") as any,
+  );
   const [shoppingCart, setShoppingCart] = useState<ShoppingCart[]>(
-    JSON.parse(localStorage.getItem("shoppingCart") as string),
+    shoppingCartLocalStorage ? shoppingCartLocalStorage.shoppingCart : [],
+  );
+  const [subTotal, setSubTotal] = useState<number>(
+    shoppingCartLocalStorage ? shoppingCartLocalStorage.subTotal : 0,
   );
   return (
     <BrowserRouter>
-      <ShoppingCartContext.Provider value={{ shoppingCart, setShoppingCart }}>
+      <ShoppingCartContext.Provider
+        value={{ shoppingCart, setShoppingCart, subTotal, setSubTotal }}
+      >
         <AnnouncementBar />
         <Navbar />
         <main className="app-container">

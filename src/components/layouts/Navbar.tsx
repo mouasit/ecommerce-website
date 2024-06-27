@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import {
   ArrowDownIcon,
   BurgerMenuIcon,
@@ -12,7 +12,7 @@ import PrimaryButton from "./PrimaryButton";
 import ProductShoppingCartCard from "./ProductShoppingCartCard";
 import { NavLink, Link, useLocation } from "react-router-dom";
 import { ShoppingCart, ShoppingCartContext } from "../../App";
-import { formatNumberWithSpaces } from "../../Helpers";
+import { currency, formatNumberWithSpaces } from "../../Helpers";
 
 export default function Navbar() {
   const location = useLocation();
@@ -37,19 +37,21 @@ export default function Navbar() {
     setClickBurgerMenu(false);
     document.body.classList.remove("overflow-hidden");
   };
-  const [subtotal, setSubtotal] = useState<number>(0);
   useEffect(() => {
     if (shoppingCartContext.shoppingCart.length) {
       const pricesOfProduct = shoppingCartContext.shoppingCart.map(
         (product: ShoppingCart) => product.price,
       );
-      setSubtotal(
+      shoppingCartContext.setSubTotal(
         pricesOfProduct.reduce((acc: number, val: number) => acc + val),
       );
-    } else setSubtotal(0);
+    } else shoppingCartContext.setSubTotal(0);
     localStorage.setItem(
       "shoppingCart",
-      JSON.stringify(shoppingCartContext.shoppingCart),
+      JSON.stringify({
+        shoppingCart: shoppingCartContext.shoppingCart,
+        subTotal: shoppingCartContext.subTotal,
+      }),
     );
   }, [shoppingCartContext]);
   return (
@@ -273,7 +275,7 @@ export default function Navbar() {
           <button
             className="flex items-start gap-[.2rem]"
             onClick={() => {
-              if (location.pathname !== "/checkout") {
+              if (location.pathname.toLowerCase() !== "/checkout") {
                 setClickShoppingCart(true);
                 document.body.classList.add("overflow-hidden");
               }
@@ -337,8 +339,11 @@ export default function Navbar() {
                 <div className="absolute bottom-4 flex w-full flex-col gap-8 border-t px-4 pt-8 text-lg">
                   <div className="flex w-full items-center justify-between gap-2 break-all text-bluePrimary">
                     <span className="flex-1 capitalize">subtotal</span>
-                    <span className="font-bold">
-                      {formatNumberWithSpaces(subtotal)} DH
+                    <span className="space-x-1 font-bold">
+                      <span>
+                        {formatNumberWithSpaces(shoppingCartContext.subTotal)}
+                      </span>
+                      <span>{currency}</span>
                     </span>
                   </div>
                   <div className="flex flex-col items-center gap-2">
