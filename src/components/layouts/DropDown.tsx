@@ -1,13 +1,30 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowDownIcon } from "./Icons";
+import { Filter } from "./ProductDetails";
 
-export default function DropDown() {
+export default function DropDown({
+  productId,
+  items,
+  attributeName,
+  filter,
+  setFilter,
+}: {
+  productId: string;
+  items: string[];
+  attributeName: string;
+  filter: Filter | undefined;
+  setFilter: React.Dispatch<React.SetStateAction<Filter | undefined>>;
+}) {
   const dropDownRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [clickDropDown, setClickDropDown] = useState<boolean>(false);
   const [endAnimation, setEndAnimation] = useState<boolean>(false);
-  const [selectedItem, setSelectedItem] = useState<string>("Selected size");
-  const selectedItemStarter = "Selected size";
+  const selectedItemStarter = `Selected ${attributeName}`;
+  const [selectedItem, setSelectedItem] = useState<string>(
+    filter && filter.name === attributeName
+      ? filter.value
+      : `Selected ${attributeName}`,
+  );
   function handleBlur(e: any) {
     if (
       containerRef.current &&
@@ -25,8 +42,29 @@ export default function DropDown() {
   }
   function selectItem(e: any) {
     setSelectedItem(e.target.textContent);
+    if (!filter || filter.name === attributeName)
+      setFilter({ name: attributeName, value: e.target.textContent });
     closeDropDown();
   }
+
+  useEffect(() => {
+    if (filter && filter.name !== attributeName)
+      setSelectedItem(selectedItemStarter);
+  }, [productId]);
+  useEffect(() => {
+    if (
+      filter &&
+      filter.name !== attributeName &&
+      !items.includes(selectedItem)
+    ) {
+      setSelectedItem(selectedItemStarter);
+    } else if (filter && filter.name === attributeName)
+      setSelectedItem(
+        filter && filter.name === attributeName
+          ? filter.value
+          : `Selected ${attributeName}`,
+      );
+  }, [filter]);
   useEffect(() => {
     document.addEventListener("click", handleBlur);
     return () => {
@@ -47,7 +85,7 @@ export default function DropDown() {
         }}
       >
         <span
-          className={`${selectedItem !== selectedItemStarter ? "font-normal uppercase text-bluePrimary" : "text-sm font-light text-grayPrimary"}`}
+          className={`${selectedItem !== selectedItemStarter ? "uppercase text-bluePrimary" : "font-light text-grayPrimary"}`}
         >
           {selectedItem}
         </span>
@@ -57,40 +95,19 @@ export default function DropDown() {
       </button>
       {clickDropDown ? (
         <div
-          className="fadein-down absolute w-full pt-2 text-sm"
+          className="fadein-down absolute z-[1] w-full pt-2 text-sm"
           ref={dropDownRef}
         >
           <div className="flex max-h-[15.5rem] flex-col gap-3 overflow-auto rounded-lg border-2 border-bluePrimary bg-white py-2 text-bluePrimary">
-            <button
-              className="p-2 text-left uppercase hover:bg-gray-50"
-              onClick={selectItem}
-            >
-              s
-            </button>
-            <button
-              className="p-2 text-left uppercase hover:bg-gray-50"
-              onClick={selectItem}
-            >
-              m
-            </button>
-            <button
-              className="p-2 text-left uppercase hover:bg-gray-50"
-              onClick={selectItem}
-            >
-              lg
-            </button>
-            <button
-              className="p-2 text-left uppercase hover:bg-gray-50"
-              onClick={selectItem}
-            >
-              xl
-            </button>
-            <button
-              className="p-2 text-left uppercase hover:bg-gray-50"
-              onClick={selectItem}
-            >
-              xxl
-            </button>
+            {items.map((item: string, index: number) => (
+              <button
+                key={index}
+                className="p-2 text-left uppercase hover:bg-gray-50"
+                onClick={selectItem}
+              >
+                {item}
+              </button>
+            ))}
           </div>
         </div>
       ) : null}

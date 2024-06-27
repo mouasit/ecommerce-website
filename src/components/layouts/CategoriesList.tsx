@@ -11,18 +11,21 @@ export default function CategoriesList() {
         imageProduct={headphones}
         backgroundColor="bg-yellowPrimary"
         textColor="text-bluePrimary"
+        link="/Category/Electronics/Accessories"
       />
       <CategoryCard
         name="home appliance"
         imageProduct={washingMachine}
         backgroundColor="bg-bluePrimary"
         textColor="text-white"
+        link="/Category/Home Appliance"
       />
       <CategoryCard
         name="smart watches"
         imageProduct={smartWatch}
         backgroundColor="bg-blueSky"
         textColor="text-bluePrimary"
+        link="/Category/Electronics/Smart Watches"
       />
     </section>
   );

@@ -1,8 +1,10 @@
+import { currency, formatNumberWithSpaces } from "../../Helpers";
+
 type ProductCardCheckout = {
   imageProduct: any;
   name: string;
-  quantity: string;
-  price: string;
+  quantity: number;
+  price: number;
 };
 
 export default function ProductCardCheckout({
@@ -24,7 +26,10 @@ export default function ProductCardCheckout({
           <span className="text-grayPrimary">X{quantity}</span>
         </div>
       </div>
-      <span className="font-semibold text-bluePrimary">{price} DH</span>
+      <span className="font-semibold space-x-1 text-bluePrimary">
+        <span>{formatNumberWithSpaces(price)}</span>
+        <span>{currency}</span>
+      </span>
     </div>
   );
 }

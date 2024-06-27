@@ -9,31 +9,45 @@ import {
   MinusIcon,
   PlusIcon,
 } from "./Icons";
-import imageBlack1 from "../../assets/products/product-info/black/1.jpg";
-import imageBlack2 from "../../assets/products/product-info/black/2.jpg";
-import imageBlack3 from "../../assets/products/product-info/black/3.jpg";
-import imageBlack4 from "../../assets/products/product-info/black/4.jpg";
-import imageBlack5 from "../../assets/products/product-info/black/5.jpg";
-
-import imageGreen1 from "../../assets/products/product-info/green/1.jpg";
-import imageGreen2 from "../../assets/products/product-info/green/2.jpg";
-import imageGreen3 from "../../assets/products/product-info/green/3.jpg";
-import imageGreen4 from "../../assets/products/product-info/green/4.jpg";
-
-import imageBlue1 from "../../assets/products/product-info/blue/1.jpg";
-import imageBlue2 from "../../assets/products/product-info/blue/2.jpg";
-import imageBlue3 from "../../assets/products/product-info/blue/3.jpg";
-import imageBlue4 from "../../assets/products/product-info/blue/4.jpg";
 
 import PrimaryButton from "../layouts/PrimaryButton";
 import SelectedColorItem from "../layouts/SelectedColorItem";
 import SlideCategoryProduct from "./SlideCategoryProduct";
 import { useEffect, useRef, useState } from "react";
 import FullScreenSlider from "./FullScreenSlider";
-import { getInitialSlide } from "../../Helpers";
+import {
+  capitalizeFirstLetter,
+  currency,
+  formatNumberWithSpaces,
+  getInitialSlide,
+} from "../../Helpers";
 import DropDown from "./DropDown";
+import type { ColorsDefinition, Variants } from "../../DataBase";
+import type { ItemAttributes } from "../../API";
+export type Filter = {
+  name: string;
+  value: string;
+};
 
-export default function ProductDetails() {
+export default function ProductDetails({
+  productId,
+  title,
+  price,
+  features,
+  itemsAttributes,
+  images,
+  variants,
+  colorsDefinition,
+}: {
+  productId: string;
+  title: string;
+  price: number;
+  features?: string[];
+  itemsAttributes: ItemAttributes[];
+  images?: string[] | null;
+  variants?: Variants;
+  colorsDefinition?: ColorsDefinition[];
+}) {
   const sectionRef = useRef<HTMLElement>(null);
   const [selectedColorProduct, setSelectedColorProduct] = useState<number>(0);
   const screenSize = 1024;
@@ -43,33 +57,38 @@ export default function ProductDetails() {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [fullScreenSlider, setFullScreenSlider] = useState<boolean>(false);
   const [quantity, setQuantity] = useState<number>(1);
-  const productWithColorsAndImages = [
-    {
-      imagesProduct: [
-        imageBlack1,
-        imageBlack2,
-        imageBlack3,
-        imageBlack4,
-        imageBlack5,
-      ],
-      colorProduct: "#000",
-    },
-    {
-      imagesProduct: [imageGreen1, imageGreen2, imageGreen3, imageGreen4],
-      colorProduct: "#59965C",
-    },
+  const [filter, setFilter] = useState<Filter | undefined>(
+    colorsDefinition
+      ? { name: "color", value: colorsDefinition[0].name }
+      : undefined,
+  );
+  let productWithColorsAndImages: {
+    name?: string;
+    imagesProduct: string[];
+    colorProduct?: string;
+  }[] = [];
 
-    {
-      imagesProduct: [imageBlue1, imageBlue2, imageBlue3, imageBlue4],
-      colorProduct: "#3694C7",
-    },
-  ];
+  if (!colorsDefinition && images) {
+    productWithColorsAndImages = [
+      {
+        imagesProduct: images,
+      },
+    ];
+  }
+  colorsDefinition?.forEach((color: any) => {
+    productWithColorsAndImages.push({
+      name: color.name,
+      imagesProduct: color.imagesColor,
+      colorProduct: color.code,
+    });
+  });
   const settings = {
     dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    adaptiveHeight: true,
     nextArrow: <SliderNextArrow />,
     prevArrow: <SliderPrevArrow />,
     customPaging: (i: number) => {
@@ -162,6 +181,36 @@ export default function ProductDetails() {
     };
   }, []);
 
+  const filteredItems = ({
+    filter,
+    attributeName,
+  }: {
+    filter: Filter | undefined;
+    attributeName: string;
+  }): any => {
+    let items: string[] = [];
+    if (variants && filter) {
+      return variants.itemsAttributes
+        .filter(
+          (itemAttribute: any) => itemAttribute[filter.name] === filter.value,
+        )
+        .map((item: any) => item[attributeName]);
+    }
+
+    return items;
+  };
+
+  useEffect(() => {
+    setFullScreenSlider(false);
+    document.body.classList.remove("overflow-hidden");
+    setFilter(
+      colorsDefinition
+        ? { name: "color", value: colorsDefinition[0].name }
+        : undefined,
+    );
+    setSelectedColorProduct(0);
+  }, [productId]);
+
   useEffect(() => {
     const container = sectionRef.current?.querySelector(
       ".slick-dots",
@@ -203,7 +252,12 @@ export default function ProductDetails() {
       container.removeEventListener("mousemove", handleDragging);
       document.removeEventListener("mouseup", handleDragStop);
     };
-  }, [selectedColorProduct, screenWidth]);
+  }, [
+    productWithColorsAndImages,
+    productId,
+    selectedColorProduct,
+    screenWidth,
+  ]);
 
   return (
     <section
@@ -270,39 +324,71 @@ export default function ProductDetails() {
       ) : null}
       <div className="mt-[11rem]  flex flex-col gap-5 md:mt-2 md:w-[50%] lg:space-y-4">
         <span className="text-[1.5rem] font-semibold capitalize text-bluePrimary">
-          Apple iPhone 13 6,1" 5G
+          {title}
         </span>
-        <div className="space-x-2 text-[1.6rem] font-bold text-bluePrimary">
-          <span>10 000</span>
-          <span className="text-yellowPrimary">DH</span>
+        <div className="space-x-1 text-[1.6rem] font-bold text-bluePrimary">
+          <span>{formatNumberWithSpaces(price)}</span>
+          <span className="text-yellowPrimary">{currency}</span>
         </div>
-        <ul className="ml-5 list-disc space-y-3 text-sm font-light text-grayPrimary">
-          <li>Bass and Stereo Sound</li>
-          <li>Display with 3088 x 1440 pixels resolution</li>
-          <li>Memory, Storage & SIM: 12GB RAM, 256GB</li>
-        </ul>
+        {features ? (
+          <ul className="ml-5 list-disc space-y-3 text-sm font-light text-grayPrimary">
+            {features.map((feature: string, index: number) => (
+              <li key={index}>{capitalizeFirstLetter(feature)}</li>
+            ))}
+          </ul>
+        ) : null}
         <div className="flex flex-col gap-8">
-          <div className="flex items-center gap-5">
-            <span className="w-[6.8rem] flex-none text-lg font-medium text-bluePrimary">
-              Chose size
-            </span>
-            <DropDown />
-          </div>
-          <div className="flex items-center gap-5 text-lg font-medium text-bluePrimary">
-            <span className="w-[6.8rem]">Chose color</span>
-            <div className="flex items-center gap-3">
-              {productWithColorsAndImages.map((product, index) => {
-                return (
-                  <SelectedColorItem
-                    backgroundColor={product.colorProduct}
-                    key={index}
-                    selected={index === selectedColorProduct ? true : false}
-                    onClick={() => setSelectedColorProduct(index)}
+          {itemsAttributes.map(
+            (itemAttributes: ItemAttributes, index: number) =>
+              itemAttributes.name === "color" ? (
+                <div
+                  className="flex items-center gap-5 text-lg font-medium text-bluePrimary"
+                  key={index}
+                >
+                  <span className="w-[8.3rem]">Chose color</span>
+                  <div className="flex items-center gap-3">
+                    {productWithColorsAndImages.map((product, index) => {
+                      return (
+                        <SelectedColorItem
+                          backgroundColor={product.colorProduct as string}
+                          key={index}
+                          selected={
+                            index === selectedColorProduct ? true : false
+                          }
+                          onClick={() => {
+                            setFilter({
+                              name: itemAttributes.name,
+                              value: product.name as string,
+                            });
+                            setSelectedColorProduct(index);
+                          }}
+                        />
+                      );
+                    })}
+                  </div>
+                </div>
+              ) : (
+                <div className="flex items-center gap-5" key={index}>
+                  <span className="w-[8.3rem] flex-none text-lg font-medium text-bluePrimary">
+                    Chose {itemAttributes.name}
+                  </span>
+                  <DropDown
+                    productId={productId}
+                    items={
+                      filter && itemAttributes.name !== filter.name
+                        ? filteredItems({
+                            filter,
+                            attributeName: itemAttributes.name,
+                          })
+                        : itemAttributes.items
+                    }
+                    attributeName={itemAttributes.name}
+                    filter={filter}
+                    setFilter={setFilter}
                   />
-                );
-              })}
-            </div>
-          </div>
+                </div>
+              ),
+          )}
         </div>
         <div className="mt-5 flex max-w-[533px] gap-2 md:max-w-none">
           <div className="flex w-[60%] items-center justify-between rounded-2xl bg-grayLight p-3 text-xl font-medium text-bluePrimary xlg:w-[65%]">

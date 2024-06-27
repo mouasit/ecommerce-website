@@ -25,3 +25,15 @@ export function filterByName(data: string[], value: string): string[] {
   });
   return newData;
 }
+
+export function capitalizeFirstLetter(str: string): string {
+  if (!str) return str; // Check if the string is empty
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+export function formatNumberWithSpaces(number: number) {
+  let numStr = number.toString();
+  return numStr.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+}
+
+export const currency = "DH";

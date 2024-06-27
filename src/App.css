@@ -82,3 +82,27 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+body:has(.not-found-container) .announcement-bar {
+  display: none;
+}
+
+body:has(.not-found-container) nav {
+  display: none;
+}
+
+body:has(.not-found-container) footer {
+  display: none;
+}
+
+body:has(.loader) .announcement-bar {
+  display: none;
+}
+
+body:has(.loader) nav {
+  display: none;
+}
+
+body:has(.loader) footer {
+  display: none;
+}

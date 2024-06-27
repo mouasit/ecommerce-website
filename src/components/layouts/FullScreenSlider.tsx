@@ -17,6 +17,7 @@ export default function FullScreenSlider({
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    adaptiveHeight: true,
     initialSlide: initialSlide,
     nextArrow: <SliderNextArrow />,
     prevArrow: <SliderPrevArrow />,

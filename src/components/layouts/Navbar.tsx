@@ -1,18 +1,22 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import {
   ArrowDownIcon,
   BurgerMenuIcon,
   CloseIcon,
+  EmptyCartIcon,
   ShoppingCartIcon,
 } from "./Icons";
 import logo from "../../assets/logo.svg";
-import iphone from "../../assets/products/iphone.jpg";
-import cable from "../../assets/products/cable.jpg";
 import SecondaryButton from "./SecondaryButton";
 import PrimaryButton from "./PrimaryButton";
-import ProductShoppoingCartCard from "./ProductShoppoingCartCard";
+import ProductShoppingCartCard from "./ProductShoppingCartCard";
+import { NavLink, Link, useLocation } from "react-router-dom";
+import { ShoppingCart, ShoppingCartContext } from "../../App";
+import { currency, formatNumberWithSpaces } from "../../Helpers";
 
 export default function Navbar() {
+  const location = useLocation();
+  const shoppingCartContext = useContext(ShoppingCartContext);
   const [clickBurgerMenu, setClickBurgerMenu] = React.useState<boolean>(false);
   const [hoverDropDown, setHoverDropDown] = React.useState<boolean>(false);
   const [clickDropDown, setClickDropDown] = React.useState<boolean>(false);
@@ -22,7 +26,34 @@ export default function Navbar() {
     React.useState<boolean>(false);
   const dropDownRef = React.useRef<any>(null);
   const dropDownMobileRef = React.useRef<any>(null);
-
+  const closeDropDown = () => {
+    setHoverAnimation(false);
+    dropDownRef.current?.classList.replace("fadein-down", "fadeout-up");
+    dropDownRef.current?.addEventListener("animationend", () => {
+      setHoverDropDown(false);
+    });
+  };
+  const closeBurgerMenu = () => {
+    setClickBurgerMenu(false);
+    document.body.classList.remove("overflow-hidden");
+  };
+  useEffect(() => {
+    if (shoppingCartContext.shoppingCart.length) {
+      const pricesOfProduct = shoppingCartContext.shoppingCart.map(
+        (product: ShoppingCart) => product.price,
+      );
+      shoppingCartContext.setSubTotal(
+        pricesOfProduct.reduce((acc: number, val: number) => acc + val),
+      );
+    } else shoppingCartContext.setSubTotal(0);
+    localStorage.setItem(
+      "shoppingCart",
+      JSON.stringify({
+        shoppingCart: shoppingCartContext.shoppingCart,
+        subTotal: shoppingCartContext.subTotal,
+      }),
+    );
+  }, [shoppingCartContext]);
   return (
     <nav className="sticky top-0 z-[2] bg-white shadow-sm">
       <div className="app-container flex h-auto w-full justify-between p-4 lg:h-[4.5rem] lg:py-0 2xlg:px-0">
@@ -39,9 +70,9 @@ export default function Navbar() {
           >
             <BurgerMenuIcon className="h-7 w-7 fill-bluePrimary" />
           </button>
-          <button>
+          <Link to="/">
             <img src={logo} alt="logo" className="w-[8.5rem]" />
-          </button>
+          </Link>
         </span>
         <ul className="hidden gap-20 lg:flex">
           <li
@@ -55,58 +86,79 @@ export default function Navbar() {
               setHoverDropDown(true);
             }}
             onMouseLeave={() => {
-              setHoverAnimation(false);
-              dropDownRef.current?.classList.replace(
-                "fadein-down",
-                "fadeout-up",
-              );
-              dropDownRef.current?.addEventListener("animationend", () => {
-                setHoverDropDown(false);
-              });
+              closeDropDown();
             }}
           >
-            <button className="flex h-full items-center gap-2 text-bluePrimary">
+            <NavLink
+              to="/"
+              className="flex h-full items-center gap-2 text-bluePrimary"
+            >
               All products
               <ArrowDownIcon
                 className={`rotate h-3 w-3 fill-yellowPrimary ${hoverAnimation ? "down" : ""}`}
               />
-            </button>
+            </NavLink>
             {hoverDropDown ? (
               <div
                 className="fadein-down absolute top-12 w-[15rem] bg-white pt-4 text-sm"
                 ref={dropDownRef}
               >
                 <div className="flex flex-col gap-3 rounded-lg py-2 font-light text-bluePrimary shadow-xs">
-                  <button className="p-2 text-left capitalize hover:bg-gray-50">
-                    pc & laptop
-                  </button>
-                  <button className="p-2 text-left capitalize hover:bg-gray-50">
-                    smart home
-                  </button>
-                  <button className="p-2 text-left capitalize hover:bg-gray-50">
+                  <Link
+                    onClick={closeDropDown}
+                    to="/Category/Electronics/Laptops"
+                    className="p-2 text-left capitalize hover:bg-gray-50"
+                  >
+                    laptops
+                  </Link>
+                  <Link
+                    onClick={closeDropDown}
+                    to="/Category/Electronics/Smart Watches"
+                    className="p-2 text-left capitalize hover:bg-gray-50"
+                  >
+                    smart watches
+                  </Link>
+                  <Link
+                    onClick={closeDropDown}
+                    to="/Category/Electronics/Phones"
+                    className="p-2 text-left capitalize hover:bg-gray-50"
+                  >
                     phones
-                  </button>
-                  <button className="p-2 text-left capitalize hover:bg-gray-50">
-                    accessoires
-                  </button>
+                  </Link>
+                  <Link
+                    onClick={closeDropDown}
+                    to="/Category/Electronics/Accessories"
+                    className="p-2 text-left capitalize hover:bg-gray-50"
+                  >
+                    accessories
+                  </Link>
                 </div>
               </div>
             ) : null}
           </li>
           <li>
-            <button className="flex h-full items-center text-bluePrimary">
+            <NavLink
+              to="/Category/Electronics"
+              className="flex h-full items-center text-bluePrimary"
+            >
               Electronics
-            </button>
+            </NavLink>
           </li>
           <li>
-            <button className="flex h-full items-center text-bluePrimary">
+            <NavLink
+              to="/Category/Home Appliance"
+              className="flex h-full items-center text-bluePrimary"
+            >
               Home Appliance
-            </button>
+            </NavLink>
           </li>
           <li>
-            <button className="flex h-full items-center text-bluePrimary">
+            <NavLink
+              to="/Category/Gaming"
+              className="flex h-full items-center text-bluePrimary"
+            >
               Gaming
-            </button>
+            </NavLink>
           </li>
         </ul>
         <ul
@@ -125,9 +177,13 @@ export default function Navbar() {
           </li>
           <li>
             <div className="flex items-center gap-5">
-              <button className="flex items-center gap-2 text-bluePrimary">
+              <Link
+                onClick={closeBurgerMenu}
+                to="/"
+                className="flex items-center gap-2 text-bluePrimary"
+              >
                 All products
-              </button>
+              </Link>
               <button
                 className="rounded-full bg-yellowPrimary p-[.4rem]"
                 onClick={() => {
@@ -156,34 +212,78 @@ export default function Navbar() {
                 className="fadein-down mt-9 flex flex-col gap-7  border-l pl-5 text-sm font-light text-bluePrimary"
                 ref={dropDownMobileRef}
               >
-                <button className="text-left capitalize">pc & laptop</button>
-                <button className="text-left capitalize">smart home</button>
-                <button className="text-left capitalize">phones</button>
-                <button className="text-left capitalize">accessoires</button>
+                <Link
+                  onClick={closeBurgerMenu}
+                  to="/Category/Electronics/Laptops"
+                  className="text-left capitalize"
+                >
+                  laptops
+                </Link>
+                <Link
+                  onClick={closeBurgerMenu}
+                  to="/Category/Electronics/Smart Watches"
+                  className="text-left capitalize"
+                >
+                  smart watches
+                </Link>
+                <Link
+                  onClick={closeBurgerMenu}
+                  to="/Category/Electronics/Phones"
+                  className="text-left capitalize"
+                >
+                  phones
+                </Link>
+                <Link
+                  onClick={closeBurgerMenu}
+                  to="/Category/Electronics/Accessories"
+                  className="text-left capitalize"
+                >
+                  accessories
+                </Link>
               </div>
             ) : null}
           </li>
           <li>
-            <button className="text-bluePrimary">Electronic</button>
+            <Link
+              onClick={closeBurgerMenu}
+              to="/Category/Electronics"
+              className="text-bluePrimary"
+            >
+              Electronics
+            </Link>
           </li>
           <li>
-            <button className="text-bluePrimary">Audio & Video</button>
+            <Link
+              onClick={closeBurgerMenu}
+              to="/Category/Home Appliance"
+              className="text-bluePrimary"
+            >
+              Home Appliance
+            </Link>
           </li>
           <li>
-            <button className="text-bluePrimary">Furniture</button>
+            <Link
+              onClick={closeBurgerMenu}
+              to="/Category/Gaming"
+              className="text-bluePrimary"
+            >
+              Gaming
+            </Link>
           </li>
         </ul>
         <div className="flex items-center">
           <button
             className="flex items-start gap-[.2rem]"
             onClick={() => {
-              setClickShoppingCart(true);
-              document.body.classList.add("overflow-hidden");
+              if (location.pathname.toLowerCase() !== "/checkout") {
+                setClickShoppingCart(true);
+                document.body.classList.add("overflow-hidden");
+              }
             }}
           >
             <ShoppingCartIcon className="h-[2.3rem] w-[2.3rem] fill-bluePrimary" />
             <span className="flex h-[1.5rem] w-[1.5rem] items-center justify-center rounded-full bg-yellowPrimary font-bold text-bluePrimary">
-              0
+              {shoppingCartContext.shoppingCart.length}
             </span>
           </button>
         </div>
@@ -199,7 +299,9 @@ export default function Navbar() {
         <div
           className={`fixed inset-0 top-0 w-full transition-transform duration-500 sm:left-auto sm:right-0 sm:w-[26rem] ${clickShoppingCart ? "translate-x-0" : "translate-x-full"}`}
         >
-          <div className="relative h-full bg-white py-4 pb-[16.1rem] sm:h-screen">
+          <div
+            className={`relative h-full  bg-white py-4 ${shoppingCartContext.shoppingCart.length ? "pb-[16.1rem]" : ""} sm:h-screen`}
+          >
             <div className="flex items-center justify-between gap-2 border-b px-4 pb-4 text-lg font-semibold  capitalize text-bluePrimary">
               <span className="overflow-hidden whitespace-nowrap">
                 shopping cart
@@ -214,28 +316,62 @@ export default function Navbar() {
                 <CloseIcon className="h-[.6rem] w-[.6rem] fill-bluePrimary" />
               </button>
             </div>
-            <div className="flex h-full flex-col gap-8 overflow-auto px-4 py-8">
-              <ProductShoppoingCartCard
-                name="iphone 14 plus"
-                price="1500"
-                imageProduct={iphone}
-              />
-              <ProductShoppoingCartCard
-                name="Baseus Tungsten"
-                price="400"
-                imageProduct={cable}
-              />
-            </div>
-            <div className="absolute bottom-4 flex w-full flex-col gap-8 border-t px-4 pt-8 text-lg">
-              <div className="flex w-full items-center justify-between gap-2 break-all text-bluePrimary">
-                <span className="flex-1 capitalize">subtotal</span>
-                <span className="font-bold">1900 DH</span>
+
+            {shoppingCartContext.shoppingCart.length ? (
+              <>
+                <div className="flex h-full flex-col gap-8 overflow-auto px-4 py-8">
+                  {shoppingCartContext.shoppingCart.map(
+                    (product: ShoppingCart, index: number) => (
+                      <ProductShoppingCartCard
+                        productId={product.idProduct}
+                        key={index}
+                        name={product.nameProduct}
+                        price={product.price}
+                        imageProduct={product.imageProduct}
+                        onClick={() => {
+                          setClickShoppingCart(false);
+                          document.body.classList.remove("overflow-hidden");
+                        }}
+                      />
+                    ),
+                  )}
+                </div>
+                <div className="absolute bottom-4 flex w-full flex-col gap-8 border-t px-4 pt-8 text-lg">
+                  <div className="flex w-full items-center justify-between gap-2 break-all text-bluePrimary">
+                    <span className="flex-1 capitalize">subtotal</span>
+                    <span className="space-x-1 font-bold">
+                      <span>
+                        {formatNumberWithSpaces(shoppingCartContext.subTotal)}
+                      </span>
+                      <span>{currency}</span>
+                    </span>
+                  </div>
+                  <div className="flex flex-col items-center gap-2">
+                    <SecondaryButton
+                      value="view cart"
+                      className="w-full cursor-not-allowed"
+                    />
+                    <PrimaryButton
+                      value="Checkout"
+                      className="w-full"
+                      to="/Checkout"
+                      type="button"
+                      onClick={() => {
+                        setClickShoppingCart(false);
+                        document.body.classList.remove("overflow-hidden");
+                      }}
+                    />
+                  </div>
+                </div>
+              </>
+            ) : (
+              <div className="flex h-full flex-col items-center justify-center gap-4">
+                <EmptyCartIcon className="h-[3.5rem] w-[3.5rem]" />
+                <span className="text-[1rem] text-bluePrimary">
+                  Your cart is empty.
+                </span>
               </div>
-              <div className="flex flex-col items-center gap-2">
-                <SecondaryButton value="view cart" className="w-full" />
-                <PrimaryButton value="Checkout" className="w-full" />
-              </div>
-            </div>
+            )}
           </div>
         </div>
       </div>
