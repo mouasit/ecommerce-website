@@ -22,7 +22,7 @@ export default function ProductShoppingCartCard({
 }) {
   const shoppingCartContext = useContext(ShoppingCartContext);
   return (
-    <div className="flex w-full items-center justify-between gap-1">
+    <div className="flex w-full items-center justify-between gap-4">
       <Link
         to={`/Product/${productId}`}
         className="flex flex-shrink-0 items-center gap-3 text-left"
@@ -31,15 +31,17 @@ export default function ProductShoppingCartCard({
         }}
       >
         <img src={imageProduct} alt="product" className="w-[5rem] rounded-lg" />
-        <span className="flex w-[50vw] flex-col gap-1 capitalize text-bluePrimary sm:w-[13rem] ">
+        <span className="flex w-[44vw] flex-col gap-1 capitalize text-bluePrimary sm:w-[11rem] ">
           <span className="truncate font-medium">{name}</span>
           <span className="space-x-1 break-words font-light text-grayPrimary">
             <span>{formatNumberWithSpaces(price)}</span>
             <span>{currency}</span>
           </span>
         </span>
-        <span className="text-grayPrimary">X {quantity}</span>
       </Link>
+      <span className="w-[4rem] break-words  text-end text-grayPrimary">
+        X {quantity}
+      </span>
       <button
         className="rounded-full bg-gray-100 p-2"
         onClick={() => {

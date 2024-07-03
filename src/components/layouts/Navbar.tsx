@@ -23,7 +23,7 @@ export default function Navbar() {
   const [hoverAnimation, setHoverAnimation] = React.useState<boolean>(false);
   const [clickAnimation, setClickAnimation] = React.useState<boolean>(false);
   const [clickShoppingCart, setClickShoppingCart] =
-    React.useState<boolean>(false);
+    React.useState<boolean>(true);
   const dropDownRef = React.useRef<any>(null);
   const dropDownMobileRef = React.useRef<any>(null);
   const closeDropDown = () => {
