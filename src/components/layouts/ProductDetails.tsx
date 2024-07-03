@@ -218,6 +218,7 @@ export default function ProductDetails({
         : undefined,
     );
     setSelectedColorProduct(0);
+    setQuantityCounter(1);
   }, [productId]);
 
   useEffect(() => {

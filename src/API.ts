@@ -23,6 +23,7 @@ export type DisplayProduct = {
   id: string;
   name: string;
   price: number;
+  hasVariants: boolean;
   imageProduct: any;
 };
 
@@ -36,8 +37,11 @@ export type DisplayProductDetails = {
   features?: string[];
   itemsAttributes: ItemAttributes[];
   images?: string[] | null;
+  hasVariants: boolean;
   variants?: Variants;
   colorsDefinition?: ColorsDefinition[];
+  category: string;
+  sousCategory: string;
 };
 
 export type ItemAttributes = {
@@ -110,13 +114,14 @@ export function getProduct(productId: string): DisplayProduct | undefined {
       id: targetProduct.id,
       name: targetProduct.name,
       price: targetProduct.price,
+      hasVariants: targetProduct.hasVariants,
       imageProduct: targetProduct.imageProduct,
     };
   return undefined;
 }
 
 export function getRecentProduct(): string[] {
-  return ["p17", "p10", "p3", "p11", "p12", "p9", "p2", "p6"];
+  return ["p16", "p9", "p3", "p11", "p12", "p10", "p2", "p6"];
 }
 
 export function getProductsByCategory({
@@ -171,8 +176,11 @@ export function getProductDetails({
       images: targetProduct.images
         ? targetProduct.images
         : [targetProduct.imageProduct],
+      hasVariants: targetProduct.hasVariants,
       variants: targetProduct.variants,
       colorsDefinition: targetProduct.colorsDefinition,
+      category: targetProduct.category,
+      sousCategory: targetProduct.sousCategory,
     };
   }
 

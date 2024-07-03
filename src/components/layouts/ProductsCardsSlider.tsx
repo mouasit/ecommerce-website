@@ -6,7 +6,13 @@ import { ArrowLeftIcon, ArrowRightIcon } from "./Icons";
 import ProductCard from "./ProductCard";
 import { getProductsByCategory } from "../../API";
 
-export default function ProductsCardsSlider() {
+export default function ProductsCardsSlider({
+  category,
+  productDetailsId,
+}: {
+  category: string;
+  productDetailsId?: string;
+}) {
   const [products, setProducts] = useState<string[]>();
   const [screenWidth, setScreenWidth] = React.useState(window.innerWidth);
   const settings = {
@@ -36,7 +42,7 @@ export default function ProductsCardsSlider() {
   };
 
   React.useEffect(() => {
-    setProducts(getProductsByCategory({ nameCategory: "gaming" }));
+    setProducts(getProductsByCategory({ nameCategory: category }));
     window.addEventListener("resize", () => {
       setScreenWidth(window.innerWidth);
     });
@@ -44,11 +50,14 @@ export default function ProductsCardsSlider() {
   return (
     <SlickSlider {...settings} className="px-7">
       {products ? (
-        products.map((productId: string, index: number) => (
-          <div className="card-slide" key={index}>
-            <ProductCard productId={productId} />
-          </div>
-        ))
+        products.map((productId: string, index: number) => {
+          if (productId !== productDetailsId)
+            return (
+              <div className="card-slide" key={index}>
+                <ProductCard productId={productId} />
+              </div>
+            );
+        })
       ) : (
         <div className="h-[5rem]"></div>
       )}

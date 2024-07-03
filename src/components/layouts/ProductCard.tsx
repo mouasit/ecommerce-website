@@ -6,7 +6,7 @@ import SecondaryButton from "./SecondaryButton";
 import { getProduct } from "../../API";
 import { currency, formatNumberWithSpaces } from "../../Helpers";
 import type { DisplayProduct } from "../../API";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ShoppingCart, ShoppingCartContext } from "../../App";
 
 export default function ProductCard({
@@ -17,6 +17,7 @@ export default function ProductCard({
   responsiveWidth?: string;
 }) {
   const shoppingCartContext = useContext(ShoppingCartContext);
+  const navigate = useNavigate();
   const [product, setProduct] = useState<DisplayProduct>();
   const [addToShoppingCart, setAddToShoppingCart] = useState<boolean>(
     shoppingCartContext.shoppingCart.find(
@@ -78,30 +79,33 @@ export default function ProductCard({
             }
             className="flex w-[4.5rem] items-center justify-center"
             onClick={() => {
-              if (
-                !shoppingCartContext.shoppingCart.find(
-                  (productShoppingCart: ShoppingCart) =>
-                    productShoppingCart.idProduct === productId,
-                )
-              ) {
-                shoppingCartContext.setShoppingCart([
-                  ...shoppingCartContext.shoppingCart,
-                  {
-                    idProduct: product.id,
-                    nameProduct: product.name,
-                    price: product.price,
-                    quantity: 1,
-                    imageProduct: product.imageProduct,
-                  },
-                ]);
-                setAddToShoppingCart(true);
-              } else {
-                shoppingCartContext.setShoppingCart(
-                  shoppingCartContext.shoppingCart.filter(
+              if (product.hasVariants) navigate(`/Product/${productId}`);
+              else {
+                if (
+                  !shoppingCartContext.shoppingCart.find(
                     (productShoppingCart: ShoppingCart) =>
-                      productShoppingCart.idProduct !== product.id,
-                  ),
-                );
+                      productShoppingCart.idProduct === productId,
+                  )
+                ) {
+                  shoppingCartContext.setShoppingCart([
+                    ...shoppingCartContext.shoppingCart,
+                    {
+                      idProduct: product.id,
+                      nameProduct: product.name,
+                      price: product.price,
+                      quantity: 1,
+                      imageProduct: product.imageProduct,
+                    },
+                  ]);
+                  setAddToShoppingCart(true);
+                } else {
+                  shoppingCartContext.setShoppingCart(
+                    shoppingCartContext.shoppingCart.filter(
+                      (productShoppingCart: ShoppingCart) =>
+                        productShoppingCart.idProduct !== product.id,
+                    ),
+                  );
+                }
               }
             }}
           />

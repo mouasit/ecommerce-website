@@ -36,7 +36,7 @@ export default function Product() {
           colorsDefinition={product.colorsDefinition}
         />
         <ProductTabs />
-        <RelatedProducts />
+        <RelatedProducts productDetailsId={id as string} />
       </div>
     );
   if (dataLoaded) return <NotFound />;

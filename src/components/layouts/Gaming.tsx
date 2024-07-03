@@ -16,7 +16,7 @@ export default function Gaming() {
         </Link>
       </div>
       <div className="mt-[4rem]">
-        <ProductsCardsSlider />
+        <ProductsCardsSlider category="gaming" />
       </div>
     </div>
   );
