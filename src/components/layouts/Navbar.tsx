@@ -327,6 +327,7 @@ export default function Navbar() {
                         key={index}
                         name={product.nameProduct}
                         price={product.price}
+                        quantity={product.quantity}
                         imageProduct={product.imageProduct}
                         onClick={() => {
                           setClickShoppingCart(false);

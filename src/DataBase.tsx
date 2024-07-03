@@ -28,6 +28,8 @@ import imageBlue2 from "./assets/products/iphone-13/blue/2.jpg";
 import imageBlue3 from "./assets/products/iphone-13/blue/3.jpg";
 import imageBlue4 from "./assets/products/iphone-13/blue/4.jpg";
 
+const globalQuantity = 20;
+
 export type Category = {
   id: string;
   name: string;
@@ -57,6 +59,7 @@ export type Product = {
   name: string;
   title?: string;
   price: number;
+  quantity: number;
   features?: string[];
   imageProduct: any;
   images: string[] | null;
@@ -153,6 +156,7 @@ export const products: Product[] = [
     id: "p1",
     name: "Xiaomi redmi R",
     price: 1500,
+    quantity: globalQuantity,
     imageProduct: redmi,
     images: null,
   },
@@ -160,6 +164,7 @@ export const products: Product[] = [
     id: "p2",
     name: "Apple airpods 3",
     price: 300,
+    quantity: globalQuantity,
     imageProduct: airpods,
     images: null,
   },
@@ -167,6 +172,7 @@ export const products: Product[] = [
     id: "p3",
     name: "Apple ipad 10",
     price: 4000,
+    quantity: globalQuantity,
     imageProduct: ipad,
     images: null,
   },
@@ -174,6 +180,7 @@ export const products: Product[] = [
     id: "p4",
     name: "Surface Headphones",
     price: 1500,
+    quantity:globalQuantity,
     imageProduct: headPhones,
     images: null,
   },
@@ -181,6 +188,7 @@ export const products: Product[] = [
     id: "p5",
     name: "Smart watch red",
     price: 300,
+    quantity:globalQuantity,
     imageProduct: smartWatch,
     images: null,
   },
@@ -188,6 +196,7 @@ export const products: Product[] = [
     id: "p6",
     name: "Power Bank",
     price: 600,
+    quantity:globalQuantity,
     imageProduct: powerBank,
     images: null,
   },
@@ -195,6 +204,7 @@ export const products: Product[] = [
     id: "p7",
     name: "iphone 14 plus",
     price: 11000,
+    quantity:globalQuantity,
     imageProduct: iphone14,
     images: null,
   },
@@ -202,6 +212,7 @@ export const products: Product[] = [
     id: "p8",
     name: "JBL Flip 5",
     price: 1500,
+    quantity:globalQuantity,
     imageProduct: speaker,
     images: null,
   },
@@ -209,6 +220,7 @@ export const products: Product[] = [
     id: "p9",
     name: "JBL Flip 5",
     price: 1500,
+    quantity:globalQuantity,
     imageProduct: speaker,
     images: null,
   },
@@ -216,6 +228,7 @@ export const products: Product[] = [
     id: "p10",
     name: "Microwave oven",
     price: 3000,
+    quantity:globalQuantity,
     imageProduct: microwave,
     images: null,
   },
@@ -223,6 +236,7 @@ export const products: Product[] = [
     id: "p11",
     name: "OMEN 16-wd0040nf",
     price: 12000,
+    quantity:globalQuantity,
     imageProduct: laptop,
     images: null,
   },
@@ -230,6 +244,7 @@ export const products: Product[] = [
     id: "p12",
     name: "Baseus Tungsten",
     price: 400,
+    quantity:globalQuantity,
     imageProduct: cable,
     images: null,
   },
@@ -237,6 +252,7 @@ export const products: Product[] = [
     id: "p13",
     name: "controller PS5",
     price: 600,
+    quantity:globalQuantity,
     imageProduct: controller,
     images: null,
   },
@@ -244,6 +260,7 @@ export const products: Product[] = [
     id: "p14",
     name: "FC 24 PS5",
     price: 600,
+    quantity:globalQuantity,
     imageProduct: cd,
     images: null,
   },
@@ -251,6 +268,7 @@ export const products: Product[] = [
     id: "p15",
     name: "gaming chair",
     price: 4000,
+    quantity:globalQuantity,
     imageProduct: chair,
     images: null,
   },
@@ -258,6 +276,7 @@ export const products: Product[] = [
     id: "p16",
     name: "microphone RGB",
     price: 1200,
+    quantity:globalQuantity,
     imageProduct: microphone,
     images: null,
   },
@@ -266,6 +285,7 @@ export const products: Product[] = [
     name: "iphone 13",
     title: `apple iPhone 13 6,1" 5G`,
     price: 10000,
+    quantity:globalQuantity,
     imageProduct: iphone13,
     features: [
       "bass and Stereo Sound",

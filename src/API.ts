@@ -32,6 +32,7 @@ export type DisplayProductDetails = {
   imageProduct: any;
   title?: string;
   price: number;
+  quantity: number;
   features?: string[];
   itemsAttributes: ItemAttributes[];
   images?: string[] | null;
@@ -164,6 +165,7 @@ export function getProductDetails({
       imageProduct: targetProduct.imageProduct,
       title: targetProduct.title ? targetProduct.title : targetProduct.name,
       price: targetProduct.price,
+      quantity: targetProduct.quantity,
       features: targetProduct.features,
       itemsAttributes: itemsAttributes,
       images: targetProduct.images

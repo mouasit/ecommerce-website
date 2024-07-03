@@ -90,6 +90,7 @@ export default function ProductCard({
                     idProduct: product.id,
                     nameProduct: product.name,
                     price: product.price,
+                    quantity: 1,
                     imageProduct: product.imageProduct,
                   },
                 ]);

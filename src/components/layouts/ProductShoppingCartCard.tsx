@@ -9,12 +9,14 @@ export default function ProductShoppingCartCard({
   productId,
   name,
   price,
+  quantity,
   imageProduct,
   onClick,
 }: {
   productId: string;
   name: string;
   price: number;
+  quantity: number;
   imageProduct: any;
   onClick?: () => void;
 }) {
@@ -23,7 +25,7 @@ export default function ProductShoppingCartCard({
     <div className="flex w-full items-center justify-between gap-1">
       <Link
         to={`/Product/${productId}`}
-        className="flex flex-shrink-0 gap-3 text-left"
+        className="flex flex-shrink-0 items-center gap-3 text-left"
         onClick={() => {
           if (onClick) onClick();
         }}
@@ -36,6 +38,7 @@ export default function ProductShoppingCartCard({
             <span>{currency}</span>
           </span>
         </span>
+        <span className="text-grayPrimary">X {quantity}</span>
       </Link>
       <button
         className="rounded-full bg-gray-100 p-2"

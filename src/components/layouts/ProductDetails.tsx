@@ -5,7 +5,6 @@ import {
   AddToCartProductIcon,
   ArrowLeftIcon,
   ArrowRightIcon,
-  CheckCartIcon,
   FullScreenIcon,
   MinusIcon,
   PlusIcon,
@@ -37,6 +36,7 @@ export default function ProductDetails({
   imageProduct,
   title,
   price,
+  quantity,
   features,
   itemsAttributes,
   images,
@@ -48,6 +48,7 @@ export default function ProductDetails({
   imageProduct: any;
   title: string;
   price: number;
+  quantity: number;
   features?: string[];
   itemsAttributes: ItemAttributes[];
   images?: string[] | null;
@@ -62,7 +63,7 @@ export default function ProductDetails({
   const [isVertical, setIsVertical] = useState(window.innerWidth >= screenSize);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [fullScreenSlider, setFullScreenSlider] = useState<boolean>(false);
-  const [quantity, setQuantity] = useState<number>(1);
+  const [quantityCounter, setQuantityCounter] = useState<number>(1);
   const [filter, setFilter] = useState<Filter | undefined>(
     colorsDefinition
       ? { name: "color", value: colorsDefinition[0].name }
@@ -70,16 +71,6 @@ export default function ProductDetails({
   );
 
   const shoppingCartContext = useContext(ShoppingCartContext);
-
-  const [addToShoppingCart, setAddToShoppingCart] = useState<boolean>(
-    shoppingCartContext.shoppingCart.find(
-      (productShoppingCart: ShoppingCart) =>
-        productShoppingCart.idProduct === productId,
-    )
-      ? true
-      : false,
-  );
-
   let productWithColorsAndImages: {
     name?: string;
     imagesProduct: string[];
@@ -276,16 +267,6 @@ export default function ProductDetails({
     selectedColorProduct,
     screenWidth,
   ]);
-
-  useEffect(() => {
-    if (
-      !shoppingCartContext.shoppingCart.find(
-        (productShoppingCart: ShoppingCart) =>
-          productShoppingCart.idProduct === productId,
-      )
-    )
-      setAddToShoppingCart(false);
-  }, [shoppingCartContext]);
   return (
     <section
       className="relative mt-[2rem] items-start gap-8 px-4 md:flex md:justify-between lg:gap-12 2xlg:px-0"
@@ -422,56 +403,52 @@ export default function ProductDetails({
             <button
               className="rounded-full bg-yellowPrimary p-1"
               onClick={() => {
-                if (quantity > 0) setQuantity(quantity - 1);
+                if (quantityCounter > 1)
+                  setQuantityCounter(quantityCounter - 1);
               }}
             >
               <MinusIcon className="h-4 w-4 fill-bluePrimary" />
             </button>
-            {quantity}
+            {quantityCounter}
             <button
               className="rounded-full bg-yellowPrimary p-1"
               onClick={() => {
-                setQuantity(quantity + 1);
+                if (quantityCounter < quantity)
+                  setQuantityCounter(quantityCounter + 1);
               }}
             >
               <PlusIcon className="h-4 w-4 fill-bluePrimary" />
             </button>
           </div>
           <PrimaryButton
-            icon={
-              addToShoppingCart ? (
-                <CheckCartIcon className="h-8 w-8 fill-bluePrimary" />
-              ) : (
-                <AddToCartProductIcon className="h-8 w-8 fill-bluePrimary" />
-              )
-            }
-            value={addToShoppingCart ? "Already in cart" : "Add to cart"}
+            icon={<AddToCartProductIcon className="h-8 w-8 fill-bluePrimary" />}
+            value="Add to cart"
             className="flex w-full items-center justify-center gap-3 text-lg"
             onClick={() => {
-              if (
-                !shoppingCartContext.shoppingCart.find(
+              const productInShoppingCart =
+                shoppingCartContext.shoppingCart.find(
                   (productShoppingCart: ShoppingCart) =>
                     productShoppingCart.idProduct === productId,
-                )
-              ) {
+                );
+              if (!productInShoppingCart) {
                 shoppingCartContext.setShoppingCart([
                   ...shoppingCartContext.shoppingCart,
                   {
                     idProduct: productId,
                     nameProduct: productName,
+                    quantity: quantityCounter,
                     price,
                     imageProduct: imageProduct,
                   },
                 ]);
-                setAddToShoppingCart(true);
               } else {
-                shoppingCartContext.setShoppingCart(
-                  shoppingCartContext.shoppingCart.filter(
-                    (productShoppingCart: ShoppingCart) =>
-                      productShoppingCart.idProduct !== productId,
-                  ),
-                );
+                const newQuantity: number =
+                  productInShoppingCart.quantity + quantityCounter;
+
+                if (newQuantity <= quantity)
+                  productInShoppingCart.quantity = newQuantity;
               }
+              setQuantityCounter(1);
             }}
           />
         </div>

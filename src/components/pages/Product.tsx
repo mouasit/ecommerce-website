@@ -28,6 +28,7 @@ export default function Product() {
           imageProduct={product.imageProduct}
           title={product.title as string}
           price={product.price}
+          quantity={product.quantity}
           images={product.images}
           variants={product.variants}
           features={product.features}

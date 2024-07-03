@@ -16,6 +16,7 @@ export type ShoppingCart = {
   idProduct: string;
   nameProduct: string;
   price: number;
+  quantity: number;
   imageProduct: any;
 };
 
