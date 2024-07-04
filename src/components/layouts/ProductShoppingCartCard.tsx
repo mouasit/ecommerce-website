@@ -4,6 +4,7 @@ import { TrashIcon } from "./Icons";
 import { ShoppingCartContext } from "../../App";
 import type { ShoppingCart } from "../../App";
 import { Link } from "react-router-dom";
+import type { SelectedItem } from "./ProductDetails";
 
 export default function ProductShoppingCartCard({
   productId,
@@ -11,6 +12,7 @@ export default function ProductShoppingCartCard({
   price,
   quantity,
   imageProduct,
+  variants,
   onClick,
 }: {
   productId: string;
@@ -18,9 +20,30 @@ export default function ProductShoppingCartCard({
   price: number;
   quantity: number;
   imageProduct: any;
+  variants?: SelectedItem[];
   onClick?: () => void;
 }) {
   const shoppingCartContext = useContext(ShoppingCartContext);
+
+  const shoppingCartMatchWithVariants = ({
+    product,
+  }: {
+    product: ShoppingCart;
+  }): boolean => {
+    if (
+      product.variants?.filter((variant: SelectedItem, index: number) => {
+        return (
+          variants &&
+          variant.name === variants[index].name &&
+          variants &&
+          variant.value === variants[index].value
+        );
+      })?.length === 2
+    )
+      return true;
+
+    return false;
+  };
   return (
     <div className="flex w-full items-center justify-between gap-4">
       <Link
@@ -47,8 +70,13 @@ export default function ProductShoppingCartCard({
         onClick={() => {
           shoppingCartContext.setShoppingCart(
             shoppingCartContext.shoppingCart.filter(
-              (productShoppingCart: ShoppingCart) =>
-                productShoppingCart.idProduct !== productId,
+              (productShoppingCart: ShoppingCart) => {
+                if (variants) {
+                  return !shoppingCartMatchWithVariants({
+                    product: productShoppingCart,
+                  });
+                } else return productShoppingCart.idProduct !== productId;
+              },
             ),
           );
         }}

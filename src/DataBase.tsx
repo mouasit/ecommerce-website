@@ -283,10 +283,73 @@ export const products: Product[] = [
     price: 600,
     quantity: globalQuantity,
     imageProduct: controller,
+    features: [
+      "bass and Stereo Sound",
+      "display with 3088 x 1440 pixels resolution",
+      "memory, Storage & SIM: 12GB RAM, 256GB",
+    ],
     images: null,
-    hasVariants: false,
-    category: "gaming",
-    sousCategory: "consoles & controllers",
+    hasVariants: true,
+    variants: {
+      attributesName: ["storage", "color", "quantity"],
+      itemsAttributes: [
+        {
+          storage: "64 GB",
+          color: "orange",
+          quantity: "44",
+        },
+        {
+          storage: "128 GB",
+          color: "green",
+          quantity: "12",
+        },
+        {
+          storage: "64 GB",
+          color: "green",
+          quantity: "05",
+        },
+        {
+          storage: "512 GB",
+          color: "green",
+          quantity: "10",
+        },
+        {
+          storage: "64 GB",
+          color: "blue",
+          quantity: "28",
+        },
+        {
+          storage: "512 GB",
+          color: "orange",
+          quantity: "20",
+        },
+      ],
+    },
+    colorsDefinition: [
+      {
+        name: "orange",
+        code: "#FFA500",
+        imagesColor: [
+          imageBlack1,
+          imageBlack2,
+          imageBlack3,
+          imageBlack4,
+          imageBlack5,
+        ],
+      },
+      {
+        name: "green",
+        code: "#59965C",
+        imagesColor: [imageGreen1, imageGreen2, imageGreen3, imageGreen4],
+      },
+      {
+        name: "blue",
+        code: "#3694C7",
+        imagesColor: [imageBlue1, imageBlue2, imageBlue3, imageBlue4],
+      },
+    ],
+    category: "electronics",
+    sousCategory: "phones",
   },
   {
     id: "p13",

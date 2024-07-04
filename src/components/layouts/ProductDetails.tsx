@@ -30,6 +30,11 @@ export type Filter = {
   value: string;
 };
 
+export type SelectedItem = {
+  name: string;
+  value: string;
+};
+
 export default function ProductDetails({
   productId,
   productName,
@@ -64,6 +69,7 @@ export default function ProductDetails({
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [fullScreenSlider, setFullScreenSlider] = useState<boolean>(false);
   const [quantityCounter, setQuantityCounter] = useState<number>(1);
+  const [selectedItems, setSelectedItems] = useState<SelectedItem[]>([]);
   const [filter, setFilter] = useState<Filter | undefined>(
     colorsDefinition
       ? { name: "color", value: colorsDefinition[0].name }
@@ -190,6 +196,58 @@ export default function ProductDetails({
     };
   }, []);
 
+  const addToShoppingCart = () => {
+    let selectedVariants: string[] = [];
+    if (variants)
+      selectedVariants = selectedItems.map(
+        (selectedItem: SelectedItem) => selectedItem.value,
+      );
+
+    shoppingCartContext.setShoppingCart([
+      ...shoppingCartContext.shoppingCart,
+      {
+        idProduct: productId,
+        nameProduct: variants
+          ? `${productName} - ${selectedVariants.join()}`
+          : productName,
+        quantity: quantityCounter,
+        price,
+        variants: variants ? selectedItems : undefined,
+        imageProduct: variants
+          ? productWithColorsAndImages[selectedColorProduct].imagesProduct[0]
+          : imageProduct,
+      },
+    ]);
+  };
+
+  const productMatchWithVariants = (): boolean => {
+    const productsWithSameId: ShoppingCart[] =
+      shoppingCartContext.shoppingCart.filter(
+        (product: ShoppingCart) => product.idProduct === productId,
+      );
+    for (let index: number = 0; index < productsWithSameId.length; index++) {
+      const product = productsWithSameId[index];
+      if (
+        product.variants?.filter((variant: SelectedItem, index: number) => {
+          return (
+            variant.name === selectedItems[index].name &&
+            variant.value === selectedItems[index].value
+          );
+        })?.length === 2
+      ) {
+        updateQuantityInShoppingCart(product);
+        return true;
+      }
+    }
+    return false;
+  };
+
+  const updateQuantityInShoppingCart = (product: ShoppingCart) => {
+    const newQuantity: number = product.quantity + quantityCounter;
+
+    if (newQuantity <= quantity) product.quantity = newQuantity;
+  };
+
   const filteredItems = ({
     filter,
     attributeName,
@@ -219,7 +277,20 @@ export default function ProductDetails({
     );
     setSelectedColorProduct(0);
     setQuantityCounter(1);
-  }, [productId]);
+  }, [productId, colorsDefinition]);
+
+  useEffect(() => {
+    if (variants)
+      setSelectedItems(
+        itemsAttributes.map((itemAttribute: ItemAttributes) => {
+          return {
+            name: itemAttribute.name,
+            value: itemAttribute.name === "color" ? itemAttribute.items[0] : "",
+          };
+        }),
+      );
+    else setSelectedItems([]);
+  }, [variants]);
 
   useEffect(() => {
     const container = sectionRef.current?.querySelector(
@@ -369,6 +440,20 @@ export default function ProductDetails({
                               name: itemAttributes.name,
                               value: product.name as string,
                             });
+                            const newSelect: SelectedItem[] = selectedItems.map(
+                              (item: SelectedItem) => {
+                                if (item.name === itemAttributes.name)
+                                  return {
+                                    name: item.name,
+                                    value: colorsDefinition
+                                      ? colorsDefinition[index].name
+                                      : "",
+                                  };
+                                else return item;
+                              },
+                            );
+
+                            setSelectedItems(newSelect);
                             setSelectedColorProduct(index);
                           }}
                         />
@@ -394,6 +479,8 @@ export default function ProductDetails({
                     attributeName={itemAttributes.name}
                     filter={filter}
                     setFilter={setFilter}
+                    selectedItems={selectedItems}
+                    setSelectedItems={setSelectedItems}
                   />
                 </div>
               ),
@@ -426,30 +513,24 @@ export default function ProductDetails({
             value="Add to cart"
             className="flex w-full items-center justify-center gap-3 text-lg"
             onClick={() => {
-              const productInShoppingCart =
-                shoppingCartContext.shoppingCart.find(
-                  (productShoppingCart: ShoppingCart) =>
-                    productShoppingCart.idProduct === productId,
-                );
-              if (!productInShoppingCart) {
-                shoppingCartContext.setShoppingCart([
-                  ...shoppingCartContext.shoppingCart,
-                  {
-                    idProduct: productId,
-                    nameProduct: productName,
-                    quantity: quantityCounter,
-                    price,
-                    imageProduct: imageProduct,
-                  },
-                ]);
-              } else {
-                const newQuantity: number =
-                  productInShoppingCart.quantity + quantityCounter;
-
-                if (newQuantity <= quantity)
-                  productInShoppingCart.quantity = newQuantity;
+              if (
+                !selectedItems.find(
+                  (product: SelectedItem) => product.value.length === 0,
+                )
+              ) {
+                const productInShoppingCart =
+                  shoppingCartContext.shoppingCart.find(
+                    (productShoppingCart: ShoppingCart) =>
+                      productShoppingCart.idProduct === productId,
+                  );
+                if (!productInShoppingCart) addToShoppingCart();
+                else {
+                  if (variants) {
+                    if (!productMatchWithVariants()) addToShoppingCart();
+                  } else updateQuantityInShoppingCart(productInShoppingCart);
+                }
+                setQuantityCounter(1);
               }
-              setQuantityCounter(1);
             }}
           />
         </div>
