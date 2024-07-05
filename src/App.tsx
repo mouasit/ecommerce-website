@@ -11,6 +11,7 @@ import Product from "./components/pages/Product";
 import Category from "./components/pages/Category";
 import Checkout from "./components/pages/Checkout";
 import NotFound from "./components/pages/NotFound";
+import { CheckIcon, CloseIcon } from "./components/layouts/Icons";
 
 export type ShoppingCart = {
   idProduct: string;
@@ -51,6 +52,25 @@ function App() {
         <AnnouncementBar />
         <Navbar />
         <main className="app-container">
+          <div className="px-4 py-4 2xlg:px-0">
+            <div className="  border-b-success flex items-center justify-between  rounded-lg border-b-4 bg-[#adf5ce] p-4">
+              <div className="flex items-center gap-3">
+                <div className="border-success flex h-6 w-6 items-center justify-center rounded-full border-2">
+                  <CheckIcon className="fill-success h-3 w-3" />
+                </div>
+                <div className="text-success flex  gap-1 text-sm font-light flex-wrap">
+                  <span className="space-x-1">
+                    <span>Product</span>
+                    <span className="font-medium">Iphone</span>
+                  </span>
+                  <span>successfully added to your cart.</span>
+                </div>
+              </div>
+              <button className="rounded-full">
+                <CloseIcon className="fill-success h-3 w-3" />
+              </button>
+            </div>
+          </div>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/Home" element={<Home />} />
