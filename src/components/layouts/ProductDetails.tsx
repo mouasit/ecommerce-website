@@ -196,20 +196,16 @@ export default function ProductDetails({
     };
   }, []);
 
-  const addToShoppingCart = () => {
-    let selectedVariants: string[] = [];
-    if (variants)
-      selectedVariants = selectedItems.map(
-        (selectedItem: SelectedItem) => selectedItem.value,
-      );
-
+  const addToShoppingCart = ({
+    productNameToShoppingCart,
+  }: {
+    productNameToShoppingCart: string;
+  }) => {
     shoppingCartContext.setShoppingCart([
       ...shoppingCartContext.shoppingCart,
       {
         idProduct: productId,
-        nameProduct: variants
-          ? `${productName} - ${selectedVariants.join()}`
-          : productName,
+        nameProduct: productNameToShoppingCart,
         quantity: quantityCounter,
         price,
         variants: variants ? selectedItems : undefined,
@@ -518,18 +514,41 @@ export default function ProductDetails({
                   (product: SelectedItem) => product.value.length === 0,
                 )
               ) {
+                let selectedVariants: string[] = [];
+                if (variants)
+                  selectedVariants = selectedItems.map(
+                    (selectedItem: SelectedItem) => selectedItem.value,
+                  );
+
+                const productNameToShoppingCart = variants
+                  ? `${productName} - ${selectedVariants.join()}`
+                  : productName;
+
                 const productInShoppingCart =
                   shoppingCartContext.shoppingCart.find(
                     (productShoppingCart: ShoppingCart) =>
                       productShoppingCart.idProduct === productId,
                   );
-                if (!productInShoppingCart) addToShoppingCart();
+                if (!productInShoppingCart)
+                  addToShoppingCart({ productNameToShoppingCart });
                 else {
                   if (variants) {
-                    if (!productMatchWithVariants()) addToShoppingCart();
+                    if (!productMatchWithVariants())
+                      addToShoppingCart({ productNameToShoppingCart });
                   } else updateQuantityInShoppingCart(productInShoppingCart);
                 }
                 setQuantityCounter(1);
+                if (shoppingCartContext.productSuccessToast.length) {
+                  shoppingCartContext.setProductSuccessToast("");
+                  setTimeout(() => {
+                    shoppingCartContext.setProductSuccessToast(
+                      productNameToShoppingCart,
+                    );
+                  }, 0);
+                } else
+                  shoppingCartContext.setProductSuccessToast(
+                    productNameToShoppingCart,
+                  );
               }
             }}
           />

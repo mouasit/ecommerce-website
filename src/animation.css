@@ -14,6 +14,10 @@
   animation: fadeOutUp 0.2s forwards;
 }
 
+.fadein-left {
+  animation: fadeInLeft 0.4s forwards;
+}
+
 .rotate {
   transition: all 0.4s linear;
 }
@@ -49,5 +53,16 @@
   100% {
     opacity: 0;
     transform: translateY(-20px);
+  }
+}
+
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
   }
 }

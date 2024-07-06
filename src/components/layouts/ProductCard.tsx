@@ -79,7 +79,8 @@ export default function ProductCard({
             }
             className="flex w-[4.5rem] items-center justify-center"
             onClick={() => {
-              if (product.hasVariants) navigate(`/Product/${productId}`);
+              if (!addToShoppingCart && product.hasVariants)
+                navigate(`/Product/${productId}`);
               else {
                 if (
                   !shoppingCartContext.shoppingCart.find(

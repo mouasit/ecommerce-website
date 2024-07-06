@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import "./animation.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -11,7 +11,7 @@ import Product from "./components/pages/Product";
 import Category from "./components/pages/Category";
 import Checkout from "./components/pages/Checkout";
 import NotFound from "./components/pages/NotFound";
-import { CheckIcon, CloseIcon } from "./components/layouts/Icons";
+import SuccessToast from "./components/layouts/SuccessToast";
 
 export type ShoppingCart = {
   idProduct: string;
@@ -27,11 +27,15 @@ export const ShoppingCartContext = React.createContext<{
   setShoppingCart: React.Dispatch<React.SetStateAction<ShoppingCart[]>>;
   subTotal: number;
   setSubTotal: React.Dispatch<React.SetStateAction<number>>;
+  productSuccessToast: string;
+  setProductSuccessToast: React.Dispatch<React.SetStateAction<string>>;
 }>({
   shoppingCart: [],
   setShoppingCart: () => {},
   subTotal: 0,
   setSubTotal: () => {},
+  productSuccessToast: "",
+  setProductSuccessToast: () => {},
 });
 
 function App() {
@@ -44,33 +48,44 @@ function App() {
   const [subTotal, setSubTotal] = useState<number>(
     shoppingCartLocalStorage ? shoppingCartLocalStorage.subTotal : 0,
   );
+  const [productSuccessToast, setProductSuccessToast] = useState<string>("");
+
+  useEffect(() => {
+    let timeOut: any;
+    if (productSuccessToast.length) {
+      timeOut = setTimeout(() => {
+        setProductSuccessToast("");
+      }, 4500);
+    }
+    return () => {
+      if (timeOut) {
+        clearTimeout(timeOut);
+      }
+    };
+  }, [productSuccessToast]);
+
   return (
     <BrowserRouter>
       <ShoppingCartContext.Provider
-        value={{ shoppingCart, setShoppingCart, subTotal, setSubTotal }}
+        value={{
+          shoppingCart,
+          setShoppingCart,
+          subTotal,
+          setSubTotal,
+          productSuccessToast,
+          setProductSuccessToast,
+        }}
       >
         <AnnouncementBar />
         <Navbar />
         <main className="app-container">
-          <div className="px-4 py-4 2xlg:px-0">
-            <div className="  border-b-success flex items-center justify-between  rounded-lg border-b-4 bg-[#adf5ce] p-4">
-              <div className="flex items-center gap-3">
-                <div className="border-success flex h-6 w-6 items-center justify-center rounded-full border-2">
-                  <CheckIcon className="fill-success h-3 w-3" />
-                </div>
-                <div className="text-success flex  gap-1 text-sm font-light flex-wrap">
-                  <span className="space-x-1">
-                    <span>Product</span>
-                    <span className="font-medium">Iphone</span>
-                  </span>
-                  <span>successfully added to your cart.</span>
-                </div>
-              </div>
-              <button className="rounded-full">
-                <CloseIcon className="fill-success h-3 w-3" />
-              </button>
-            </div>
-          </div>
+          {productSuccessToast.length ? (
+            <SuccessToast
+              productName={productSuccessToast}
+              setProductSuccessToast={setProductSuccessToast}
+            />
+          ) : null}
+
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/Home" element={<Home />} />
