@@ -45,7 +45,7 @@ export default function Checkout() {
           checkout
         </h1>
         <form className="mt-[5.7rem] flex flex-col gap-[5.7rem] md:flex-row md:items-start md:justify-center md:gap-10 lg:gap-16">
-          <div className="flex flex-col gap-[3.5rem] px-4 md:w-[45%] md:px-0 lg:w-[30rem] 2xlg:px-0">
+          <div className="flex flex-col gap-[3.5rem] px-4 md:sticky md:top-[90px] md:w-[45%] md:px-0 lg:w-[30rem] 2xlg:px-0">
             <h2 className="text-lg font-semibold text-bluePrimary">
               Your information
             </h2>
@@ -85,14 +85,14 @@ export default function Checkout() {
               Your Order
             </h2>
             <div className="flex w-full flex-col gap-8 border px-4 py-8 md:rounded-xl">
-              <div className="flex flex-col gap-8">
+              <div className="flex max-h-[25rem] flex-col gap-8 overflow-auto">
                 {shoppingCartContext.shoppingCart.map(
                   (productShoppingCart: ShoppingCart, index: number) => (
                     <ProductCardCheckout
                       key={index}
                       imageProduct={productShoppingCart.imageProduct}
                       name={productShoppingCart.nameProduct}
-                      quantity={1}
+                      quantity={productShoppingCart.quantity}
                       price={productShoppingCart.price}
                     />
                   ),
@@ -129,6 +129,13 @@ export default function Checkout() {
                     <span>Enter your city to view shipping options.</span>
                   </div>
                 )}
+              </div>
+              
+              <div className="flex w-full items-center justify-between gap-6 break-all border-t pt-8  text-bluePrimary">
+                <span className="flex-1 capitalize text-grayPrimary">
+                  payment method
+                </span>
+                <span className="space-x-1 font-medium">Cash on delivery</span>
               </div>
               <div className="flex w-full items-center justify-between gap-6 break-all border-t pt-8 text-xl text-bluePrimary">
                 <span className="flex-1 font-bold capitalize">total</span>
