@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import "./animation.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -11,8 +11,6 @@ import Product from "./components/pages/Product";
 import Category from "./components/pages/Category";
 import Checkout from "./components/pages/Checkout";
 import NotFound from "./components/pages/NotFound";
-import SuccessToast from "./components/layouts/SuccessToast";
-
 export type ShoppingCart = {
   idProduct: string;
   nameProduct: string;
@@ -27,15 +25,11 @@ export const ShoppingCartContext = React.createContext<{
   setShoppingCart: React.Dispatch<React.SetStateAction<ShoppingCart[]>>;
   subTotal: number;
   setSubTotal: React.Dispatch<React.SetStateAction<number>>;
-  productSuccessToast: string;
-  setProductSuccessToast: React.Dispatch<React.SetStateAction<string>>;
 }>({
   shoppingCart: [],
   setShoppingCart: () => {},
   subTotal: 0,
   setSubTotal: () => {},
-  productSuccessToast: "",
-  setProductSuccessToast: () => {},
 });
 
 function App() {
@@ -48,22 +42,6 @@ function App() {
   const [subTotal, setSubTotal] = useState<number>(
     shoppingCartLocalStorage ? shoppingCartLocalStorage.subTotal : 0,
   );
-  const [productSuccessToast, setProductSuccessToast] = useState<string>("");
-
-  useEffect(() => {
-    let timeOut: any;
-    if (productSuccessToast.length) {
-      timeOut = setTimeout(() => {
-        setProductSuccessToast("");
-      }, 4500);
-    }
-    return () => {
-      if (timeOut) {
-        clearTimeout(timeOut);
-      }
-    };
-  }, [productSuccessToast]);
-
   return (
     <BrowserRouter>
       <ShoppingCartContext.Provider
@@ -72,20 +50,11 @@ function App() {
           setShoppingCart,
           subTotal,
           setSubTotal,
-          productSuccessToast,
-          setProductSuccessToast,
         }}
       >
         <AnnouncementBar />
         <Navbar />
         <main className="app-container">
-          {productSuccessToast.length ? (
-            <SuccessToast
-              productName={productSuccessToast}
-              setProductSuccessToast={setProductSuccessToast}
-            />
-          ) : null}
-
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/Home" element={<Home />} />
