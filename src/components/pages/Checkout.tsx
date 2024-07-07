@@ -130,7 +130,7 @@ export default function Checkout() {
                   </div>
                 )}
               </div>
-              
+
               <div className="flex w-full items-center justify-between gap-6 break-all border-t pt-8  text-bluePrimary">
                 <span className="flex-1 capitalize text-grayPrimary">
                   payment method
@@ -193,6 +193,8 @@ export default function Checkout() {
                       top: 0,
                       behavior: "smooth",
                     });
+                  } else {
+                    shoppingCartContext.setShoppingCart([]);
                   }
                 }}
               />
