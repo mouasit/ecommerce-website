@@ -4,6 +4,7 @@ import ProductCardCheckout from "../layouts/ProductCardCheckout";
 import PrimaryButton from "../layouts/PrimaryButton";
 import { useState } from "react";
 import {
+  changeTitleDocument,
   currency,
   formatNumberWithSpaces,
   isDigit,
@@ -29,6 +30,7 @@ export default function Checkout() {
   const [errorPhone, setErrorPhone] = useState<string>("");
   const shippingCost: number = 20;
   useEffect(() => {
+    changeTitleDocument({ routeName: "checkout" });
     window.scrollTo({
       top: 0,
     });

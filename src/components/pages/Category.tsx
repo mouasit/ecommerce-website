@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { getCategory, getSousCategory } from "../../API";
 import type { DisplayedCategory } from "../../API";
 import NotFound from "./NotFound";
+import { changeTitleDocument } from "../../Helpers";
 
 export default function Category() {
   const [category, setCategory] = useState<DisplayedCategory>();
@@ -25,6 +26,12 @@ export default function Category() {
     else if (id) setCategory(getCategory({ nameCategory: id }));
     setDataLoaded(true);
   }, [id, action]);
+
+  useEffect(() => {
+    if (category) {
+      changeTitleDocument({ routeName: category.name });
+    }
+  }, [category]);
 
   if (category) {
     return (

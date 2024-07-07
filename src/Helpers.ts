@@ -27,13 +27,17 @@ export function filterByName(data: string[], value: string): string[] {
 }
 
 export function capitalizeFirstLetter(str: string): string {
-  if (!str) return str; // Check if the string is empty
+  if (!str) return str;
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
 export function formatNumberWithSpaces(number: number) {
   let numStr = number.toString();
   return numStr.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+}
+
+export function changeTitleDocument({ routeName }: { routeName: string }) {
+  document.title = `${capitalizeFirstLetter(routeName)} - Come`;
 }
 
 export const currency = "DH";
