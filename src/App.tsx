@@ -11,11 +11,12 @@ import Product from "./components/pages/Product";
 import Category from "./components/pages/Category";
 import Checkout from "./components/pages/Checkout";
 import NotFound from "./components/pages/NotFound";
-
 export type ShoppingCart = {
   idProduct: string;
   nameProduct: string;
   price: number;
+  quantity: number;
+  variants?: { name: string; value: string }[];
   imageProduct: any;
 };
 
@@ -44,7 +45,12 @@ function App() {
   return (
     <BrowserRouter>
       <ShoppingCartContext.Provider
-        value={{ shoppingCart, setShoppingCart, subTotal, setSubTotal }}
+        value={{
+          shoppingCart,
+          setShoppingCart,
+          subTotal,
+          setSubTotal,
+        }}
       >
         <AnnouncementBar />
         <Navbar />

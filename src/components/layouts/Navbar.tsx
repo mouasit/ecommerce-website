@@ -327,7 +327,9 @@ export default function Navbar() {
                         key={index}
                         name={product.nameProduct}
                         price={product.price}
+                        quantity={product.quantity}
                         imageProduct={product.imageProduct}
+                        variants={product.variants}
                         onClick={() => {
                           setClickShoppingCart(false);
                           document.body.classList.remove("overflow-hidden");

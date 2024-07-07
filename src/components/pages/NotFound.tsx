@@ -1,8 +1,12 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { AstroIcon } from "../layouts/Icons";
+import { changeTitleDocument } from "../../Helpers";
 
 export default function NotFound() {
+  useEffect(() => {
+    changeTitleDocument({ routeName: "not found" });
+  }, []);
   return (
     <main className="not-found-container flex h-screen items-center justify-center">
       <div className="flex flex-col items-center lg:flex-row lg:gap-20">

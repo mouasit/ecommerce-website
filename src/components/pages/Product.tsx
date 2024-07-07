@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import NotFound from "./NotFound";
 import { getProductDetails } from "../../API";
 import type { DisplayProductDetails } from "../../API";
+import { changeTitleDocument } from "../../Helpers";
 
 export default function Product() {
   const { id } = useParams();
@@ -19,6 +20,10 @@ export default function Product() {
 
     setDataLoaded(true);
   }, [id]);
+
+  useEffect(() => {
+    if (product) changeTitleDocument({ routeName: product.name });
+  }, [product]);
   if (product)
     return (
       <div>
@@ -28,6 +33,7 @@ export default function Product() {
           imageProduct={product.imageProduct}
           title={product.title as string}
           price={product.price}
+          quantity={product.quantity}
           images={product.images}
           variants={product.variants}
           features={product.features}
@@ -35,7 +41,7 @@ export default function Product() {
           colorsDefinition={product.colorsDefinition}
         />
         <ProductTabs />
-        <RelatedProducts />
+        <RelatedProducts productDetailsId={id as string} />
       </div>
     );
   if (dataLoaded) return <NotFound />;

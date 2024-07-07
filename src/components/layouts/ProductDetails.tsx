@@ -5,7 +5,6 @@ import {
   AddToCartProductIcon,
   ArrowLeftIcon,
   ArrowRightIcon,
-  CheckCartIcon,
   FullScreenIcon,
   MinusIcon,
   PlusIcon,
@@ -26,7 +25,13 @@ import DropDown from "./DropDown";
 import type { ColorsDefinition, Variants } from "../../DataBase";
 import type { ItemAttributes } from "../../API";
 import { ShoppingCart, ShoppingCartContext } from "../../App";
+import SuccessToast from "./SuccessToast";
 export type Filter = {
+  name: string;
+  value: string;
+};
+
+export type SelectedItem = {
   name: string;
   value: string;
 };
@@ -37,6 +42,7 @@ export default function ProductDetails({
   imageProduct,
   title,
   price,
+  quantity,
   features,
   itemsAttributes,
   images,
@@ -48,6 +54,7 @@ export default function ProductDetails({
   imageProduct: any;
   title: string;
   price: number;
+  quantity: number;
   features?: string[];
   itemsAttributes: ItemAttributes[];
   images?: string[] | null;
@@ -62,24 +69,17 @@ export default function ProductDetails({
   const [isVertical, setIsVertical] = useState(window.innerWidth >= screenSize);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [fullScreenSlider, setFullScreenSlider] = useState<boolean>(false);
-  const [quantity, setQuantity] = useState<number>(1);
+  const [quantityCounter, setQuantityCounter] = useState<number>(1);
+  const [selectedItems, setSelectedItems] = useState<SelectedItem[]>([]);
   const [filter, setFilter] = useState<Filter | undefined>(
     colorsDefinition
       ? { name: "color", value: colorsDefinition[0].name }
       : undefined,
   );
 
+  const [productSuccessToast, setProductSuccessToast] = useState<string>("");
+
   const shoppingCartContext = useContext(ShoppingCartContext);
-
-  const [addToShoppingCart, setAddToShoppingCart] = useState<boolean>(
-    shoppingCartContext.shoppingCart.find(
-      (productShoppingCart: ShoppingCart) =>
-        productShoppingCart.idProduct === productId,
-    )
-      ? true
-      : false,
-  );
-
   let productWithColorsAndImages: {
     name?: string;
     imagesProduct: string[];
@@ -180,6 +180,21 @@ export default function ProductDetails({
   const handleDragStop = () => {
     isDragging = false;
   };
+
+  useEffect(() => {
+    let timeOut: any;
+    if (productSuccessToast.length) {
+      timeOut = setTimeout(() => {
+        setProductSuccessToast("");
+      }, 4500);
+    }
+    return () => {
+      if (timeOut) {
+        clearTimeout(timeOut);
+      }
+    };
+  }, [productSuccessToast]);
+
   useEffect(() => {
     const container = sectionRef.current?.querySelector(
       ".slick-dots",
@@ -198,6 +213,54 @@ export default function ProductDetails({
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  const addToShoppingCart = ({
+    productNameToShoppingCart,
+  }: {
+    productNameToShoppingCart: string;
+  }) => {
+    shoppingCartContext.setShoppingCart([
+      ...shoppingCartContext.shoppingCart,
+      {
+        idProduct: productId,
+        nameProduct: productNameToShoppingCart,
+        quantity: quantityCounter,
+        price,
+        variants: variants ? selectedItems : undefined,
+        imageProduct: variants
+          ? productWithColorsAndImages[selectedColorProduct].imagesProduct[0]
+          : imageProduct,
+      },
+    ]);
+  };
+
+  const productMatchWithVariants = (): boolean => {
+    const productsWithSameId: ShoppingCart[] =
+      shoppingCartContext.shoppingCart.filter(
+        (product: ShoppingCart) => product.idProduct === productId,
+      );
+    for (let index: number = 0; index < productsWithSameId.length; index++) {
+      const product = productsWithSameId[index];
+      if (
+        product.variants?.filter((variant: SelectedItem, index: number) => {
+          return (
+            variant.name === selectedItems[index].name &&
+            variant.value === selectedItems[index].value
+          );
+        })?.length === 2
+      ) {
+        updateQuantityInShoppingCart(product);
+        return true;
+      }
+    }
+    return false;
+  };
+
+  const updateQuantityInShoppingCart = (product: ShoppingCart) => {
+    const newQuantity: number = product.quantity + quantityCounter;
+
+    if (newQuantity <= quantity) product.quantity = newQuantity;
+  };
 
   const filteredItems = ({
     filter,
@@ -227,7 +290,21 @@ export default function ProductDetails({
         : undefined,
     );
     setSelectedColorProduct(0);
-  }, [productId]);
+    setQuantityCounter(1);
+  }, [productId, colorsDefinition]);
+
+  useEffect(() => {
+    if (variants)
+      setSelectedItems(
+        itemsAttributes.map((itemAttribute: ItemAttributes) => {
+          return {
+            name: itemAttribute.name,
+            value: itemAttribute.name === "color" ? itemAttribute.items[0] : "",
+          };
+        }),
+      );
+    else setSelectedItems([]);
+  }, [variants]);
 
   useEffect(() => {
     const container = sectionRef.current?.querySelector(
@@ -276,218 +353,246 @@ export default function ProductDetails({
     selectedColorProduct,
     screenWidth,
   ]);
-
-  useEffect(() => {
-    if (
-      !shoppingCartContext.shoppingCart.find(
-        (productShoppingCart: ShoppingCart) =>
-          productShoppingCart.idProduct === productId,
-      )
-    )
-      setAddToShoppingCart(false);
-  }, [shoppingCartContext]);
   return (
-    <section
-      className="relative mt-[2rem] items-start gap-8 px-4 md:flex md:justify-between lg:gap-12 2xlg:px-0"
-      ref={sectionRef}
-    >
-      <div className="relative  md:w-[50%] lg:ml-[8.5rem] lg:w-[45%]">
-        <SlickSlider {...settings}>
-          {productWithColorsAndImages[selectedColorProduct].imagesProduct.map(
-            (image, index) => {
-              return <SlideCategoryProduct imagesProduct={image} key={index} />;
-            },
-          )}
-        </SlickSlider>
-        <button
-          className="absolute right-5 top-5 h-7 w-7"
-          onClick={() => {
-            setFullScreenSlider(true);
-            document.body.classList.add("overflow-hidden");
-          }}
-        >
-          <FullScreenIcon className="fill-bluePrimary" />
-        </button>
-        {!isVertical && showPrevArrow ? (
-          <div className="absolute top-[105%] flex h-[6.5rem] items-center">
+    <>
+      {productSuccessToast.length ? (
+        <SuccessToast
+          productName={productSuccessToast}
+          setProductSuccessToast={setProductSuccessToast}
+        />
+      ) : null}
+      <section
+        className="relative mt-[2rem] items-start gap-8 px-4 md:flex md:justify-between lg:gap-12 2xlg:px-0"
+        ref={sectionRef}
+      >
+        <div className="relative  md:w-[50%] lg:ml-[8.5rem] lg:w-[45%]">
+          <SlickSlider {...settings}>
+            {productWithColorsAndImages[selectedColorProduct].imagesProduct.map(
+              (image, index) => {
+                return (
+                  <SlideCategoryProduct imagesProduct={image} key={index} />
+                );
+              },
+            )}
+          </SlickSlider>
+          <button
+            className="absolute right-5 top-5 h-7 w-7"
+            onClick={() => {
+              setFullScreenSlider(true);
+              document.body.classList.add("overflow-hidden");
+            }}
+          >
+            <FullScreenIcon className="fill-bluePrimary" />
+          </button>
+          {!isVertical && showPrevArrow ? (
+            <div className="absolute top-[105%] flex h-[6.5rem] items-center">
+              <button
+                className="rounded-full bg-white p-3 shadow-xl"
+                onClick={scrollPrev}
+              >
+                <ArrowLeftIcon className="h-3 w-3 fill-bluePrimary" />
+              </button>
+            </div>
+          ) : null}
+          {!isVertical && showNextArrow ? (
+            <div className="absolute right-0 top-[105%] flex h-[6.5rem] items-center">
+              <button
+                className="rounded-full bg-white p-3 shadow-xl"
+                onClick={scrollNext}
+              >
+                <ArrowRightIcon className="h-3 w-3 fill-bluePrimary" />
+              </button>
+            </div>
+          ) : null}
+        </div>
+        {isVertical && showPrevArrow ? (
+          <div className="absolute top-0 flex w-[6.5rem] justify-center">
             <button
               className="rounded-full bg-white p-3 shadow-xl"
               onClick={scrollPrev}
             >
-              <ArrowLeftIcon className="h-3 w-3 fill-bluePrimary" />
+              <ArrowLeftIcon className="h-3 w-3 rotate-90 fill-bluePrimary" />
             </button>
           </div>
         ) : null}
-        {!isVertical && showNextArrow ? (
-          <div className="absolute right-0 top-[105%] flex h-[6.5rem] items-center">
+        {isVertical && showNextArrow ? (
+          <div className="absolute bottom-0 flex w-[6.5rem] justify-center">
             <button
               className="rounded-full bg-white p-3 shadow-xl"
               onClick={scrollNext}
             >
-              <ArrowRightIcon className="h-3 w-3 fill-bluePrimary" />
+              <ArrowRightIcon className="h-3 w-3 rotate-90 fill-bluePrimary" />
             </button>
           </div>
         ) : null}
-      </div>
-      {isVertical && showPrevArrow ? (
-        <div className="absolute top-0 flex w-[6.5rem] justify-center">
-          <button
-            className="rounded-full bg-white p-3 shadow-xl"
-            onClick={scrollPrev}
-          >
-            <ArrowLeftIcon className="h-3 w-3 rotate-90 fill-bluePrimary" />
-          </button>
-        </div>
-      ) : null}
-      {isVertical && showNextArrow ? (
-        <div className="absolute bottom-0 flex w-[6.5rem] justify-center">
-          <button
-            className="rounded-full bg-white p-3 shadow-xl"
-            onClick={scrollNext}
-          >
-            <ArrowRightIcon className="h-3 w-3 rotate-90 fill-bluePrimary" />
-          </button>
-        </div>
-      ) : null}
-      <div className="mt-[11rem]  flex flex-col gap-5 md:mt-2 md:w-[50%] lg:space-y-4">
-        <span className="text-[1.5rem] font-semibold capitalize text-bluePrimary">
-          {title}
-        </span>
-        <div className="space-x-1 text-[1.6rem] font-bold text-bluePrimary">
-          <span>{formatNumberWithSpaces(price)}</span>
-          <span className="text-yellowPrimary">{currency}</span>
-        </div>
-        {features ? (
-          <ul className="ml-5 list-disc space-y-3 text-sm font-light text-grayPrimary">
-            {features.map((feature: string, index: number) => (
-              <li key={index}>{capitalizeFirstLetter(feature)}</li>
-            ))}
-          </ul>
-        ) : null}
-        <div className="flex flex-col gap-8">
-          {itemsAttributes.map(
-            (itemAttributes: ItemAttributes, index: number) =>
-              itemAttributes.name === "color" ? (
-                <div
-                  className="flex items-center gap-5 text-lg font-medium text-bluePrimary"
-                  key={index}
-                >
-                  <span className="w-[8.3rem]">Chose color</span>
-                  <div className="flex items-center gap-3">
-                    {productWithColorsAndImages.map((product, index) => {
-                      return (
-                        <SelectedColorItem
-                          backgroundColor={product.colorProduct as string}
-                          key={index}
-                          selected={
-                            index === selectedColorProduct ? true : false
-                          }
-                          onClick={() => {
-                            setFilter({
-                              name: itemAttributes.name,
-                              value: product.name as string,
-                            });
-                            setSelectedColorProduct(index);
-                          }}
-                        />
-                      );
-                    })}
+        <div className="mt-[11rem]  flex flex-col gap-5 md:mt-2 md:w-[50%] lg:space-y-4">
+          <span className="text-[1.5rem] font-semibold capitalize text-bluePrimary">
+            {title}
+          </span>
+          <div className="space-x-1 text-[1.6rem] font-bold text-bluePrimary">
+            <span>{formatNumberWithSpaces(price)}</span>
+            <span className="text-yellowPrimary">{currency}</span>
+          </div>
+          {features ? (
+            <ul className="ml-5 list-disc space-y-3 text-sm font-light text-grayPrimary">
+              {features.map((feature: string, index: number) => (
+                <li key={index}>{capitalizeFirstLetter(feature)}</li>
+              ))}
+            </ul>
+          ) : null}
+          <div className="flex flex-col gap-8">
+            {itemsAttributes.map(
+              (itemAttributes: ItemAttributes, index: number) =>
+                itemAttributes.name === "color" ? (
+                  <div
+                    className="flex items-center gap-5 text-lg font-medium text-bluePrimary"
+                    key={index}
+                  >
+                    <span className="w-[8.3rem]">Chose color</span>
+                    <div className="flex items-center gap-3">
+                      {productWithColorsAndImages.map((product, index) => {
+                        return (
+                          <SelectedColorItem
+                            backgroundColor={product.colorProduct as string}
+                            key={index}
+                            selected={
+                              index === selectedColorProduct ? true : false
+                            }
+                            onClick={() => {
+                              setFilter({
+                                name: itemAttributes.name,
+                                value: product.name as string,
+                              });
+                              const newSelect: SelectedItem[] =
+                                selectedItems.map((item: SelectedItem) => {
+                                  if (item.name === itemAttributes.name)
+                                    return {
+                                      name: item.name,
+                                      value: colorsDefinition
+                                        ? colorsDefinition[index].name
+                                        : "",
+                                    };
+                                  else return item;
+                                });
+
+                              setSelectedItems(newSelect);
+                              setSelectedColorProduct(index);
+                            }}
+                          />
+                        );
+                      })}
+                    </div>
                   </div>
-                </div>
-              ) : (
-                <div className="flex items-center gap-5" key={index}>
-                  <span className="w-[8.3rem] flex-none text-lg font-medium text-bluePrimary">
-                    Chose {itemAttributes.name}
-                  </span>
-                  <DropDown
-                    productId={productId}
-                    items={
-                      filter && itemAttributes.name !== filter.name
-                        ? filteredItems({
-                            filter,
-                            attributeName: itemAttributes.name,
-                          })
-                        : itemAttributes.items
-                    }
-                    attributeName={itemAttributes.name}
-                    filter={filter}
-                    setFilter={setFilter}
-                  />
-                </div>
-              ),
-          )}
-        </div>
-        <div className="mt-5 flex max-w-[533px] gap-2 md:max-w-none">
-          <div className="flex w-[60%] items-center justify-between rounded-2xl bg-grayLight p-3 text-xl font-medium text-bluePrimary xlg:w-[65%]">
-            <button
-              className="rounded-full bg-yellowPrimary p-1"
-              onClick={() => {
-                if (quantity > 0) setQuantity(quantity - 1);
-              }}
-            >
-              <MinusIcon className="h-4 w-4 fill-bluePrimary" />
-            </button>
-            {quantity}
-            <button
-              className="rounded-full bg-yellowPrimary p-1"
-              onClick={() => {
-                setQuantity(quantity + 1);
-              }}
-            >
-              <PlusIcon className="h-4 w-4 fill-bluePrimary" />
-            </button>
+                ) : (
+                  <div className="flex items-center gap-5" key={index}>
+                    <span className="w-[8.3rem] flex-none text-lg font-medium text-bluePrimary">
+                      Chose {itemAttributes.name}
+                    </span>
+                    <DropDown
+                      productId={productId}
+                      items={
+                        filter && itemAttributes.name !== filter.name
+                          ? filteredItems({
+                              filter,
+                              attributeName: itemAttributes.name,
+                            })
+                          : itemAttributes.items
+                      }
+                      attributeName={itemAttributes.name}
+                      filter={filter}
+                      setFilter={setFilter}
+                      selectedItems={selectedItems}
+                      setSelectedItems={setSelectedItems}
+                    />
+                  </div>
+                ),
+            )}
           </div>
-          <PrimaryButton
-            icon={
-              addToShoppingCart ? (
-                <CheckCartIcon className="h-8 w-8 fill-bluePrimary" />
-              ) : (
+          <div className="mt-5 flex max-w-[533px] gap-2 md:max-w-none">
+            <div className="flex w-[60%] items-center justify-between rounded-2xl bg-grayLight p-3 text-xl font-medium text-bluePrimary xlg:w-[65%]">
+              <button
+                className="rounded-full bg-yellowPrimary p-1"
+                onClick={() => {
+                  if (quantityCounter > 1)
+                    setQuantityCounter(quantityCounter - 1);
+                }}
+              >
+                <MinusIcon className="h-4 w-4 fill-bluePrimary" />
+              </button>
+              {quantityCounter}
+              <button
+                className="rounded-full bg-yellowPrimary p-1"
+                onClick={() => {
+                  if (quantityCounter < quantity)
+                    setQuantityCounter(quantityCounter + 1);
+                }}
+              >
+                <PlusIcon className="h-4 w-4 fill-bluePrimary" />
+              </button>
+            </div>
+            <PrimaryButton
+              icon={
                 <AddToCartProductIcon className="h-8 w-8 fill-bluePrimary" />
-              )
-            }
-            value={addToShoppingCart ? "Already in cart" : "Add to cart"}
-            className="flex w-full items-center justify-center gap-3 text-lg"
-            onClick={() => {
-              if (
-                !shoppingCartContext.shoppingCart.find(
-                  (productShoppingCart: ShoppingCart) =>
-                    productShoppingCart.idProduct === productId,
-                )
-              ) {
-                shoppingCartContext.setShoppingCart([
-                  ...shoppingCartContext.shoppingCart,
-                  {
-                    idProduct: productId,
-                    nameProduct: productName,
-                    price,
-                    imageProduct: imageProduct,
-                  },
-                ]);
-                setAddToShoppingCart(true);
-              } else {
-                shoppingCartContext.setShoppingCart(
-                  shoppingCartContext.shoppingCart.filter(
-                    (productShoppingCart: ShoppingCart) =>
-                      productShoppingCart.idProduct !== productId,
-                  ),
-                );
               }
-            }}
-          />
+              value="Add to cart"
+              className="flex w-full items-center justify-center gap-3 text-lg"
+              onClick={() => {
+                if (
+                  !selectedItems.find(
+                    (product: SelectedItem) => product.value.length === 0,
+                  )
+                ) {
+                  let selectedVariants: string[] = [];
+                  if (variants)
+                    selectedVariants = selectedItems.map(
+                      (selectedItem: SelectedItem) => selectedItem.value,
+                    );
+
+                  const productNameToShoppingCart = variants
+                    ? `${productName} - ${selectedVariants.join()}`
+                    : productName;
+
+                  const productInShoppingCart =
+                    shoppingCartContext.shoppingCart.find(
+                      (productShoppingCart: ShoppingCart) =>
+                        productShoppingCart.idProduct === productId,
+                    );
+                  if (!productInShoppingCart)
+                    addToShoppingCart({ productNameToShoppingCart });
+                  else {
+                    if (variants) {
+                      if (!productMatchWithVariants())
+                        addToShoppingCart({ productNameToShoppingCart });
+                    } else updateQuantityInShoppingCart(productInShoppingCart);
+                  }
+                  setQuantityCounter(1);
+                  if (productSuccessToast.length) {
+                    setProductSuccessToast("");
+                    setTimeout(() => {
+                      setProductSuccessToast(productNameToShoppingCart);
+                    }, 0);
+                  } else setProductSuccessToast(productNameToShoppingCart);
+                  window.scrollTo({
+                    top: 0,
+                  });
+                }
+              }}
+            />
+          </div>
         </div>
-      </div>
-      {fullScreenSlider ? (
-        <FullScreenSlider
-          productImages={
-            productWithColorsAndImages[selectedColorProduct].imagesProduct
-          }
-          initialSlide={getInitialSlide(
-            sectionRef.current?.querySelector(".slick-dots") as HTMLElement,
-          )}
-          setFullScreenSlider={setFullScreenSlider}
-        />
-      ) : null}
-    </section>
+        {fullScreenSlider ? (
+          <FullScreenSlider
+            productImages={
+              productWithColorsAndImages[selectedColorProduct].imagesProduct
+            }
+            initialSlide={getInitialSlide(
+              sectionRef.current?.querySelector(".slick-dots") as HTMLElement,
+            )}
+            setFullScreenSlider={setFullScreenSlider}
+          />
+        ) : null}
+      </section>
+    </>
   );
 }
 

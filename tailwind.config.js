@@ -10,6 +10,7 @@ export default {
         grayPrimary: "#959595",
         grayLight: "#F6F6F6",
         redError: "#FF5656",
+        success: "#307851",
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],

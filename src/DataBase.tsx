@@ -10,6 +10,7 @@ import microwave from "./assets/products/microwave.jpg";
 import laptop from "./assets/products/laptop.jpg";
 import cable from "./assets/products/cable.jpg";
 import controller from "./assets/products/controller.jpg";
+import gamingKeyboard from "./assets/products/keyboard.jpg";
 import cd from "./assets/products/cd.jpg";
 import chair from "./assets/products/chair.jpg";
 import microphone from "./assets/products/microphone.jpg";
@@ -27,6 +28,8 @@ import imageBlue1 from "./assets/products/iphone-13/blue/1.jpg";
 import imageBlue2 from "./assets/products/iphone-13/blue/2.jpg";
 import imageBlue3 from "./assets/products/iphone-13/blue/3.jpg";
 import imageBlue4 from "./assets/products/iphone-13/blue/4.jpg";
+
+const globalQuantity = 20;
 
 export type Category = {
   id: string;
@@ -57,9 +60,13 @@ export type Product = {
   name: string;
   title?: string;
   price: number;
+  quantity: number;
   features?: string[];
   imageProduct: any;
   images: string[] | null;
+  category: string;
+  sousCategory: string;
+  hasVariants: boolean;
   variants?: Variants;
   colorsDefinition?: ColorsDefinition[];
 };
@@ -68,12 +75,12 @@ export const categories: Category[] = [
   {
     id: "c1",
     name: "electronics",
-    products: ["p17", "p2", "p3", "p4", "p5", "p6"],
+    products: ["p16", "p2", "p3", "p4", "p5", "p6"],
     sousCategories: [
       {
         id: "sc10",
         name: "phones",
-        products: ["p17", "p7", "p1"],
+        products: ["p16", "p7", "p1"],
       },
       {
         id: "sc20",
@@ -93,7 +100,7 @@ export const categories: Category[] = [
       {
         id: "sc50",
         name: "laptops",
-        products: ["p11"],
+        products: ["p10"],
       },
       {
         id: "sc60",
@@ -103,46 +110,46 @@ export const categories: Category[] = [
       {
         id: "sc70",
         name: "accessories",
-        products: ["p6", "p9", "p12"],
+        products: ["p6", "p8", "p11"],
       },
     ],
   },
   {
     id: "c2",
     name: "home appliance",
-    products: ["p10"],
+    products: ["p9"],
     sousCategories: [
       {
         id: "sc80",
         name: "microwaves",
-        products: ["p10"],
+        products: ["p9"],
       },
     ],
   },
   {
     id: "c3",
     name: "gaming",
-    products: ["p13", "p14", "p15", "p16"],
+    products: ["p12", "p13", "p14", "p15", "p17"],
     sousCategories: [
       {
         id: "sc90",
-        name: "Consoles & Controllers",
-        products: ["p13"],
+        name: "consoles & controllers",
+        products: ["p12", "p17"],
       },
       {
         id: "sc100",
         name: "games",
-        products: ["p14"],
+        products: ["p13"],
       },
       {
         id: "sc110",
-        name: "Chairs",
-        products: ["p15"],
+        name: "chairs",
+        products: ["p14"],
       },
       {
         id: "sc111",
         name: "microphones",
-        products: ["p16"],
+        products: ["p15"],
       },
     ],
   },
@@ -153,119 +160,236 @@ export const products: Product[] = [
     id: "p1",
     name: "Xiaomi redmi R",
     price: 1500,
+    quantity: globalQuantity,
     imageProduct: redmi,
     images: null,
+    hasVariants: false,
+    category: "electronics",
+    sousCategory: "phones",
   },
   {
     id: "p2",
     name: "Apple airpods 3",
     price: 300,
+    quantity: globalQuantity,
     imageProduct: airpods,
     images: null,
+    hasVariants: false,
+    category: "electronics",
+    sousCategory: "air pods",
   },
   {
     id: "p3",
     name: "Apple ipad 10",
     price: 4000,
+    quantity: globalQuantity,
     imageProduct: ipad,
     images: null,
+    hasVariants: false,
+    category: "electronics",
+    sousCategory: "tablets",
   },
   {
     id: "p4",
     name: "Surface Headphones",
     price: 1500,
+    quantity: globalQuantity,
     imageProduct: headPhones,
     images: null,
+    hasVariants: false,
+    category: "electronics",
+    sousCategory: "head phones",
   },
   {
     id: "p5",
     name: "Smart watch red",
     price: 300,
+    quantity: globalQuantity,
     imageProduct: smartWatch,
     images: null,
+    hasVariants: false,
+    category: "electronics",
+    sousCategory: "smart watches",
   },
   {
     id: "p6",
     name: "Power Bank",
     price: 600,
+    quantity: globalQuantity,
     imageProduct: powerBank,
     images: null,
+    hasVariants: false,
+    category: "electronics",
+    sousCategory: "accessories",
   },
   {
     id: "p7",
     name: "iphone 14 plus",
     price: 11000,
+    quantity: globalQuantity,
     imageProduct: iphone14,
     images: null,
+    hasVariants: false,
+    category: "electronics",
+    sousCategory: "phones",
   },
   {
     id: "p8",
     name: "JBL Flip 5",
     price: 1500,
+    quantity: globalQuantity,
     imageProduct: speaker,
     images: null,
+    hasVariants: false,
+    category: "electronics",
+    sousCategory: "accessories",
   },
   {
     id: "p9",
-    name: "JBL Flip 5",
-    price: 1500,
-    imageProduct: speaker,
+    name: "Microwave oven",
+    price: 3000,
+    quantity: globalQuantity,
+    imageProduct: microwave,
     images: null,
+    hasVariants: false,
+    category: "home appliance",
+    sousCategory: "microwaves",
   },
   {
     id: "p10",
-    name: "Microwave oven",
-    price: 3000,
-    imageProduct: microwave,
+    name: "OMEN 16-wd0040nf",
+    price: 12000,
+    quantity: globalQuantity,
+    imageProduct: laptop,
     images: null,
+    hasVariants: false,
+    category: "electronics",
+    sousCategory: "laptops",
   },
   {
     id: "p11",
-    name: "OMEN 16-wd0040nf",
-    price: 12000,
-    imageProduct: laptop,
+    name: "Baseus Tungsten",
+    price: 400,
+    quantity: globalQuantity,
+    imageProduct: cable,
     images: null,
+    hasVariants: false,
+    category: "electronics",
+    sousCategory: "accessories",
   },
   {
     id: "p12",
-    name: "Baseus Tungsten",
-    price: 400,
-    imageProduct: cable,
+    name: "controller PS5",
+    price: 600,
+    quantity: globalQuantity,
+    imageProduct: controller,
+    features: [
+      "bass and Stereo Sound",
+      "display with 3088 x 1440 pixels resolution",
+      "memory, Storage & SIM: 12GB RAM, 256GB",
+    ],
     images: null,
+    hasVariants: true,
+    variants: {
+      attributesName: ["storage", "color", "quantity"],
+      itemsAttributes: [
+        {
+          storage: "64 GB",
+          color: "orange",
+          quantity: "44",
+        },
+        {
+          storage: "128 GB",
+          color: "green",
+          quantity: "12",
+        },
+        {
+          storage: "64 GB",
+          color: "green",
+          quantity: "05",
+        },
+        {
+          storage: "512 GB",
+          color: "green",
+          quantity: "10",
+        },
+        {
+          storage: "64 GB",
+          color: "blue",
+          quantity: "28",
+        },
+        {
+          storage: "512 GB",
+          color: "orange",
+          quantity: "20",
+        },
+      ],
+    },
+    colorsDefinition: [
+      {
+        name: "orange",
+        code: "#FFA500",
+        imagesColor: [
+          imageBlack1,
+          imageBlack2,
+          imageBlack3,
+          imageBlack4,
+          imageBlack5,
+        ],
+      },
+      {
+        name: "green",
+        code: "#59965C",
+        imagesColor: [imageGreen1, imageGreen2, imageGreen3, imageGreen4],
+      },
+      {
+        name: "blue",
+        code: "#3694C7",
+        imagesColor: [imageBlue1, imageBlue2, imageBlue3, imageBlue4],
+      },
+    ],
+    category: "electronics",
+    sousCategory: "phones",
   },
   {
     id: "p13",
-    name: "controller PS5",
+    name: "FC 24 PS5",
     price: 600,
-    imageProduct: controller,
+    quantity: globalQuantity,
+    imageProduct: cd,
     images: null,
+    hasVariants: false,
+    category: "gaming",
+    sousCategory: "games",
   },
   {
     id: "p14",
-    name: "FC 24 PS5",
-    price: 600,
-    imageProduct: cd,
+    name: "gaming chair",
+    price: 4000,
+    quantity: globalQuantity,
+    imageProduct: chair,
     images: null,
+    hasVariants: false,
+    category: "gaming",
+    sousCategory: "chairs",
   },
   {
     id: "p15",
-    name: "gaming chair",
-    price: 4000,
-    imageProduct: chair,
+    name: "microphone RGB",
+    price: 1200,
+    quantity: globalQuantity,
+    imageProduct: microphone,
     images: null,
+    hasVariants: false,
+    category: "gaming",
+    sousCategory: "microphones",
   },
   {
     id: "p16",
-    name: "microphone RGB",
-    price: 1200,
-    imageProduct: microphone,
-    images: null,
-  },
-  {
-    id: "p17",
     name: "iphone 13",
     title: `apple iPhone 13 6,1" 5G`,
     price: 10000,
+    quantity: globalQuantity,
     imageProduct: iphone13,
     features: [
       "bass and Stereo Sound",
@@ -273,6 +397,7 @@ export const products: Product[] = [
       "memory, Storage & SIM: 12GB RAM, 256GB",
     ],
     images: null,
+    hasVariants: true,
     variants: {
       attributesName: ["storage", "color", "quantity"],
       itemsAttributes: [
@@ -331,5 +456,18 @@ export const products: Product[] = [
         imagesColor: [imageBlue1, imageBlue2, imageBlue3, imageBlue4],
       },
     ],
+    category: "electronics",
+    sousCategory: "phones",
+  },
+  {
+    id: "p17",
+    name: "gaming keyboard",
+    price: 400,
+    quantity: globalQuantity,
+    imageProduct: gamingKeyboard,
+    images: null,
+    hasVariants: false,
+    category: "gaming",
+    sousCategory: "consoles & controllers",
   },
 ];
