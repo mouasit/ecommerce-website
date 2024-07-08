@@ -11,6 +11,7 @@ import Product from "./components/pages/Product";
 import Category from "./components/pages/Category";
 import Checkout from "./components/pages/Checkout";
 import NotFound from "./components/pages/NotFound";
+import ThankYou from "./components/pages/ThankYou";
 export type ShoppingCart = {
   idProduct: string;
   nameProduct: string;
@@ -62,6 +63,7 @@ function App() {
             <Route path="/Category/:id/:action" element={<Category />} />
             <Route path="/Product/:id" element={<Product />} />
             <Route path="/Checkout" element={<Checkout />} />
+            <Route path="/ThankYou" element={<ThankYou />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>

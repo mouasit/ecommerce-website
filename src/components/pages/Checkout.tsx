@@ -193,9 +193,7 @@ export default function Checkout() {
                       top: 0,
                       behavior: "smooth",
                     });
-                  } else {
-                    shoppingCartContext.setShoppingCart([]);
-                  }
+                  } else navigate("/ThankYou");
                 }}
               />
             </div>
