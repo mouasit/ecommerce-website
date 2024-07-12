@@ -93,7 +93,7 @@ export function TrashIcon({ className }: { className?: string }) {
 
 export function TrackIcon({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 35 27" className={className}>
+    <svg viewBox="0 0 35 27" className={className} width={500} height={500} fill="#0000">
       <path
         fillRule="evenodd"
         clipRule="evenodd"

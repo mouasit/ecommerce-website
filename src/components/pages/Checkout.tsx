@@ -193,7 +193,20 @@ export default function Checkout() {
                       top: 0,
                       behavior: "smooth",
                     });
-                  } else navigate("/ThankYou");
+                  } else {
+                    shoppingCartContext.placeOrder = true;
+                    shoppingCartContext.userInformation = {
+                      fullName,
+                      city,
+                      address,
+                      phone,
+                    };
+                    shoppingCartContext.shippingCost =
+                      city.toLowerCase() !== "casablanca"
+                        ? shippingCost
+                        : "Free";
+                    navigate("/ThankYou");
+                  }
                 }}
               />
             </div>

@@ -1,19 +1,31 @@
 import { useContext, useEffect, useRef } from "react";
 import { ShoppingCart, ShoppingCartContext } from "../../App";
 import { CalenDarIcon, CheckGradientIcon } from "../layouts/Icons";
-import { currency, formatNumberWithSpaces } from "../../Helpers";
+import { currency, formatNumberWithSpaces, getTodayDate } from "../../Helpers";
+import { useNavigate } from "react-router-dom";
 
 export default function ThankYou() {
+  const navigate = useNavigate();
   const shoppingCartContext = useContext(ShoppingCartContext);
   const shoppingCart = useRef(shoppingCartContext.shoppingCart);
   const subtotal = useRef(shoppingCartContext.subTotal);
-  useEffect(() => {
-    window.scrollTo({
-      top: 0,
-    });
-    shoppingCartContext.setShoppingCart([]);
-  }, []);
+  const placeOrder = useRef(shoppingCartContext.placeOrder);
+  const userInformation = useRef(shoppingCartContext.userInformation);
+  const shippingCost = useRef(shoppingCartContext.shippingCost);
+  // useEffect(() => {
+  //   window.scrollTo({
+  //     top: 0,
+  //   });
+  //   if (!placeOrder.current) navigate("/");
+  //   if (placeOrder.current) {
+  //     shoppingCartContext.setShoppingCart([]);
+  //     shoppingCartContext.placeOrder = false;
+  //     shoppingCartContext.userInformation = {};
+  //     shoppingCartContext.shippingCost = 0;
+  //   }
+  // }, []);
 
+  // if (placeOrder.current)
   return (
     <div className="mt-[5.7rem] px-4 2xl:px-0">
       <div className="flex flex-col items-center justify-center gap-6">
@@ -28,7 +40,7 @@ export default function ThankYou() {
           </span>
         </div>
       </div>
-      <section className="mt-[5.7rem]">
+      <section className="mt-[5.7rem] flex flex-col gap-[4rem]">
         <div>
           <div className="flex items-center justify-between">
             <span className="text-xl font-semibold text-bluePrimary">
@@ -37,11 +49,11 @@ export default function ThankYou() {
             <div className="flex items-center gap-3">
               <CalenDarIcon className="h-7 w-7 fill-bluePrimary" />
               <span className="text-lg font-light text-grayPrimary">
-                08/07/2024
+                {getTodayDate()}
               </span>
             </div>
           </div>
-          <table className="mt-[4.5rem] w-full table-fixed	">
+          <table className="mt-[4.5rem] w-full lg:table-fixed	">
             <thead>
               <tr>
                 <th className="text-left font-medium text-bluePrimary">
@@ -66,7 +78,7 @@ export default function ThankYou() {
                       />
                       <span className="capitalize">{product.nameProduct}</span>
                     </td>
-                    <td className="text-center">{product.quantity}</td>
+                    <td className=" text-center">{product.quantity}</td>
                     <td className="text-end font-bold">
                       {formatNumberWithSpaces(product.price)} {currency}
                     </td>
@@ -74,20 +86,39 @@ export default function ThankYou() {
                 ),
               )}
             </tbody>
-            <tfoot>
-              <tr className="text-xl font-semibold text-bluePrimary">
-                <td colSpan={3} className="text-end">
-                  Subtotal :{" "}
-                  <span>
-                    {formatNumberWithSpaces(subtotal.current)}{" "}
-                    <span className="text-yellowPrimary">{currency}</span>
-                  </span>
-                </td>
-              </tr>
-            </tfoot>
           </table>
+          <div>
+            <div className="flex items-center justify-between border-b py-12 text-lg">
+              <span className="text-grayPrimary">Subtotal</span>
+              <span className="font-bold text-bluePrimary">
+                {formatNumberWithSpaces(subtotal.current)} {currency}
+              </span>
+            </div>
+            <div className="flex items-center justify-between border-b py-12 text-lg">
+              <span className="text-grayPrimary">Delivery</span>
+              <span className="font-bold text-bluePrimary">
+                {shippingCost.current}{" "}
+                {shippingCost.current !== "Free" ? `${currency}` : null}
+              </span>
+            </div>
+            <div className="flex items-center justify-between py-12 text-xl font-bold text-bluePrimary">
+              <span>Total</span>
+              <span>
+                {shippingCost.current === "Free"
+                  ? formatNumberWithSpaces(subtotal.current + 0)
+                  : formatNumberWithSpaces(
+                      subtotal.current + shippingCost.current,
+                    )}{" "}
+                <span className="text-yellowPrimary">{currency}</span>
+              </span>
+            </div>
+          </div>
         </div>
       </section>
     </div>
   );
+  // else
+  //   return (
+  //     <div className="fixed left-0 top-0 z-[2] h-full w-full bg-white"></div>
+  //   );
 }

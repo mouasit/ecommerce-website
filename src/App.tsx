@@ -21,16 +21,29 @@ export type ShoppingCart = {
   imageProduct: any;
 };
 
+export type UserInfo = {
+  fullName: string;
+  city: string;
+  address: string;
+  phone: string;
+};
+
 export const ShoppingCartContext = React.createContext<{
   shoppingCart: ShoppingCart[];
   setShoppingCart: React.Dispatch<React.SetStateAction<ShoppingCart[]>>;
   subTotal: number;
   setSubTotal: React.Dispatch<React.SetStateAction<number>>;
+  placeOrder: boolean;
+  userInformation: UserInfo | {};
+  shippingCost: number | "Free";
 }>({
   shoppingCart: [],
   setShoppingCart: () => {},
   subTotal: 0,
   setSubTotal: () => {},
+  placeOrder: false,
+  userInformation: {},
+  shippingCost: 0,
 });
 
 function App() {
@@ -51,6 +64,9 @@ function App() {
           setShoppingCart,
           subTotal,
           setSubTotal,
+          placeOrder: false,
+          userInformation: {},
+          shippingCost: 0,
         }}
       >
         <AnnouncementBar />
