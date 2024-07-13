@@ -34,7 +34,7 @@ export const ShoppingCartContext = React.createContext<{
   subTotal: number;
   setSubTotal: React.Dispatch<React.SetStateAction<number>>;
   placeOrder: boolean;
-  userInformation: UserInfo | {};
+  userInformation: UserInfo;
   shippingCost: number | "Free";
 }>({
   shoppingCart: [],
@@ -42,7 +42,7 @@ export const ShoppingCartContext = React.createContext<{
   subTotal: 0,
   setSubTotal: () => {},
   placeOrder: false,
-  userInformation: {},
+  userInformation: { fullName: "", city: "", address: "", phone: "" },
   shippingCost: 0,
 });
 
@@ -65,7 +65,7 @@ function App() {
           subTotal,
           setSubTotal,
           placeOrder: false,
-          userInformation: {},
+          userInformation: { fullName: "", city: "", address: "", phone: "" },
           shippingCost: 0,
         }}
       >
