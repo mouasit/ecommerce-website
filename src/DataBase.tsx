@@ -298,6 +298,13 @@ export const products: Product[] = [
     hasVariants: false,
     category: "electronics",
     sousCategory: "accessories",
+    title: "Baseus Tungsten Gold cable USB-A",
+    features: [
+      "Brand Baseus",
+      "Black colour",
+      "Maximum load 100W (11V/6A)",
+      "Length 2m",
+    ],
   },
   {
     id: "p12",
