@@ -11,6 +11,7 @@ import Product from "./components/pages/Product";
 import Category from "./components/pages/Category";
 import Checkout from "./components/pages/Checkout";
 import NotFound from "./components/pages/NotFound";
+import ThankYou from "./components/pages/ThankYou";
 export type ShoppingCart = {
   idProduct: string;
   nameProduct: string;
@@ -20,16 +21,29 @@ export type ShoppingCart = {
   imageProduct: any;
 };
 
+export type UserInfo = {
+  fullName: string;
+  city: string;
+  address: string;
+  phone: string;
+};
+
 export const ShoppingCartContext = React.createContext<{
   shoppingCart: ShoppingCart[];
   setShoppingCart: React.Dispatch<React.SetStateAction<ShoppingCart[]>>;
   subTotal: number;
   setSubTotal: React.Dispatch<React.SetStateAction<number>>;
+  placeOrder: boolean;
+  userInformation: UserInfo;
+  shippingCost: number | "Free";
 }>({
   shoppingCart: [],
   setShoppingCart: () => {},
   subTotal: 0,
   setSubTotal: () => {},
+  placeOrder: false,
+  userInformation: { fullName: "", city: "", address: "", phone: "" },
+  shippingCost: 0,
 });
 
 function App() {
@@ -50,6 +64,9 @@ function App() {
           setShoppingCart,
           subTotal,
           setSubTotal,
+          placeOrder: false,
+          userInformation: { fullName: "", city: "", address: "", phone: "" },
+          shippingCost: 0,
         }}
       >
         <AnnouncementBar />
@@ -62,6 +79,7 @@ function App() {
             <Route path="/Category/:id/:action" element={<Category />} />
             <Route path="/Product/:id" element={<Product />} />
             <Route path="/Checkout" element={<Checkout />} />
+            <Route path="/ThankYou" element={<ThankYou />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
