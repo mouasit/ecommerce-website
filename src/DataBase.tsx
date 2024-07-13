@@ -1,14 +1,23 @@
 import redmi from "./assets/products/redmi.jpg";
 import airpods from "./assets/products/airpods.jpg";
-import ipad from "./assets/products/ipad.jpg";
+import ipad1 from "./assets/products/ipad10/1.jpg";
+import ipad2 from "./assets/products/ipad10/2.jpg";
+import ipad3 from "./assets/products/ipad10/3.jpg";
 import headPhones from "./assets/products/headphones-black.jpg";
 import smartWatch from "./assets/products/smart-watch-red.jpg";
 import powerBank from "./assets/products/power-bank.jpg";
 import iphone14 from "./assets/products/iphone.jpg";
 import speaker from "./assets/products/speaker.jpg";
-import microwave from "./assets/products/microwave.jpg";
+import microwave1 from "./assets/products/microwave-oven/1.jpg";
+import microwave2 from "./assets/products/microwave-oven/2.jpg";
+import microwave3 from "./assets/products/microwave-oven/3.jpg";
+import microwave4 from "./assets/products/microwave-oven/4.jpg";
 import laptop from "./assets/products/laptop.jpg";
-import cable from "./assets/products/cable.jpg";
+import cable1 from "./assets/products/cable/1.jpg";
+import cable2 from "./assets/products/cable/2.jpg";
+import cable3 from "./assets/products/cable/3.jpg";
+import cable4 from "./assets/products/cable/4.jpg";
+import cable5 from "./assets/products/cable/5.jpg";
 import controller from "./assets/products/controller.jpg";
 import gamingKeyboard from "./assets/products/keyboard.jpg";
 import cd from "./assets/products/cd.jpg";
@@ -183,11 +192,17 @@ export const products: Product[] = [
     name: "Apple ipad 10",
     price: 4000,
     quantity: globalQuantity,
-    imageProduct: ipad,
-    images: null,
+    imageProduct: ipad1,
+    images: [ipad1, ipad2, ipad3],
     hasVariants: false,
     category: "electronics",
     sousCategory: "tablets",
+    features: [
+      "Superbe écran Liquid Retina de 10,9 pouces avec True Tone",
+      "Puce A14 Bionic avec CPU 6 cœurs et GPU 4 cœurs",
+      "256Go de stockage",
+      "Appareil photo arrière grand angle 12 Mpx",
+    ],
   },
   {
     id: "p4",
@@ -249,11 +264,18 @@ export const products: Product[] = [
     name: "Microwave oven",
     price: 3000,
     quantity: globalQuantity,
-    imageProduct: microwave,
-    images: null,
+    imageProduct: microwave1,
+    images: [microwave1, microwave2, microwave3, microwave4],
     hasVariants: false,
     category: "home appliance",
     sousCategory: "microwaves",
+    title: "Bespoke Grill Microwave Oven",
+    features: [
+      "3-in-1 Cooking: Grill, Grill Fry and Microwave",
+      "Triple Distribution System",
+      "Home Dessert",
+      "Bread Defrost",
+    ],
   },
   {
     id: "p10",
@@ -271,8 +293,8 @@ export const products: Product[] = [
     name: "Baseus Tungsten",
     price: 400,
     quantity: globalQuantity,
-    imageProduct: cable,
-    images: null,
+    imageProduct: cable1,
+    images: [cable1, cable2, cable3, cable4, cable5],
     hasVariants: false,
     category: "electronics",
     sousCategory: "accessories",
