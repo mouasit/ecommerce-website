@@ -275,7 +275,10 @@ export default function Navbar() {
           <button
             className="flex items-start gap-[.2rem]"
             onClick={() => {
-              if (location.pathname.toLowerCase() !== "/checkout") {
+              if (
+                location.pathname.toLowerCase() !== "/checkout" &&
+                location.pathname.toLowerCase() !== "/thankyou"
+              ) {
                 setClickShoppingCart(true);
                 document.body.classList.add("overflow-hidden");
               }
