@@ -247,7 +247,7 @@ export default function ProductDetails({
             variant.name === selectedItems[index].name &&
             variant.value === selectedItems[index].value
           );
-        })?.length === 2
+        })?.length === selectedItems.length
       ) {
         updateQuantityInShoppingCart(product);
         return true;
@@ -547,11 +547,9 @@ export default function ProductDetails({
                     selectedVariants = selectedItems.map(
                       (selectedItem: SelectedItem) => selectedItem.value,
                     );
-
                   const productNameToShoppingCart = variants
                     ? `${productName} - ${selectedVariants.join()}`
                     : productName;
-
                   const productInShoppingCart =
                     shoppingCartContext.shoppingCart.find(
                       (productShoppingCart: ShoppingCart) =>

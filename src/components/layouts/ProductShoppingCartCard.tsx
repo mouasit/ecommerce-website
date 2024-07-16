@@ -38,7 +38,7 @@ export default function ProductShoppingCartCard({
           variants &&
           variant.value === variants[index].value
         );
-      })?.length === 2
+      })?.length === variants?.length
     )
       return true;
 
