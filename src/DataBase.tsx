@@ -33,10 +33,12 @@ import imageGreen1 from "./assets/products/iphone-13/green/1.jpg";
 import imageGreen2 from "./assets/products/iphone-13/green/2.jpg";
 import imageGreen3 from "./assets/products/iphone-13/green/3.jpg";
 import imageGreen4 from "./assets/products/iphone-13/green/4.jpg";
+import imageGreen5 from "./assets/products/iphone-13/green/5.jpg";
 import imageBlue1 from "./assets/products/iphone-13/blue/1.jpg";
 import imageBlue2 from "./assets/products/iphone-13/blue/2.jpg";
 import imageBlue3 from "./assets/products/iphone-13/blue/3.jpg";
 import imageBlue4 from "./assets/products/iphone-13/blue/4.jpg";
+import imageBlue5 from "./assets/products/iphone-13/blue/5.jpg";
 
 const globalQuantity = 20;
 
@@ -414,12 +416,24 @@ export const products: Product[] = [
       {
         name: "green",
         code: "#59965C",
-        imagesColor: [imageGreen1, imageGreen2, imageGreen3, imageGreen4],
+        imagesColor: [
+          imageGreen1,
+          imageGreen2,
+          imageGreen3,
+          imageGreen4,
+          imageGreen5,
+        ],
       },
       {
         name: "blue",
         code: "#3694C7",
-        imagesColor: [imageBlue1, imageBlue2, imageBlue3, imageBlue4],
+        imagesColor: [
+          imageBlue1,
+          imageBlue2,
+          imageBlue3,
+          imageBlue4,
+          imageBlue5,
+        ],
       },
     ],
     category: "electronics",
