@@ -18,12 +18,23 @@ import cable2 from "./assets/products/cable/2.jpg";
 import cable3 from "./assets/products/cable/3.jpg";
 import cable4 from "./assets/products/cable/4.jpg";
 import cable5 from "./assets/products/cable/5.jpg";
-import controller from "./assets/products/controller.jpg";
+import controllerWhite1 from "./assets/products/controller ps5/white/1.jpg";
+import controllerWhite2 from "./assets/products/controller ps5/white/2.jpg";
+import controllerWhite3 from "./assets/products/controller ps5/white/3.jpg";
+import controllerWhite4 from "./assets/products/controller ps5/white/4.jpg";
+import controllerWhite5 from "./assets/products/controller ps5/white/5.jpg";
+import controllerBlack1 from "./assets/products/controller ps5/black/1.jpg";
+import controllerBlack2 from "./assets/products/controller ps5/black/2.jpg";
+import controllerBlack3 from "./assets/products/controller ps5/black/3.jpg";
+import controllerBlack4 from "./assets/products/controller ps5/black/4.jpg";
+import controllerRed1 from "./assets/products/controller ps5/red/1.jpg";
+import controllerRed2 from "./assets/products/controller ps5/red/2.jpg";
+import controllerRed3 from "./assets/products/controller ps5/red/3.jpg";
+import controllerRed4 from "./assets/products/controller ps5/red/4.jpg";
 import gamingKeyboard from "./assets/products/keyboard.jpg";
 import cd from "./assets/products/cd.jpg";
 import chair from "./assets/products/chair.jpg";
 import microphone from "./assets/products/microphone.jpg";
-import iphone13 from "./assets/products/iphone-13/black/1.jpg";
 import imageBlack1 from "./assets/products/iphone-13/black/1.jpg";
 import imageBlack2 from "./assets/products/iphone-13/black/2.jpg";
 import imageBlack3 from "./assets/products/iphone-13/black/3.jpg";
@@ -308,16 +319,72 @@ export const products: Product[] = [
       "Length 2m",
     ],
   },
+
   {
     id: "p12",
     name: "controller PS5",
     price: 600,
     quantity: globalQuantity,
-    imageProduct: controller,
+    imageProduct: controllerWhite1,
+    features: [
+      "Compatible with PlayStation®5 console, PC, Mac® and mobile devices",
+      "Cable not included. To connect or charge the controller",
+      "Enjoy a comfortable, evolved design with an iconic layout",
+    ],
     images: null,
-    hasVariants: false,
-    category: "electronics",
-    sousCategory: "phones",
+    hasVariants: true,
+    variants: {
+      attributesName: ["color", "quantity"],
+      itemsAttributes: [
+        {
+          color: "white",
+          quantity: "44",
+        },
+        {
+          color: "black",
+          quantity: "12",
+        },
+        {
+          color: "red",
+          quantity: "05",
+        },
+      ],
+    },
+    colorsDefinition: [
+      {
+        name: "white",
+        code: "#dbdee8",
+        imagesColor: [
+          controllerWhite1,
+          controllerWhite2,
+          controllerWhite3,
+          controllerWhite4,
+          controllerWhite5,
+        ],
+      },
+      {
+        name: "black",
+        code: "#26282c",
+        imagesColor: [
+          controllerBlack1,
+          controllerBlack2,
+          controllerBlack3,
+          controllerBlack4,
+        ],
+      },
+      {
+        name: "red",
+        code: "#8f153f",
+        imagesColor: [
+          controllerRed1,
+          controllerRed2,
+          controllerRed3,
+          controllerRed4,
+        ],
+      },
+    ],
+    category: "gaming",
+    sousCategory: "consoles & controllers",
   },
   {
     id: "p13",
@@ -358,7 +425,7 @@ export const products: Product[] = [
     title: `apple iPhone 13 6,1" 5G`,
     price: 10000,
     quantity: globalQuantity,
-    imageProduct: iphone13,
+    imageProduct: imageBlack1,
     features: [
       "bass and Stereo Sound",
       "display with 3088 x 1440 pixels resolution",
