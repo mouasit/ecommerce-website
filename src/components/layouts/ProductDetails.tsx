@@ -26,6 +26,7 @@ import type { ColorsDefinition, Variants } from "../../DataBase";
 import type { ItemAttributes } from "../../API";
 import { ShoppingCart, ShoppingCartContext } from "../../App";
 import SuccessToast from "./SuccessToast";
+import Slider from "react-slick";
 export type Filter = {
   name: string;
   value: string;
@@ -78,6 +79,7 @@ export default function ProductDetails({
   );
 
   const [productSuccessToast, setProductSuccessToast] = useState<string>("");
+  const sliderRef = useRef<Slider>(null);
 
   const shoppingCartContext = useContext(ShoppingCartContext);
   let productWithColorsAndImages: {
@@ -180,6 +182,10 @@ export default function ProductDetails({
   const handleDragStop = () => {
     isDragging = false;
   };
+
+  useEffect(() => {
+    sliderRef.current?.slickGoTo(0, true);
+  }, [productId]);
 
   useEffect(() => {
     let timeOut: any;
@@ -366,7 +372,7 @@ export default function ProductDetails({
         ref={sectionRef}
       >
         <div className="relative  md:w-[50%] lg:ml-[8.5rem] lg:w-[45%]">
-          <SlickSlider {...settings}>
+          <SlickSlider {...settings} ref={sliderRef}>
             {productWithColorsAndImages[selectedColorProduct].imagesProduct.map(
               (image, index) => {
                 return (
