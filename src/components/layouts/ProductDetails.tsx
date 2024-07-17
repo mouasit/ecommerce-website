@@ -382,13 +382,13 @@ export default function ProductDetails({
             )}
           </SlickSlider>
           <button
-            className="absolute right-5 top-5 h-7 w-7"
+            className="absolute right-4 top-5 rounded-full bg-grayLight p-2 "
             onClick={() => {
               setFullScreenSlider(true);
               document.body.classList.add("overflow-hidden");
             }}
           >
-            <FullScreenIcon className="fill-bluePrimary" />
+            <FullScreenIcon className="fill-bluePrimary w-7 h-7" />
           </button>
           {!isVertical && showPrevArrow ? (
             <div className="absolute top-[105%] flex h-[6.5rem] items-center">
@@ -603,7 +603,10 @@ export default function ProductDetails({
 function SliderNextArrow(props: any) {
   const { onClick } = props;
   return (
-    <button onClick={onClick} className="absolute right-4  top-[50%] z-[1]">
+    <button
+      onClick={onClick}
+      className="absolute right-4  top-[50%] z-[1] rounded-full bg-grayLight p-2"
+    >
       <ArrowRightIcon className="h-5 w-5 fill-bluePrimary" />
     </button>
   );
@@ -612,7 +615,10 @@ function SliderNextArrow(props: any) {
 function SliderPrevArrow(props: any) {
   const { onClick } = props;
   return (
-    <button onClick={onClick} className="absolute left-4  top-[50%] z-[1]">
+    <button
+      onClick={onClick}
+      className="absolute left-4  top-[50%] z-[1] rounded-full bg-grayLight p-2"
+    >
       <ArrowLeftIcon className="h-5 w-5 fill-bluePrimary" />
     </button>
   );

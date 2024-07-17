@@ -1,18 +1,27 @@
 import redmi from "./assets/products/redmi.jpg";
-import airpods from "./assets/products/airpods.jpg";
+import airpods1 from "./assets/products/airpods/1.jpg";
+import airpods2 from "./assets/products/airpods/2.jpg";
+import airpods3 from "./assets/products/airpods/3.jpg";
+import airpods4 from "./assets/products/airpods/4.jpg";
 import ipad1 from "./assets/products/ipad10/1.jpg";
 import ipad2 from "./assets/products/ipad10/2.jpg";
 import ipad3 from "./assets/products/ipad10/3.jpg";
 import headPhones from "./assets/products/headphones-black.jpg";
 import smartWatch from "./assets/products/smart-watch-red.jpg";
-import powerBank from "./assets/products/power-bank.jpg";
+import powerBank1 from "./assets/products/powerbank/1.jpg";
+import powerBank2 from "./assets/products/powerbank/2.jpg";
+import powerBank3 from "./assets/products/powerbank/3.jpg";
+import powerBank4 from "./assets/products/powerbank/4.jpg";
 import iphone14 from "./assets/products/iphone.jpg";
 import speaker from "./assets/products/speaker.jpg";
 import microwave1 from "./assets/products/microwave-oven/1.jpg";
 import microwave2 from "./assets/products/microwave-oven/2.jpg";
 import microwave3 from "./assets/products/microwave-oven/3.jpg";
 import microwave4 from "./assets/products/microwave-oven/4.jpg";
-import laptop from "./assets/products/laptop.jpg";
+import laptop1 from "./assets/products/laptop/1.jpg";
+import laptop2 from "./assets/products/laptop/2.jpg";
+import laptop3 from "./assets/products/laptop/3.jpg";
+import laptop4 from "./assets/products/laptop/4.jpg";
 import cable1 from "./assets/products/cable/1.jpg";
 import cable2 from "./assets/products/cable/2.jpg";
 import cable3 from "./assets/products/cable/3.jpg";
@@ -32,9 +41,21 @@ import controllerRed2 from "./assets/products/controller ps5/red/2.jpg";
 import controllerRed3 from "./assets/products/controller ps5/red/3.jpg";
 import controllerRed4 from "./assets/products/controller ps5/red/4.jpg";
 import gamingKeyboard from "./assets/products/keyboard.jpg";
-import cd from "./assets/products/cd.jpg";
-import chair from "./assets/products/chair.jpg";
-import microphone from "./assets/products/microphone.jpg";
+import cd1 from "./assets/products/cd/1.jpg";
+import cd2 from "./assets/products/cd/2.jpg";
+import cd3 from "./assets/products/cd/3.jpg";
+import cd4 from "./assets/products/cd/4.jpg";
+import cd5 from "./assets/products/cd/5.jpg";
+import cd6 from "./assets/products/cd/6.jpg";
+import chair1 from "./assets/products/chair/1.jpg";
+import chair2 from "./assets/products/chair/2.jpg";
+import chair3 from "./assets/products/chair/3.jpg";
+import chair4 from "./assets/products/chair/4.jpg";
+import chair5 from "./assets/products/chair/5.jpg";
+import microphone1 from "./assets/products/microphone/1.jpg";
+import microphone2 from "./assets/products/microphone/2.jpg";
+import microphone3 from "./assets/products/microphone/3.jpg";
+import microphone4 from "./assets/products/microphone/4.jpg";
 import imageBlack1 from "./assets/products/iphone-13/black/1.jpg";
 import imageBlack2 from "./assets/products/iphone-13/black/2.jpg";
 import imageBlack3 from "./assets/products/iphone-13/black/3.jpg";
@@ -194,11 +215,17 @@ export const products: Product[] = [
     name: "Apple airpods 3",
     price: 300,
     quantity: globalQuantity,
-    imageProduct: airpods,
-    images: null,
+    imageProduct: airpods1,
+    images: [airpods1, airpods2, airpods3, airpods4],
     hasVariants: false,
     category: "electronics",
     sousCategory: "air pods",
+    features: [
+      "Custom high-excursion Apple driver",
+      "Custom high dynamic range amplifier",
+      "Personalized Spatial audio with dynamic head tracking",
+      "Adaptive EQ",
+    ],
   },
   {
     id: "p3",
@@ -244,11 +271,17 @@ export const products: Product[] = [
     name: "Power Bank",
     price: 600,
     quantity: globalQuantity,
-    imageProduct: powerBank,
-    images: null,
+    imageProduct: powerBank1,
+    images: [powerBank1, powerBank2, powerBank3, powerBank4],
     hasVariants: false,
     category: "electronics",
     sousCategory: "accessories",
+    features: [
+      "Capacity 10000mAh Provides a power",
+      "18W fast charging",
+      "Easy to carry, suitable for daily commutes",
+      "Works with a variety of devices",
+    ],
   },
   {
     id: "p7",
@@ -295,11 +328,17 @@ export const products: Product[] = [
     name: "OMEN 16-wd0040nf",
     price: 12000,
     quantity: globalQuantity,
-    imageProduct: laptop,
-    images: null,
+    imageProduct: laptop1,
+    images: [laptop1, laptop2, laptop3, laptop4],
     hasVariants: false,
     category: "electronics",
     sousCategory: "laptops",
+    features: [
+      "SYSTÈME D'EXPLOITATION Windows 11 Famille",
+      "PROCESSEUR Intel® Core™ i5 13420H (13ème génération)",
+      "STOCKAGE 512 Go Disque SSD",
+      "ÉCRAN 40,9 cm (16,1 pouces), FHD (1920 x 1080), 144 Hz",
+    ],
   },
   {
     id: "p11",
@@ -391,33 +430,51 @@ export const products: Product[] = [
     name: "FC 24 PS5",
     price: 600,
     quantity: globalQuantity,
-    imageProduct: cd,
-    images: null,
+    imageProduct: cd1,
+    images: [cd1, cd2, cd3, cd4, cd5, cd6],
     hasVariants: false,
     category: "gaming",
     sousCategory: "games",
+    features: [
+      "Height 55.1 inches",
+      "Width 21.26 inches",
+      "Depth 20.67 inches",
+      "Maximum Weight Capacity 299 pounds",
+    ],
   },
   {
     id: "p14",
     name: "gaming chair",
     price: 4000,
     quantity: globalQuantity,
-    imageProduct: chair,
-    images: null,
+    imageProduct: chair1,
+    images: [chair1, chair2, chair3, chair4, chair5],
     hasVariants: false,
     category: "gaming",
     sousCategory: "chairs",
+    features: [
+      "Platform PS5",
+      "release 22/09/2023",
+      "Publisher Electronic Arts Inc",
+      "Voice English, French (France), Spanish (Mexico)",
+    ],
   },
   {
     id: "p15",
     name: "microphone RGB",
     price: 1200,
     quantity: globalQuantity,
-    imageProduct: microphone,
-    images: null,
+    imageProduct: microphone1,
+    images: [microphone1, microphone2, microphone3, microphone4],
     hasVariants: false,
     category: "gaming",
     sousCategory: "microphones",
+    features: [
+      "Selection between four polar patterns",
+      "Shock mount against vibrations",
+      "Touch mute sensor with LED indicator",
+      "Convenient gain control adjustment knob",
+    ],
   },
   {
     id: "p16",
