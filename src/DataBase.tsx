@@ -6,14 +6,21 @@ import airpods4 from "./assets/products/airpods/4.jpg";
 import ipad1 from "./assets/products/ipad10/1.jpg";
 import ipad2 from "./assets/products/ipad10/2.jpg";
 import ipad3 from "./assets/products/ipad10/3.jpg";
-import headPhones from "./assets/products/headphones-black.jpg";
-import smartWatch from "./assets/products/smart-watch-red.jpg";
+import headPhone1 from "./assets/products/headphone/1.jpg";
+import headPhone2 from "./assets/products/headphone/2.jpg";
+import headPhone3 from "./assets/products/headphone/3.jpg";
+import smartWatch1 from "./assets/products/smartwatch/1.jpg";
+import smartWatch2 from "./assets/products/smartwatch/2.jpg";
+import smartWatch3 from "./assets/products/smartwatch/3.jpg";
 import powerBank1 from "./assets/products/powerbank/1.jpg";
 import powerBank2 from "./assets/products/powerbank/2.jpg";
 import powerBank3 from "./assets/products/powerbank/3.jpg";
 import powerBank4 from "./assets/products/powerbank/4.jpg";
 import iphone14 from "./assets/products/iphone.jpg";
-import speaker from "./assets/products/speaker.jpg";
+import speaker1 from "./assets/products/speaker/1.jpg";
+import speaker2 from "./assets/products/speaker/2.jpg";
+import speaker3 from "./assets/products/speaker/3.jpg";
+import speaker4 from "./assets/products/speaker/4.jpg";
 import microwave1 from "./assets/products/microwave-oven/1.jpg";
 import microwave2 from "./assets/products/microwave-oven/2.jpg";
 import microwave3 from "./assets/products/microwave-oven/3.jpg";
@@ -40,7 +47,10 @@ import controllerRed1 from "./assets/products/controller ps5/red/1.jpg";
 import controllerRed2 from "./assets/products/controller ps5/red/2.jpg";
 import controllerRed3 from "./assets/products/controller ps5/red/3.jpg";
 import controllerRed4 from "./assets/products/controller ps5/red/4.jpg";
-import gamingKeyboard from "./assets/products/keyboard.jpg";
+import keyboard1 from "./assets/products/keyboard/1.jpg";
+import keyboard2 from "./assets/products/keyboard/2.jpg";
+import keyboard3 from "./assets/products/keyboard/3.jpg";
+import keyboard4 from "./assets/products/keyboard/4.jpg";
 import cd1 from "./assets/products/cd/1.jpg";
 import cd2 from "./assets/products/cd/2.jpg";
 import cd3 from "./assets/products/cd/3.jpg";
@@ -238,10 +248,10 @@ export const products: Product[] = [
     category: "electronics",
     sousCategory: "tablets",
     features: [
-      "Superbe écran Liquid Retina de 10,9 pouces avec True Tone",
-      "Puce A14 Bionic avec CPU 6 cœurs et GPU 4 cœurs",
-      "256Go de stockage",
-      "Appareil photo arrière grand angle 12 Mpx",
+      "Superb 10.9-inch Liquid Retina display with True Tone",
+      "A14 Bionic chip with 6-core CPU and 4-core GPU",
+      "256GB of storage",
+      "12 MP wide-angle rear camera",
     ],
   },
   {
@@ -249,22 +259,35 @@ export const products: Product[] = [
     name: "Surface Headphones",
     price: 1500,
     quantity: globalQuantity,
-    imageProduct: headPhones,
-    images: null,
+    imageProduct: headPhone1,
+    images: [headPhone1, headPhone2, headPhone3],
     hasVariants: false,
     category: "electronics",
     sousCategory: "head phones",
+    features: [
+      "Spectacular Omnisonic sound wraps",
+      "Power through your day with up to 18.5 hours",
+      "Soft, over-ear pads are breathable",
+      "Intuitive touch controls",
+      "Full charge now lasts up to 20 hours",
+    ],
   },
   {
     id: "p5",
     name: "Smart watch red",
     price: 300,
     quantity: globalQuantity,
-    imageProduct: smartWatch,
-    images: null,
+    imageProduct: smartWatch1,
+    images: [smartWatch1, smartWatch2, smartWatch3],
     hasVariants: false,
     category: "electronics",
     sousCategory: "smart watches",
+    features: [
+      "GPS model lets you take calls and reply to texts",
+      "Always-on Retina display has nearly 20%",
+      "The most crack-resistant front crystal yet",
+      "Measure your blood oxygen",
+    ],
   },
   {
     id: "p6",
@@ -299,11 +322,17 @@ export const products: Product[] = [
     name: "JBL Flip 5",
     price: 1500,
     quantity: globalQuantity,
-    imageProduct: speaker,
-    images: null,
+    imageProduct: speaker1,
+    images: [speaker1, speaker2, speaker3, speaker4],
     hasVariants: false,
     category: "electronics",
     sousCategory: "accessories",
+    features: [
+      "3-in-1 Cooking: Grill, Grill Fry and Microwave",
+      "Triple Distribution System",
+      "Home Dessert",
+      "Bread Defrost",
+    ],
   },
   {
     id: "p9",
@@ -317,10 +346,10 @@ export const products: Product[] = [
     sousCategory: "microwaves",
     title: "Bespoke Grill Microwave Oven",
     features: [
-      "3-in-1 Cooking: Grill, Grill Fry and Microwave",
-      "Triple Distribution System",
-      "Home Dessert",
-      "Bread Defrost",
+      "Wireless Bluetooth streaming",
+      "12 hours of playtime",
+      "IPX7 waterproof",
+      "Pair multiple speakers with party boost",
     ],
   },
   {
@@ -568,10 +597,16 @@ export const products: Product[] = [
     name: "gaming keyboard",
     price: 400,
     quantity: globalQuantity,
-    imageProduct: gamingKeyboard,
-    images: null,
+    imageProduct: keyboard1,
+    images: [keyboard1, keyboard2, keyboard3, keyboard4],
     hasVariants: false,
     category: "gaming",
     sousCategory: "consoles & controllers",
+    features: [
+      "LIGHTSPEED Wireless 60 Percent Gaming",
+      "Keyboard with KEYCONTROL",
+      "LIGHTSYNC RGB",
+      "Optical Switches",
+    ],
   },
 ];
