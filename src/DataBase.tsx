@@ -1,4 +1,7 @@
-import redmi from "./assets/products/redmi.jpg";
+import samsungUltra1 from "./assets/products/samsungultra/1.jpg";
+import samsungUltra2 from "./assets/products/samsungultra/2.jpg";
+import samsungUltra3 from "./assets/products/samsungultra/3.jpg";
+import samsungUltra4 from "./assets/products/samsungultra/4.jpg";
 import airpods1 from "./assets/products/airpods/1.jpg";
 import airpods2 from "./assets/products/airpods/2.jpg";
 import airpods3 from "./assets/products/airpods/3.jpg";
@@ -16,7 +19,11 @@ import powerBank1 from "./assets/products/powerbank/1.jpg";
 import powerBank2 from "./assets/products/powerbank/2.jpg";
 import powerBank3 from "./assets/products/powerbank/3.jpg";
 import powerBank4 from "./assets/products/powerbank/4.jpg";
-import iphone14 from "./assets/products/iphone.jpg";
+import iphoneFourteen1 from "./assets/products/iphone14/1.jpg";
+import iphoneFourteen2 from "./assets/products/iphone14/2.jpg";
+import iphoneFourteen3 from "./assets/products/iphone14/3.jpg";
+import iphoneFourteen4 from "./assets/products/iphone14/4.jpg";
+import iphoneFourteen5 from "./assets/products/iphone14/5.jpg";
 import speaker1 from "./assets/products/speaker/1.jpg";
 import speaker2 from "./assets/products/speaker/2.jpg";
 import speaker3 from "./assets/products/speaker/3.jpg";
@@ -133,7 +140,7 @@ export const categories: Category[] = [
       {
         id: "sc10",
         name: "phones",
-        products: ["p16", "p7", "p1"],
+        products: ["p7", "p1", "p16"],
       },
       {
         id: "sc20",
@@ -211,14 +218,20 @@ export const categories: Category[] = [
 export const products: Product[] = [
   {
     id: "p1",
-    name: "Xiaomi redmi R",
+    name: "galaxy s24 ultra",
     price: 1500,
     quantity: globalQuantity,
-    imageProduct: redmi,
-    images: null,
+    imageProduct: samsungUltra1,
+    images: [samsungUltra1, samsungUltra2, samsungUltra3, samsungUltra4],
     hasVariants: false,
     category: "electronics",
     sousCategory: "phones",
+    features: [
+      "Circle to Search with Google",
+      "Live Translate",
+      "Note Assist",
+      "Nightography Zoom",
+    ],
   },
   {
     id: "p2",
@@ -308,14 +321,27 @@ export const products: Product[] = [
   },
   {
     id: "p7",
-    name: "iphone 14 plus",
+    name: "iphone 14",
     price: 11000,
     quantity: globalQuantity,
-    imageProduct: iphone14,
-    images: null,
+    imageProduct: iphoneFourteen1,
+    images: [
+      iphoneFourteen1,
+      iphoneFourteen2,
+      iphoneFourteen3,
+      iphoneFourteen4,
+      iphoneFourteen5,
+    ],
     hasVariants: false,
     category: "electronics",
+    title: "iPhone 14 Blue 128 Gb",
     sousCategory: "phones",
+    features: [
+      "6.1-inch Super Retina XDR display142",
+      "Advanced camera system",
+      "Cinematic mode now in 4K Dolby Vision",
+      "Action mode for smooth, steady",
+    ],
   },
   {
     id: "p8",
