@@ -31,6 +31,7 @@ export default function ProductShoppingCartCard({
     product: ShoppingCart;
   }): boolean => {
     if (
+      product.variants?.length === variants?.length &&
       product.variants?.filter((variant: SelectedItem, index: number) => {
         return (
           variants &&
