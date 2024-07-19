@@ -265,7 +265,10 @@ export default function ProductDetails({
   const updateQuantityInShoppingCart = (product: ShoppingCart) => {
     const newQuantity: number = product.quantity + quantityCounter;
 
-    if (newQuantity <= quantity) product.quantity = newQuantity;
+    if (newQuantity <= quantity) {
+      product.quantity = newQuantity;
+      product.price = product.price * newQuantity;
+    }
   };
 
   const filteredItems = ({
@@ -388,7 +391,7 @@ export default function ProductDetails({
               document.body.classList.add("overflow-hidden");
             }}
           >
-            <FullScreenIcon className="fill-bluePrimary w-7 h-7" />
+            <FullScreenIcon className="h-7 w-7 fill-bluePrimary" />
           </button>
           {!isVertical && showPrevArrow ? (
             <div className="absolute top-[105%] flex h-[6.5rem] items-center">
