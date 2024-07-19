@@ -1,10 +1,11 @@
-import PrimaryButton from "./PrimaryButton";
+import { Link } from "react-router-dom";
 
 type SlideHeroContent = {
   nameProduct: string;
   subtitle: string;
   desc: string;
   linkImageProduct: any;
+  path: string;
 };
 
 export default function SlideHeroContent({
@@ -12,6 +13,7 @@ export default function SlideHeroContent({
   subtitle,
   desc,
   linkImageProduct,
+  path,
 }: SlideHeroContent) {
   return (
     <div>
@@ -30,10 +32,12 @@ export default function SlideHeroContent({
               {desc}
             </p>
           </div>
-          <PrimaryButton
-            value="Shop now"
-            className="w-[11rem]  sm:w-[10.264rem]"
-          />
+          <Link
+            to={path}
+            className="flex w-[11rem] items-center justify-center break-words rounded-[0.5rem] border-2 border-yellowPrimary bg-yellowPrimary p-2 font-medium text-bluePrimary  sm:w-[10.264rem]"
+          >
+            Shop now
+          </Link>
         </div>
         <img
           src={linkImageProduct}

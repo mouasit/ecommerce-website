@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import "./animation.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route, HashRouter } from "react-router-dom";
 
 import AnnouncementBar from "./components/layouts/AnnouncementBar";
 import Navbar from "./components/layouts/Navbar";
@@ -57,7 +57,7 @@ function App() {
     shoppingCartLocalStorage ? shoppingCartLocalStorage.subTotal : 0,
   );
   return (
-    <BrowserRouter>
+    <HashRouter>
       <ShoppingCartContext.Provider
         value={{
           shoppingCart,
@@ -85,7 +85,7 @@ function App() {
         </main>
         <Footer />
       </ShoppingCartContext.Provider>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 

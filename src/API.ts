@@ -121,7 +121,7 @@ export function getProduct(productId: string): DisplayProduct | undefined {
 }
 
 export function getRecentProduct(): string[] {
-  return ["p16", "p9", "p3", "p11", "p12", "p10", "p2", "p6"];
+  return ["p19", "p9", "p3", "p11", "p12", "p10", "p2", "p6"];
 }
 
 export function getProductsByCategory({

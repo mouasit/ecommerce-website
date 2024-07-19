@@ -22,11 +22,11 @@ export default function ProductCardCheckout({
           className="w-[6rem] flex-none rounded-lg"
         />
         <div className="flex flex-col">
-          <span className="text-bluePrimary">{name}</span>
+          <span className="capitalize text-bluePrimary">{name}</span>
           <span className="text-grayPrimary">X{quantity}</span>
         </div>
       </div>
-      <span className="font-semibold space-x-1 text-bluePrimary">
+      <span className="space-x-1 font-semibold text-bluePrimary">
         <span>{formatNumberWithSpaces(price)}</span>
         <span>{currency}</span>
       </span>

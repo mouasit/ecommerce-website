@@ -25,15 +25,17 @@ export default function SliderHero() {
     <SlickSlider {...settings}>
       <SlideHeroContent
         nameProduct={`"85" Q60C QLED 4K (2023)"`}
-        subtitle="QA85Q60CAUXMV"
-        desc="Technologie Quantum Matrix Pro / Neural Quantum Processor 8K"
+        subtitle="SAMSUNG"
+        desc="Picture quality in a league of its own with Quantum Matrix"
         linkImageProduct={tv}
+        path="/Product/p18"
       />
       <SlideHeroContent
         nameProduct={`IPhone 15 Pro Max All Colors`}
-        subtitle="QA85Q60CAUXMV"
-        desc="The iPhone 15 display has rounded corners that follow a beautiful"
+        subtitle="APPLE"
+        desc="Improved camera system with better low-light performance"
         linkImageProduct={iphone}
+        path="/Product/p19"
       />
     </SlickSlider>
   );

@@ -26,6 +26,7 @@ import type { ColorsDefinition, Variants } from "../../DataBase";
 import type { ItemAttributes } from "../../API";
 import { ShoppingCart, ShoppingCartContext } from "../../App";
 import SuccessToast from "./SuccessToast";
+import Slider from "react-slick";
 export type Filter = {
   name: string;
   value: string;
@@ -78,6 +79,7 @@ export default function ProductDetails({
   );
 
   const [productSuccessToast, setProductSuccessToast] = useState<string>("");
+  const sliderRef = useRef<Slider>(null);
 
   const shoppingCartContext = useContext(ShoppingCartContext);
   let productWithColorsAndImages: {
@@ -182,6 +184,10 @@ export default function ProductDetails({
   };
 
   useEffect(() => {
+    sliderRef.current?.slickGoTo(0, true);
+  }, [productId]);
+
+  useEffect(() => {
     let timeOut: any;
     if (productSuccessToast.length) {
       timeOut = setTimeout(() => {
@@ -247,7 +253,7 @@ export default function ProductDetails({
             variant.name === selectedItems[index].name &&
             variant.value === selectedItems[index].value
           );
-        })?.length === 2
+        })?.length === selectedItems.length
       ) {
         updateQuantityInShoppingCart(product);
         return true;
@@ -259,7 +265,10 @@ export default function ProductDetails({
   const updateQuantityInShoppingCart = (product: ShoppingCart) => {
     const newQuantity: number = product.quantity + quantityCounter;
 
-    if (newQuantity <= quantity) product.quantity = newQuantity;
+    if (newQuantity <= quantity) {
+      product.quantity = newQuantity;
+      product.price = product.price * newQuantity;
+    }
   };
 
   const filteredItems = ({
@@ -366,7 +375,7 @@ export default function ProductDetails({
         ref={sectionRef}
       >
         <div className="relative  md:w-[50%] lg:ml-[8.5rem] lg:w-[45%]">
-          <SlickSlider {...settings}>
+          <SlickSlider {...settings} ref={sliderRef}>
             {productWithColorsAndImages[selectedColorProduct].imagesProduct.map(
               (image, index) => {
                 return (
@@ -376,13 +385,13 @@ export default function ProductDetails({
             )}
           </SlickSlider>
           <button
-            className="absolute right-5 top-5 h-7 w-7"
+            className="absolute right-4 top-5 rounded-full bg-grayLight p-2 "
             onClick={() => {
               setFullScreenSlider(true);
               document.body.classList.add("overflow-hidden");
             }}
           >
-            <FullScreenIcon className="fill-bluePrimary" />
+            <FullScreenIcon className="h-7 w-7 fill-bluePrimary" />
           </button>
           {!isVertical && showPrevArrow ? (
             <div className="absolute top-[105%] flex h-[6.5rem] items-center">
@@ -547,11 +556,9 @@ export default function ProductDetails({
                     selectedVariants = selectedItems.map(
                       (selectedItem: SelectedItem) => selectedItem.value,
                     );
-
                   const productNameToShoppingCart = variants
                     ? `${productName} - ${selectedVariants.join()}`
                     : productName;
-
                   const productInShoppingCart =
                     shoppingCartContext.shoppingCart.find(
                       (productShoppingCart: ShoppingCart) =>
@@ -599,7 +606,10 @@ export default function ProductDetails({
 function SliderNextArrow(props: any) {
   const { onClick } = props;
   return (
-    <button onClick={onClick} className="absolute right-4  top-[50%] z-[1]">
+    <button
+      onClick={onClick}
+      className="absolute right-4  top-[50%] z-[1] rounded-full bg-grayLight p-2"
+    >
       <ArrowRightIcon className="h-5 w-5 fill-bluePrimary" />
     </button>
   );
@@ -608,7 +618,10 @@ function SliderNextArrow(props: any) {
 function SliderPrevArrow(props: any) {
   const { onClick } = props;
   return (
-    <button onClick={onClick} className="absolute left-4  top-[50%] z-[1]">
+    <button
+      onClick={onClick}
+      className="absolute left-4  top-[50%] z-[1] rounded-full bg-grayLight p-2"
+    >
       <ArrowLeftIcon className="h-5 w-5 fill-bluePrimary" />
     </button>
   );
