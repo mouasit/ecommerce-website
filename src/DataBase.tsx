@@ -88,6 +88,11 @@ import imageBlue2 from "./assets/products/iphone-13/blue/2.jpg";
 import imageBlue3 from "./assets/products/iphone-13/blue/3.jpg";
 import imageBlue4 from "./assets/products/iphone-13/blue/4.jpg";
 import imageBlue5 from "./assets/products/iphone-13/blue/5.jpg";
+import tv1 from "./assets/products/tv/1.jpg";
+import tv2 from "./assets/products/tv/2.jpg";
+import tv3 from "./assets/products/tv/3.jpg";
+import tv4 from "./assets/products/tv/4.jpg";
+import tv5 from "./assets/products/tv/5.jpg";
 
 const globalQuantity = 20;
 
@@ -177,12 +182,17 @@ export const categories: Category[] = [
   {
     id: "c2",
     name: "home appliance",
-    products: ["p9"],
+    products: ["p9", "p18"],
     sousCategories: [
       {
         id: "sc80",
         name: "microwaves",
         products: ["p9"],
+      },
+      {
+        id: "sc90",
+        name: "TVs",
+        products: ["p18"],
       },
     ],
   },
@@ -633,6 +643,24 @@ export const products: Product[] = [
       "Keyboard with KEYCONTROL",
       "LIGHTSYNC RGB",
       "Optical Switches",
+    ],
+  },
+  {
+    id: "p18",
+    name: "Samsung QLED 4K",
+    title: `"85" Q60C QLED 4K (2023)`,
+    price: 12000,
+    quantity: globalQuantity,
+    imageProduct: tv1,
+    images: [tv1, tv2, tv3, tv4, tv5],
+    hasVariants: false,
+    category: "electronics",
+    sousCategory: "TVs",
+    features: [
+      "Unleash vivid colour with Quantum Dot",
+      "Feel the impact of Object Tracking Sound",
+      "Quantum HDR 24x",
+      "Picture quality in a league of its own",
     ],
   },
 ];
