@@ -77,10 +77,6 @@ export default function Navbar() {
         <ul className="hidden gap-20 lg:flex">
           <li
             className="relative"
-            onFocus={() => {
-              setHoverAnimation(true);
-              setHoverDropDown(true);
-            }}
             onMouseEnter={() => {
               setHoverAnimation(true);
               setHoverDropDown(true);
