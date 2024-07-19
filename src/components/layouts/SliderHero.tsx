@@ -32,10 +32,10 @@ export default function SliderHero() {
       />
       <SlideHeroContent
         nameProduct={`IPhone 15 Pro Max All Colors`}
-        subtitle="QA85Q60CAUXMV"
-        desc="The iPhone 15 display has rounded corners that follow a beautiful"
+        subtitle="APPLE"
+        desc="Improved camera system with better low-light performance"
         linkImageProduct={iphone}
-        path=""
+        path="/Product/p19"
       />
     </SlickSlider>
   );

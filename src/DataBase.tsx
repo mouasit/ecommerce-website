@@ -93,6 +93,26 @@ import tv2 from "./assets/products/tv/2.jpg";
 import tv3 from "./assets/products/tv/3.jpg";
 import tv4 from "./assets/products/tv/4.jpg";
 import tv5 from "./assets/products/tv/5.jpg";
+import iphoneFifteenBlack1 from "./assets/products/iphone-15/black/1.jpg";
+import iphoneFifteenBlack2 from "./assets/products/iphone-15/black/2.jpg";
+import iphoneFifteenBlack3 from "./assets/products/iphone-15/black/3.jpg";
+import iphoneFifteenBlack4 from "./assets/products/iphone-15/black/4.jpg";
+import iphoneFifteenBlack5 from "./assets/products/iphone-15/black/5.jpg";
+import iphoneFifteenWhite1 from "./assets/products/iphone-15/white/1.jpg";
+import iphoneFifteenWhite2 from "./assets/products/iphone-15/white/2.jpg";
+import iphoneFifteenWhite3 from "./assets/products/iphone-15/white/3.jpg";
+import iphoneFifteenWhite4 from "./assets/products/iphone-15/white/4.jpg";
+import iphoneFifteenWhite5 from "./assets/products/iphone-15/white/5.jpg";
+import iphoneFifteenBleu1 from "./assets/products/iphone-15/blue/1.jpg";
+import iphoneFifteenBleu2 from "./assets/products/iphone-15/blue/2.jpg";
+import iphoneFifteenBleu3 from "./assets/products/iphone-15/blue/3.jpg";
+import iphoneFifteenBleu4 from "./assets/products/iphone-15/blue/4.jpg";
+import iphoneFifteenBleu5 from "./assets/products/iphone-15/blue/5.jpg";
+import iphoneFifteenNatural1 from "./assets/products/iphone-15/natural/1.jpg";
+import iphoneFifteenNatural2 from "./assets/products/iphone-15/natural/2.jpg";
+import iphoneFifteenNatural3 from "./assets/products/iphone-15/natural/3.jpg";
+import iphoneFifteenNatural4 from "./assets/products/iphone-15/natural/4.jpg";
+import iphoneFifteenNatural5 from "./assets/products/iphone-15/natural/5.jpg";
 
 const globalQuantity = 20;
 
@@ -140,12 +160,12 @@ export const categories: Category[] = [
   {
     id: "c1",
     name: "electronics",
-    products: ["p16", "p2", "p3", "p4", "p5", "p6"],
+    products: ["p19", "p2", "p3", "p4", "p5", "p6"],
     sousCategories: [
       {
         id: "sc10",
         name: "phones",
-        products: ["p7", "p1", "p16"],
+        products: ["p19", "p7", "p1", "p16"],
       },
       {
         id: "sc20",
@@ -662,5 +682,134 @@ export const products: Product[] = [
       "Quantum HDR 24x",
       "Picture quality in a league of its own",
     ],
+  },
+  {
+    id: "p19",
+    name: "iphone 15 Pro Max",
+    title: `iPhone 15 Pro Max`,
+    price: 18000,
+    quantity: globalQuantity,
+    imageProduct: iphoneFifteenBlack1,
+    features: [
+      "A17 Bionic chip for enhanced performance",
+      "120Hz ProMotion display for smoother visuals",
+      "Improved camera system with better low-light performance",
+      "Longer battery life with optimized power management",
+    ],
+    images: null,
+    hasVariants: true,
+    variants: {
+      attributesName: ["storage", "color", "quantity"],
+      itemsAttributes: [
+        {
+          storage: "64 GB",
+          color: "black",
+          quantity: "44",
+        },
+        {
+          storage: "128 GB",
+          color: "black",
+          quantity: "12",
+        },
+        {
+          storage: "512 GB",
+          color: "black",
+          quantity: "10",
+        },
+        {
+          storage: "64 GB",
+          color: "white",
+          quantity: "44",
+        },
+        {
+          storage: "128 GB",
+          color: "white",
+          quantity: "12",
+        },
+        {
+          storage: "512 GB",
+          color: "white",
+          quantity: "10",
+        },
+        {
+          storage: "64 GB",
+          color: "blue",
+          quantity: "44",
+        },
+        {
+          storage: "128 GB",
+          color: "blue",
+          quantity: "12",
+        },
+        {
+          storage: "512 GB",
+          color: "blue",
+          quantity: "10",
+        },
+        {
+          storage: "64 GB",
+          color: "natural",
+          quantity: "44",
+        },
+        {
+          storage: "128 GB",
+          color: "natural",
+          quantity: "12",
+        },
+        {
+          storage: "512 GB",
+          color: "natural",
+          quantity: "10",
+        },
+      ],
+    },
+    colorsDefinition: [
+      {
+        name: "black",
+        code: "#4b4d4e",
+        imagesColor: [
+          iphoneFifteenBlack1,
+          iphoneFifteenBlack2,
+          iphoneFifteenBlack3,
+          iphoneFifteenBlack4,
+          iphoneFifteenBlack5,
+        ],
+      },
+      {
+        name: "white",
+        code: "#f2f1ec",
+        imagesColor: [
+          iphoneFifteenWhite1,
+          iphoneFifteenWhite2,
+          iphoneFifteenWhite3,
+          iphoneFifteenWhite4,
+          iphoneFifteenWhite5,
+        ],
+      },
+      {
+        name: "blue",
+        code: "#4d5464",
+        imagesColor: [
+          iphoneFifteenBleu1,
+          iphoneFifteenBleu2,
+          iphoneFifteenBleu3,
+          iphoneFifteenBleu4,
+          iphoneFifteenBleu5,
+        ],
+      },
+      {
+        name: "natural",
+        code: "#bbb5a9",
+        imagesColor: [
+          iphoneFifteenNatural1,
+          iphoneFifteenNatural2,
+          iphoneFifteenNatural3,
+          iphoneFifteenNatural4,
+          iphoneFifteenNatural5,
+        ],
+      },
+    ],
+    category: "electronics",
+    sousCategory: "phones",
   },
 ];
